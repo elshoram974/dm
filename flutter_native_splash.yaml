@@ -1,0 +1,60 @@
+flutter_native_splash:
+  # Customize the parameters below, and run the following command in the terminal:
+  # dart run flutter_native_splash:create
+  # dart run flutter_native_splash:remove
+  
+
+  color: "#FFFFFF"
+  #background_image: "assets/background.png"
+
+  # The image parameter allows you to specify an image used in the splash screen.  It must be a
+  # png file and should be sized for 4x pixel density.
+  image: assets/images/splash_icon.png
+
+  branding: assets/images/branding_image.png
+  branding_mode: bottom
+
+  # The color_dark, background_image_dark, image_dark, branding_dark are parameters that set the background
+  # and image when the device is in dark mode. If they are not specified, the app will use the
+  # parameters from above. If the image_dark parameter is specified, color_dark or
+  # background_image_dark must be specified.  color_dark and background_image_dark cannot both be
+  # set.
+  color_dark: "#373737"
+  # background_image_dark: "assets/dark-background.png"
+  # image_dark: assets/images/splash_screen/splash_icon.png
+  branding_dark: assets/images/branding_image_dark.png
+
+  # Android 12 handles the splash screen differently than previous versions.  Please visit
+  # https://developer.android.com/guide/topics/ui/splash-screen
+  # Following are Android 12 specific parameter.
+  android_12:
+    # The image parameter sets the splash screen icon image.  If this parameter is not specified,
+    # the app's launcher icon will be used instead.
+    # Please note that the splash screen will be clipped to a circle on the center of the screen.
+    # App icon with an icon background: This should be 960×960 pixels, and fit within a circle
+    # 640 pixels in diameter.
+    # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
+    # 768 pixels in diameter.
+    image: assets/images/splash_icon.png
+
+    # Splash screen background color.
+    color: "#FFFFFF"
+
+    # App icon background color.
+    #icon_background_color: "#111111"
+
+    # The branding property allows you to specify an image used as branding in the splash screen.
+    branding: assets/images/branding_image.png
+
+    # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
+    # apply when the device is in dark mode. If they are not specified, the app will use the
+    # parameters from above.
+    # image_dark: assets/android12splash-invert.png
+    color_dark: "#373737"
+    #icon_background_color_dark: "#eeeeee"
+    branding_dark: assets/images/branding_image_dark.png
+
+  # The android, ios and web parameters can be used to disable generating a splash screen on a given
+  # platform.
+  android: true
+  ios: true
