@@ -23,12 +23,12 @@ class LoginScreen extends StatelessWidget {
             child: MyResConstrainedBoxAlign(
               child: ListView(
                 children: [
-                  // Text(
-                  //   S.of(context).loginToContinue,
-                  //   textAlign: TextAlign.center,
-                  //   style: context.textTheme.titleLarge
-                  //       ?.copyWith(fontWeight: FontWeight.w600),
-                  // ),
+                  Text(
+                    'S.of(context).loginToContinue',
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.titleLarge
+                        ?.copyWith(fontWeight: FontWeight.w600),
+                  ),
                   const SizedBox(height: 70),
                   const LoginFields(),
                   const LoginButtons(),

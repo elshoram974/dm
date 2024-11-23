@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       getPages: AppRoute.pages,
-      initialRoute: AppRoute.onBoarding,
+      initialRoute: AppRoute.login,
       debugShowCheckedModeBanner: AppInfo.isDebugMode,
       // initialBinding: InitialBindings(),
     );
