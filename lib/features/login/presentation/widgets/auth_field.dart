@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shora/core/default_field.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 
 class AuthField extends StatelessWidget {
   const AuthField({
     super.key,
-    required this.suffixIconData,
+    this.suffixIconData,
     this.hintText,
     required this.label,
     this.suffix,
@@ -18,20 +19,24 @@ class AuthField extends StatelessWidget {
     this.readOnly = false,
     this.onFieldSubmitted,
     this.keyboardType,
-    this.textInputAction = TextInputAction.next,
+    this.textInputAction = TextInputAction.next, 
+    this.isPhoneNumber = false, 
+    this.onPhoneInputChanged,
   });
   final TextEditingController? controller;
-  final IconData suffixIconData;
+  final IconData? suffixIconData;
   final String? hintText;
   final String label;
   final Widget? suffix;
   final bool obscureText;
   final bool readOnly;
+  final bool isPhoneNumber;
   final TextInputType? keyboardType;
   final TextInputAction textInputAction;
   final Iterable<String>? autofillHints;
   final void Function(String)? onChanged;
   final void Function(String)? onFieldSubmitted;
+  final void Function(PhoneNumber)? onPhoneInputChanged;
   final String? Function(String?)? validator;
 
   @override
@@ -59,7 +64,9 @@ class AuthField extends StatelessWidget {
           suffix: suffix,
           obscureText: obscureText,
           onChanged: onChanged,
+          isPhoneNumber: isPhoneNumber,
           autofillHints: autofillHints,
+          onPhoneInputChanged: onPhoneInputChanged,
           onFieldSubmitted: onFieldSubmitted,
         ),
       ],

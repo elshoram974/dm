@@ -59,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter valid E-mail"),
         "enterYourCredentialsToContinue": MessageLookupByLibrary.simpleMessage(
             "Enter your credentials to continue."),
+        "enterYourMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
         "fillField": MessageLookupByLibrary.simpleMessage("fill this field"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forget password ? "),
@@ -74,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The location service on the device is disabled."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginNow": MessageLookupByLibrary.simpleMessage("Log in Now"),
+        "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "needsSynchronization":
             MessageLookupByLibrary.simpleMessage("Needs synchronization"),

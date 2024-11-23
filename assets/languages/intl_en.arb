@@ -1,4 +1,7 @@
 {
+    "mobileNumber": "Mobile Number",
+    "enterYourMobileNumber": "Enter your mobile number",
+    "loginNow": "Log in Now",
     "unauthorizedError": "Your session has expired or you are not authorized. Please log in again.",
     "thereIsProblemWithServerTryAgainLater": "There is a problem with the server. Try again later.",
     "serverTookTooLongToRespond": "The server took too long to respond.",

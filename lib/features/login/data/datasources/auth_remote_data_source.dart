@@ -6,7 +6,7 @@ import '../models/user_model.dart';
 abstract class AuthRemoteDataSource {
   const AuthRemoteDataSource();
   Future<({UserModel user, String token})> login({
-    required String email,
+    required String phone,
     required String password,
   });
 }
@@ -17,13 +17,13 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
 
   @override
   Future<({UserModel user, String token})> login({
-    required String email,
+    required String phone,
     required String password,
   }) async {
     final Map<String, dynamic> res = await apiServices.post(
       AppLinks.login,
       {
-        "email": email,
+        "phone": phone,
         "password": password,
       },
     );

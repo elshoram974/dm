@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:shora/core/utils/extensions/string_ex.dart';
 
 import 'utils/constants/app_constants.dart';
 
@@ -9,6 +11,7 @@ class MyDefaultField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final String? initialValue;
+  final PhoneNumber? initialPhoneNumber;
   final bool isDouble;
   final TextAlign textAlign;
   final FocusNode? focusNode;
@@ -26,6 +29,7 @@ class MyDefaultField extends StatefulWidget {
   final double verticalPadding;
   final bool? alignLabelWithHint;
   final bool? filled;
+  final bool isPhoneNumber;
   final Color? fillColor;
   final TextStyle? style;
   final TextStyle? hintStyle;
@@ -40,12 +44,15 @@ class MyDefaultField extends StatefulWidget {
   final Iterable<String>? autofillHints;
   final void Function(String)? onFieldSubmitted;
   final void Function()? onEditingComplete;
+  final void Function(PhoneNumber)? onPhoneInputChanged;
+  final void Function(PhoneNumber)? onPhoneInputSaved;
   final List<TextInputFormatter>? inputFormatters;
   const MyDefaultField({
     super.key,
     this.labelText,
     this.controller,
     this.isDouble = false,
+    this.isPhoneNumber = false,
     this.onChanged,
     this.onSaved,
     this.textAlign = TextAlign.start,
@@ -73,12 +80,15 @@ class MyDefaultField extends StatefulWidget {
     this.readOnly = false,
     this.autofillHints,
     this.onEditingComplete,
+    this.onPhoneInputChanged,
     this.inputFormatters,
     this.hintText,
     this.autofocus = false,
     this.style,
     this.hintStyle,
     this.focusNode,
+    this.initialPhoneNumber,
+    this.onPhoneInputSaved,
   });
 
   @override
@@ -89,6 +99,64 @@ class _MyDefaultFieldState extends State<MyDefaultField> {
   late TextDirection? textDirection = widget.textDirection;
   @override
   Widget build(BuildContext context) {
+    if (widget.isPhoneNumber) {
+      return InternationalPhoneNumberInput(
+        textFieldController: widget.controller,
+        selectorConfig: SelectorConfig(
+          leadingPadding: widget.horizontalPadding ?? AppConst.defaultPadding,
+          selectorType: PhoneInputSelectorType.DIALOG,
+          setSelectorButtonAsPrefixIcon: true,
+        ),
+        selectorTextStyle: widget.style,
+        keyboardAction: widget.textInputAction,
+        formatInput: false,
+        onInputChanged: (PhoneNumber phone) {
+          if (widget.onPhoneInputChanged != null) {
+            widget.onPhoneInputChanged!(removeZerosInFirstNum(phone));
+          }
+        },
+        focusNode: widget.focusNode,
+        autofillHints: widget.autofillHints,
+        maxLength: widget.maxLength ?? 15,
+        initialValue: widget.initialPhoneNumber,
+        keyboardType: TextInputType.phone,
+        textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.center,
+        onSaved: (PhoneNumber phone) {
+          if (widget.onPhoneInputSaved != null) {
+            widget.onPhoneInputSaved!(removeZerosInFirstNum(phone));
+          }
+        },
+        // validator: widget.validator,
+        textAlign: widget.textAlign,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        autoValidateMode: AutovalidateMode.onUnfocus,
+        fieldKey: widget.fieldKey,
+        isEnabled: !widget.readOnly,
+        textStyle: widget.style,
+        inputDecoration: InputDecoration(
+          filled: widget.filled,
+          fillColor: widget.fillColor,
+          suffixIconColor: widget.suffixIconColor,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.grey),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          constraints: const BoxConstraints(maxWidth: AppConst.constraint),
+          alignLabelWithHint: widget.alignLabelWithHint,
+          labelText: widget.labelText,
+          hintStyle: widget.hintStyle ?? const TextStyle(color: Colors.grey),
+          suffixIcon: widget.suffix,
+          prefixIcon: widget.prefix,
+          hintText: widget.hintText,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: widget.verticalPadding,
+          ),
+        ),
+      );
+    }
     return TextFormField(
       obscureText: widget.obscureText,
       focusNode: widget.focusNode,
@@ -123,7 +191,7 @@ class _MyDefaultFieldState extends State<MyDefaultField> {
       maxLength: widget.maxLength,
       initialValue: widget.initialValue,
       controller: widget.controller,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: AutovalidateMode.onUnfocus,
       keyboardType: widget.keyboardType ??
           (widget.isDouble ? TextInputType.number : TextInputType.text),
       inputFormatters: widget.inputFormatters,
@@ -150,6 +218,14 @@ class _MyDefaultFieldState extends State<MyDefaultField> {
       enableSuggestions: true,
       autofocus: widget.autofocus,
       style: widget.style,
+    );
+  }
+
+  PhoneNumber removeZerosInFirstNum(PhoneNumber phone) {
+    return PhoneNumber(
+      phoneNumber: "${phone.dialCode}${phone.parseNumber().removeZerosInFirst}",
+      dialCode: phone.dialCode,
+      isoCode: phone.isoCode,
     );
   }
 }

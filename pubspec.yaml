@@ -38,17 +38,11 @@ dependencies:
   # * To make == operator
   equatable: ^2.0.5
 
-  # * To get the place
-  geolocator: ^13.0.1
-
-  # * To get device info
-  device_info_plus: ^11.0.0
-
   # * check if user open location or not
   permission_handler: ^11.3.1
-
   
-  flutter_native_splash: ^2.4.1
+  # * To make mobile field
+  intl_phone_number_input: ^0.7.4
 
 dev_dependencies:
   flutter_test:

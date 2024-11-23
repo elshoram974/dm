@@ -16,14 +16,14 @@ class AuthRepositoriesImp extends AuthRepositories {
 
   @override
   Future<Status<UserModel>> login({
-    required String email,
+    required String phone,
     required String password,
   }) {
     return executeAndHandleErrors<UserModel>(
       () async {
         final ({UserModel user, String token}) res =
             await remoteDataSource.login(
-          email: email,
+          phone: phone,
           password: password,
         );
         await Future.wait(

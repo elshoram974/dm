@@ -6,7 +6,7 @@ abstract class AuthRepositories {
   const AuthRepositories();
 
   Future<Status<UserModel>> login({
-    required String email,
+    required String phone,
     required String password,
   });
 }

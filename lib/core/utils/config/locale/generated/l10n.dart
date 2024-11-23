@@ -50,6 +50,36 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Mobile Number`
+  String get mobileNumber {
+    return Intl.message(
+      'Mobile Number',
+      name: 'mobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your mobile number`
+  String get enterYourMobileNumber {
+    return Intl.message(
+      'Enter your mobile number',
+      name: 'enterYourMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in Now`
+  String get loginNow {
+    return Intl.message(
+      'Log in Now',
+      name: 'loginNow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Your session has expired or you are not authorized. Please log in again.`
   String get unauthorizedError {
     return Intl.message(

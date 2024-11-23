@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
-import 'package:shora/core/utils/functions/app_validate.dart';
 
 import '../controller/login_controller.dart';
 import '../widgets/auth_field.dart';
@@ -22,14 +21,11 @@ class LoginFields extends StatelessWidget {
               children: [
                 AuthField(
                   readOnly: controller.isLoading,
-                  suffixIconData: Icons.mail_outline,
-                  keyboardType: TextInputType.emailAddress,
-                  label: S.of(context).emailAddress,
-                  hintText: S.of(context).enterEmailAddress,
+                  isPhoneNumber: true,
+                  onPhoneInputChanged: (v) => controller.phone = v,
+                  label: S.of(context).mobileNumber,
+                  hintText: S.of(context).enterYourMobileNumber,
                   autofillHints: const [AutofillHints.email],
-                  onChanged: (val) => controller.email = val,
-                  validator: (val) =>
-                      AppValidator.auth(val, 0, 100, FieldType.email),
                 ),
                 const SizedBox(height: 2 * AppConst.defaultPadding),
                 PasswordField(
