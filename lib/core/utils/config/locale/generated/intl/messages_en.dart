@@ -75,7 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "The location service on the device is disabled."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
-        "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "loginNow": MessageLookupByLibrary.simpleMessage("Log in Now"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),

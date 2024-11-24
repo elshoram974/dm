@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:shora/app_info.dart';
 import 'package:shora/core/utils/extensions/string_ex.dart';
 
 import 'utils/constants/app_constants.dart';
@@ -11,7 +12,6 @@ class MyDefaultField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final String? initialValue;
-  final PhoneNumber? initialPhoneNumber;
   final bool isDouble;
   final TextAlign textAlign;
   final FocusNode? focusNode;
@@ -87,7 +87,6 @@ class MyDefaultField extends StatefulWidget {
     this.style,
     this.hintStyle,
     this.focusNode,
-    this.initialPhoneNumber,
     this.onPhoneInputSaved,
   });
 
@@ -118,7 +117,10 @@ class _MyDefaultFieldState extends State<MyDefaultField> {
         focusNode: widget.focusNode,
         autofillHints: widget.autofillHints,
         maxLength: widget.maxLength ?? 15,
-        initialValue: widget.initialPhoneNumber,
+        initialValue: PhoneNumber(
+          isoCode: AppInfo.initCountryIsoCode,
+          phoneNumber: widget.initialValue,
+        ),
         keyboardType: TextInputType.phone,
         textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.center,
         onSaved: (PhoneNumber phone) {
@@ -126,7 +128,6 @@ class _MyDefaultFieldState extends State<MyDefaultField> {
             widget.onPhoneInputSaved!(removeZerosInFirstNum(phone));
           }
         },
-        // validator: widget.validator,
         textAlign: widget.textAlign,
         onFieldSubmitted: widget.onFieldSubmitted,
         autoValidateMode: AutovalidateMode.onUnfocus,

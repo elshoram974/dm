@@ -73,7 +73,5 @@ class LoginControllerImp extends LoginController {
 
       return;
     }
-
-    exit(0);
   }
 }
