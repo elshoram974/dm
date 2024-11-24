@@ -24,7 +24,7 @@ class CustomerCardWidget extends StatelessWidget {
     return MyResConstrainedBoxAlign(
       child: Container(
         height: 180,
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           bottom: AppConst.defaultSmallPadding,
           left: AppConst.defaultPadding,
           right: AppConst.defaultPadding,
@@ -32,7 +32,7 @@ class CustomerCardWidget extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConst.borderSmallRadius),
-          boxShadow: [BoxShadow(blurRadius: 0.4)],
+          boxShadow: [const BoxShadow(blurRadius: 0.4)],
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Stack(
@@ -40,12 +40,12 @@ class CustomerCardWidget extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Container(
-                padding: EdgeInsets.all(AppConst.defaultPadding),
+                padding: const EdgeInsets.all(AppConst.defaultPadding),
                 color: entity.color.withOpacity(0.4),
                 child: Row(
                   children: [
                     _CardImageAndVerifiedWidget(entity: entity),
-                    SizedBox(width: AppConst.defaultPadding),
+                    const SizedBox(width: AppConst.defaultPadding),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -93,11 +93,11 @@ class CustomerCardWidget extends StatelessWidget {
                       ? Icons.star_rounded
                       : Icons.star_border_rounded,
                   fill: 1,
-                  shadows: [BoxShadow(spreadRadius: 90)],
+                  shadows: [const BoxShadow(spreadRadius: 90)],
                 ),
               ),
             ),
-            PositionedDirectional(
+            const PositionedDirectional(
               end: AppConst.defaultSmallPadding,
               top: AppConst.defaultSmallPadding,
               child: ReportsOrderButtonsWidget(),
@@ -120,16 +120,16 @@ class ReportsOrderButtonsWidget extends StatelessWidget {
           text: S.of(context).reports,
           makeFittedBox: true,
           padding: EdgeInsets.zero,
-          minimumSize: Size(70, 28),
+          minimumSize: const Size(70, 28),
           filledColor: context.theme.colorScheme.secondary,
           onPressed: () {},
         ),
-        SizedBox(height: AppConst.defaultSmallPadding),
+        const SizedBox(height: AppConst.defaultSmallPadding),
         CustomFilledButton(
           text: S.of(context).orders,
           makeFittedBox: true,
           padding: EdgeInsets.zero,
-          minimumSize: Size(70, 28),
+          minimumSize: const Size(70, 28),
           onPressed: () {},
         ),
       ],
@@ -152,11 +152,11 @@ class _CardImageAndVerifiedWidget extends StatelessWidget {
           imageUrl: entity.image,
           radius: 100,
         ),
-        SizedBox(height: AppConst.defaultSmallPadding),
+        const SizedBox(height: AppConst.defaultSmallPadding),
         if (entity.isVerified)
           Text(
             S.of(context).verified,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Colors.green,
               fontWeight: FontWeight.w500,
