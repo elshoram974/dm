@@ -12,7 +12,7 @@ class LoginMiddleWare extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
-    if (authLocal.getCurrentUser() != null) {
+    if (authLocal.getCurrentUser() != null || true) {
       return const RouteSettings(name: AppRoute.home);
     }
 

@@ -19,7 +19,7 @@ class HomeBindings extends Bindings {
 
     Get.put<HomeController>(
       HomeControllerImp(
-        user: Get.find<AuthLocalDataSource>().getCurrentUser()!,
+        user: Get.find<AuthLocalDataSource>().getCurrentUser(),
       ),
     );
   }

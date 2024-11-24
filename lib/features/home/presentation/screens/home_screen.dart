@@ -14,11 +14,12 @@ class HomeScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (_, __) => controller.onPopInvoked(),
       child: Scaffold(
-        backgroundColor: context.theme.primaryColor,
         body: const SafeArea(
           bottom: false,
           child: CustomScrollView(
-            slivers: [],
+            slivers: [
+              SliverAppBar(),
+            ],
           ),
         ),
       ),

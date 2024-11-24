@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +15,12 @@ abstract class ConfigController extends GetxController {
 }
 
 class ConfigControllerImp extends ConfigController {
-  ConfigControllerImp(super.prefs);
+  ConfigControllerImp(super.prefs){
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.dark,  //Get.isDarkMode ? Brightness.light : Brightness.dark,
+    systemStatusBarContrastEnforced: false,
+    ));
+  }
 
   late String _locale = prefs.getString(AppString.kLocaleCode) ??
       Get.deviceLocale?.languageCode ??

@@ -7,7 +7,7 @@ import 'package:shora/core/utils/functions/show_my_snack_bar.dart';
 import '../../../login/data/models/user_model.dart';
 
 abstract class HomeController extends GetxController {
-  UserModel user;
+  UserModel? user;
   HomeController({
     required this.user,
   });
