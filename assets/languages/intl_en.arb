@@ -1,4 +1,17 @@
 {
+    "findWhatYouAreLookingFor": "Find what you're looking for",
+    "reports": "Reports",
+    "orders": "Orders",
+    "unverified": "Unverified",
+    "verified": "Verified",
+    "lastOrder": "Last Order : {date}",
+    "@lastOrder": {
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
     "mobileNumber": "Mobile Number",
     "enterYourMobileNumber": "Enter your mobile number",
     "loginNow": "Log in Now",

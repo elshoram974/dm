@@ -50,6 +50,66 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Find what you're looking for`
+  String get findWhatYouAreLookingFor {
+    return Intl.message(
+      'Find what you\'re looking for',
+      name: 'findWhatYouAreLookingFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports`
+  String get reports {
+    return Intl.message(
+      'Reports',
+      name: 'reports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get orders {
+    return Intl.message(
+      'Orders',
+      name: 'orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unverified`
+  String get unverified {
+    return Intl.message(
+      'Unverified',
+      name: 'unverified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verified`
+  String get verified {
+    return Intl.message(
+      'Verified',
+      name: 'verified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Order : {date}`
+  String lastOrder(String date) {
+    return Intl.message(
+      'Last Order : $date',
+      name: 'lastOrder',
+      desc: '',
+      args: [date],
+    );
+  }
+
   /// `Mobile Number`
   String get mobileNumber {
     return Intl.message(

@@ -21,7 +21,7 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
     required String password,
   }) async {
     final Map<String, dynamic> res = await apiServices.post(
-      AppLinks.login,
+      '$AppLinks.login',
       {
         "phone": phone,
         "password": password,

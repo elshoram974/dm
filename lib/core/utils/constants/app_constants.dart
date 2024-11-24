@@ -1,7 +1,10 @@
 abstract final class AppConst {
   const AppConst();
 
+  static const double borderSmallRadius = 5;
   static const double borderRadius = 10;
+  static const double defaultExtraSmallPadding = 4;
+  static const double defaultSmallPadding = 8;
   static const double defaultPadding = 16;
 
   static const double constraint = 600;

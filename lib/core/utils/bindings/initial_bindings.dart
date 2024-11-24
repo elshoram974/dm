@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../app_info.dart';
 import '../../../features/login/data/datasources/auth_local_data_source.dart';
 import '../config/controller/config_controller.dart';
 import '../constants/app_strings.dart';
@@ -17,7 +18,12 @@ abstract final class InitialBindings {
 
     Get.put<FlutterSecureStorage>(const FlutterSecureStorage());
 
-    Get.put<APIServices>(APIServices(Dio(), Get.find<FlutterSecureStorage>()));
+    Get.put<APIServices>(
+      APIServices(
+        Dio(BaseOptions(baseUrl: AppInfo.baseURL)),
+        Get.find<FlutterSecureStorage>(),
+      ),
+    );
 
     await Get.putAsync<SharedPreferences>(SharedPreferences.getInstance);
     Get.put<ConfigController>(

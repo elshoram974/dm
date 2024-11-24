@@ -6,7 +6,7 @@ import 'core/utils/constants/app_assets.dart';
 abstract final class AppInfo {
   const AppInfo();
 
-  static const String baseURL = "";
+  static const String baseURL = "https://omegacuremart.com";
 
   static const String appName = "shora";
   static const String appId = "com.shora.shora";

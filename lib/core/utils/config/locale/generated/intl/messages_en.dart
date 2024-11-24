@@ -24,7 +24,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(max) => "Can\'t be more than ${max}";
 
-  static String m2(pageName) => "Page \'${pageName}\' not found in routes";
+  static String m2(date) => "Last Order : ${date}";
+
+  static String m3(pageName) => "Page \'${pageName}\' not found in routes";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -62,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterYourMobileNumber":
             MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
         "fillField": MessageLookupByLibrary.simpleMessage("fill this field"),
+        "findWhatYouAreLookingFor": MessageLookupByLibrary.simpleMessage(
+            "Find what you\'re looking for"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forget password ? "),
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
@@ -72,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ifYouReturnNowYouWillLoseAllData":
             MessageLookupByLibrary.simpleMessage(
                 "If you return now, you will lose all data!"),
+        "lastOrder": m2,
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "The location service on the device is disabled."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
@@ -88,7 +93,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "No user found for that email."),
         "notSamePass":
             MessageLookupByLibrary.simpleMessage("Not same password"),
-        "pageNameNotFoundInRoutes": m2,
+        "orders": MessageLookupByLibrary.simpleMessage("Orders"),
+        "pageNameNotFoundInRoutes": m3,
         "pageNotFound": MessageLookupByLibrary.simpleMessage("Page not found"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordProvidedIsTooWeak": MessageLookupByLibrary.simpleMessage(
@@ -97,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Press again to exit"),
         "recover": MessageLookupByLibrary.simpleMessage("Recover"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requestLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Please grant permission to access your device\'s location"),
         "serverTookTooLong": MessageLookupByLibrary.simpleMessage(
@@ -120,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
         "unknownErrorOccurred":
             MessageLookupByLibrary.simpleMessage("An unknown error occurred."),
+        "unverified": MessageLookupByLibrary.simpleMessage("Unverified"),
+        "verified": MessageLookupByLibrary.simpleMessage("Verified"),
         "wrongPasswordProvidedForThatUser":
             MessageLookupByLibrary.simpleMessage(
                 "Wrong password provided for that user.")
