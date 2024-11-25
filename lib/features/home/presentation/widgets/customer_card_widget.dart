@@ -5,19 +5,15 @@ import 'package:shora/core/shared/circular_image_widget.dart';
 import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
+import 'package:shora/core/utils/config/routes/routes.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 
 import '../../domain/entity/customer_card_entity.dart';
 import 'details_icon_text.dart';
 
 class CustomerCardWidget extends StatelessWidget {
-  const CustomerCardWidget({
-    super.key,
-    required this.entity,
-    this.onPressFav,
-  });
+  const CustomerCardWidget({super.key, required this.entity});
   final CustomerCardEntity entity;
-  final void Function()? onPressFav;
 
   @override
   Widget build(BuildContext context) {
@@ -83,24 +79,19 @@ class CustomerCardWidget extends StatelessWidget {
               ),
             ),
             PositionedDirectional(
-              start: 0,
-              top: 0,
-              child: IconButton(
-                onPressed: onPressFav,
+              start: AppConst.defaultSmallPadding,
+              top: AppConst.defaultSmallPadding,
+              child: Icon(
+                Icons.star_rounded,
+                fill: 1,
                 color: entity.color,
-                icon: Icon(
-                  entity.isFavorite
-                      ? Icons.star_rounded
-                      : Icons.star_border_rounded,
-                  fill: 1,
-                  shadows: const [BoxShadow(spreadRadius: 90)],
-                ),
+                shadows: const [BoxShadow(spreadRadius: 90)],
               ),
             ),
-            const PositionedDirectional(
+            PositionedDirectional(
               end: AppConst.defaultSmallPadding,
               top: AppConst.defaultSmallPadding,
-              child: ReportsOrderButtonsWidget(),
+              child: ReportsOrderButtonsWidget(customerId: entity.customerId),
             ),
           ],
         ),
@@ -110,7 +101,8 @@ class CustomerCardWidget extends StatelessWidget {
 }
 
 class ReportsOrderButtonsWidget extends StatelessWidget {
-  const ReportsOrderButtonsWidget({super.key});
+  const ReportsOrderButtonsWidget({super.key, required this.customerId});
+  final String customerId;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +114,7 @@ class ReportsOrderButtonsWidget extends StatelessWidget {
           padding: EdgeInsets.zero,
           minimumSize: const Size(70, 28),
           filledColor: context.theme.colorScheme.secondary,
-          onPressed: () {},
+          onPressed: () => Get.toNamed(AppRoute.reports, arguments: customerId),
         ),
         const SizedBox(height: AppConst.defaultSmallPadding),
         CustomFilledButton(
@@ -130,7 +122,7 @@ class ReportsOrderButtonsWidget extends StatelessWidget {
           makeFittedBox: true,
           padding: EdgeInsets.zero,
           minimumSize: const Size(70, 28),
-          onPressed: () {},
+          onPressed: () => Get.toNamed(AppRoute.orders, arguments: customerId),
         ),
       ],
     );

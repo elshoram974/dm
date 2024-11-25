@@ -16,10 +16,10 @@ abstract class ConfigController extends GetxController {
 
 class ConfigControllerImp extends ConfigController {
   ConfigControllerImp(super.prefs) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness
           .dark, //Get.isDarkMode ? Brightness.light : Brightness.dark,
-      systemStatusBarContrastEnforced: false,
     ));
   }
 

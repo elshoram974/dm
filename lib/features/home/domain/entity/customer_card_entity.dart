@@ -11,7 +11,6 @@ class CustomerCardEntity extends Equatable {
     this.image,
     required this.lastOrderDate,
     this.isVerified = false,
-    this.isFavorite = false,
   });
 
   factory CustomerCardEntity.example() {
@@ -32,7 +31,6 @@ class CustomerCardEntity extends Equatable {
   final DateTime? lastOrderDate;
   final Color color;
   final bool isVerified;
-  final bool isFavorite;
 
   @override
   List<Object?> get props => [
@@ -43,6 +41,5 @@ class CustomerCardEntity extends Equatable {
         image,
         lastOrderDate,
         isVerified,
-        isFavorite
       ];
 }

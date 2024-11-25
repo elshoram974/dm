@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
           ),
           backgroundColor: Colors.transparent,
           systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.dark,
           ),
           elevation: 0,
@@ -62,7 +63,6 @@ class HomeScreen extends StatelessWidget {
                               controller.customers.length,
                               (int index) {
                                 return CustomerCardWidget(
-                                  onPressFav: () {},
                                   entity: controller.customers[index],
                                 );
                               },
