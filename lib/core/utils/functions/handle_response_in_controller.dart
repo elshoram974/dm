@@ -15,7 +15,7 @@ FutureOr<void> handleResponseInController<T>({
 
   if (status is Failure<T>) {
     ShowMySnackBar.call(
-      status.failure.message,
+      status.failure.message ?? 'unknown',
       backgroundColor: Get.theme.colorScheme.error,
     );
   }

@@ -1,4 +1,8 @@
 {
+    "empty": "Empty",
+    "date": "Date",
+    "reportNo": "Report No.",
+    "selectDate": "Select date",
     "findWhatYouAreLookingFor": "Find what you're looking for",
     "reports": "Reports",
     "orders": "Orders",

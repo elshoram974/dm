@@ -48,7 +48,7 @@ class OrdersScreen extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      const SizedBox(height: AppConst.defaultSmallPadding),
+                      const SizedBox(height: AppConst.smallPadding),
                       if (controller.getCustomerStatus is Loading)
                         ...List<Widget>.generate(
                           10,

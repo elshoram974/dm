@@ -48,10 +48,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connected to the internet"),
         "createYourOwnEmail":
             MessageLookupByLibrary.simpleMessage("Create your own email"),
+        "date": MessageLookupByLibrary.simpleMessage("Date"),
         "doNotHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account ? "),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email address"),
+        "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "enableService": MessageLookupByLibrary.simpleMessage("Enable Service"),
         "enterEmailAddress":
             MessageLookupByLibrary.simpleMessage("Enter email address"),
@@ -103,9 +105,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Press again to exit"),
         "recover": MessageLookupByLibrary.simpleMessage("Recover"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "reportNo": MessageLookupByLibrary.simpleMessage("Report No."),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requestLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Please grant permission to access your device\'s location"),
+        "selectDate": MessageLookupByLibrary.simpleMessage("Select date"),
         "serverTookTooLong": MessageLookupByLibrary.simpleMessage(
             "The server took too long to respond."),
         "serverTookTooLongToRespond": MessageLookupByLibrary.simpleMessage(

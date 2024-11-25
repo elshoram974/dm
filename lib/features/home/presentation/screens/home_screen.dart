@@ -41,45 +41,54 @@ class HomeScreen extends StatelessWidget {
                 bottom: false,
                 child: CustomScrollView(
                   controller: controller.scrollController,
-                  physics: controller.getCustomerStatus is Loading
+                  physics: controller.getCustomerStatus is Loading &&
+                          !(controller.getCustomerStatus as Loading).loadingMore
                       ? const NeverScrollableScrollPhysics()
                       : null,
                   slivers: [
-                    SliverList(
-                      delegate: SliverChildListDelegate(
-                        [
-                          const SizedBox(height: AppConst.defaultSmallPadding),
-                          if (controller.getCustomerStatus is Loading &&
-                              !(controller.getCustomerStatus as Loading)
-                                  .loadingMore)
-                            ...List<Widget>.generate(
-                              10,
-                              (int i) => Skeletonizer(
-                                containersColor: context.theme.cardColor,
-                                child: CustomerCardWidget(
-                                  entity: CustomerCardEntity.example(),
+                    if (controller.getCustomerStatus is! Loading &&
+                        controller.customers.isEmpty)
+                      SliverFillRemaining(
+                        child: Center(
+                          child: Text(S.of(context).empty),
+                        ),
+                      )
+                    else
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            const SizedBox(height: AppConst.smallPadding),
+                            if (controller.getCustomerStatus is Loading &&
+                                !(controller.getCustomerStatus as Loading)
+                                    .loadingMore)
+                              ...List<Widget>.generate(
+                                10,
+                                (int i) => Skeletonizer(
+                                  containersColor: context.theme.cardColor,
+                                  child: CustomerCardWidget(
+                                    entity: CustomerCardEntity.example(),
+                                  ),
                                 ),
+                              )
+                            else
+                              ...List<Widget>.generate(
+                                controller.customers.length,
+                                (int index) {
+                                  return CustomerCardWidget(
+                                    entity: controller.customers[index],
+                                  );
+                                },
                               ),
-                            )
-                          else
-                            ...List<Widget>.generate(
-                              controller.customers.length,
-                              (int index) {
-                                return CustomerCardWidget(
-                                  entity: controller.customers[index],
-                                );
-                              },
-                            ),
-                          if (controller.getCustomerStatus is Loading &&
-                              (controller.getCustomerStatus as Loading)
-                                  .loadingMore) ...[
+                            if (controller.getCustomerStatus is Loading &&
+                                (controller.getCustomerStatus as Loading)
+                                    .loadingMore) ...[
+                              const SizedBox(height: AppConst.defaultPadding),
+                              const Center(child: CircularProgressIndicator()),
+                            ],
                             const SizedBox(height: AppConst.defaultPadding),
-                            const Center(child: CircularProgressIndicator()),
                           ],
-                          const SizedBox(height: AppConst.defaultPadding),
-                        ],
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),

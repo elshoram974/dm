@@ -7,7 +7,7 @@ class FailureBody extends Equatable {
   final String status = 'Failure';
   final int code;
   final String type;
-  final String message;
+  final String? message;
   final DioExceptionType dioExceptionType;
 
   const FailureBody({

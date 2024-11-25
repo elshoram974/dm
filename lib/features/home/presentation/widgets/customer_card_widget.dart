@@ -21,7 +21,7 @@ class CustomerCardWidget extends StatelessWidget {
       child: Container(
         height: 180,
         margin: const EdgeInsets.only(
-          bottom: AppConst.defaultSmallPadding,
+          bottom: AppConst.smallPadding,
           left: AppConst.defaultPadding,
           right: AppConst.defaultPadding,
         ),
@@ -79,8 +79,8 @@ class CustomerCardWidget extends StatelessWidget {
               ),
             ),
             PositionedDirectional(
-              start: AppConst.defaultSmallPadding,
-              top: AppConst.defaultSmallPadding,
+              start: AppConst.smallPadding,
+              top: AppConst.smallPadding,
               child: Icon(
                 Icons.star_rounded,
                 fill: 1,
@@ -89,8 +89,8 @@ class CustomerCardWidget extends StatelessWidget {
               ),
             ),
             PositionedDirectional(
-              end: AppConst.defaultSmallPadding,
-              top: AppConst.defaultSmallPadding,
+              end: AppConst.smallPadding,
+              top: AppConst.smallPadding,
               child: ReportsOrderButtonsWidget(customerId: entity.customerId),
             ),
           ],
@@ -116,7 +116,7 @@ class ReportsOrderButtonsWidget extends StatelessWidget {
           filledColor: context.theme.colorScheme.secondary,
           onPressed: () => Get.toNamed(AppRoute.reports, arguments: customerId),
         ),
-        const SizedBox(height: AppConst.defaultSmallPadding),
+        const SizedBox(height: AppConst.smallPadding),
         CustomFilledButton(
           text: S.of(context).orders,
           makeFittedBox: true,
@@ -144,7 +144,7 @@ class _CardImageAndVerifiedWidget extends StatelessWidget {
           imageUrl: entity.image,
           radius: 100,
         ),
-        const SizedBox(height: AppConst.defaultSmallPadding),
+        const SizedBox(height: AppConst.smallPadding),
         if (entity.isVerified)
           Text(
             S.of(context).verified,
