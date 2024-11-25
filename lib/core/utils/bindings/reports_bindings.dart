@@ -1,27 +1,25 @@
 import 'package:get/get.dart';
 
+import '../../../features/home/data/datasources/reports_remote_data_source.dart';
+import '../../../features/home/data/repositories/reports_repo_imp.dart';
+import '../../../features/home/domain/repositories/reports_repo.dart';
+import '../../../features/home/presentation/controller/reports_controller.dart';
+import '../services/api_services.dart';
+
 class ReportsBindings extends Bindings {
   @override
   void dependencies() {
     print(Get.arguments);
-    // Get.put<HomeRemoteDataSource>(
-    //   HomeRemoteDataSourceImp(Get.find<APIServices>()),
-    // );
-    // Get.put<HomeLocalDataSource>(
-    //   HomeLocalDataSourceImp(Get.find()),
-    // );
-    // Get.put<HomeRepositories>(
-    //   HomeRepositoriesImp(
-    //     localDataSource: Get.find<HomeLocalDataSource>(),
-    //     remoteDataSource: Get.find<HomeRemoteDataSource>(),
-    //   ),
-    // );
+    Get.put<ReportsRemoteDataSource>(
+      ReportsRemoteDataSourceImp(Get.find<APIServices>()),
+    );
 
-    // Get.put<HomeController>(
-    //   HomeControllerImp(
-    //     repo: Get.find<HomeRepositories>(),
-    //     user: Get.find<AuthLocalDataSource>().getCurrentUser(),
-    //   ),
-    // );
+    Get.put<ReportsRepositories>(
+      ReportsRepositoriesImp(Get.find<ReportsRemoteDataSource>()),
+    );
+
+    Get.put<ReportsController>(
+      ReportsControllerImp(repo: Get.find<ReportsRepositories>()),
+    );
   }
 }

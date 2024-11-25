@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/default_field.dart';
+import 'package:shora/core/shared/empty_widget.dart';
+import 'package:shora/core/shared/custom_app_bar.dart';
+import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../domain/entity/customer_card_entity.dart';
 import '../../domain/entity/report_card_entity.dart';
-import '../controller/home_controller.dart';
-import '../widgets/customer_card_widget.dart';
+import '../controller/reports_controller.dart';
 import '../widgets/reports_widgets/report_data_card.dart';
 
 class ReportsScreen extends StatelessWidget {
@@ -20,24 +20,20 @@ class ReportsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: reportAppBar(context),
-      body: GetBuilder<HomeController>(
+      appBar: customAppBar(context),
+      body: GetBuilder<ReportsController>(
         builder: (controller) {
           return SafeArea(
             bottom: false,
             child: CustomScrollView(
-              physics: controller.getCustomerStatus is Loading &&
-                      (controller.getCustomerStatus as Loading).loadingMore
+              physics: controller.getReportStatus is Loading &&
+                      (controller.getReportStatus as Loading).loadingMore
                   ? const NeverScrollableScrollPhysics()
                   : null,
               slivers: [
-                if (controller.getCustomerStatus is! Loading &&
-                    controller.customers.isEmpty)
-                  SliverFillRemaining(
-                    child: Center(
-                      child: Text(S.of(context).empty),
-                    ),
-                  )
+                if (controller.getReportStatus is! Loading &&
+                    controller.reports.isEmpty)
+                  const SliverFillRemaining(child: EmptyWidget())
                 else
                   SliverList(
                     delegate: SliverChildListDelegate(
@@ -51,8 +47,8 @@ class ReportsScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 const ReportDataCardHeader(),
-                                if (controller.getCustomerStatus is Loading &&
-                                    !(controller.getCustomerStatus as Loading)
+                                if (controller.getReportStatus is Loading &&
+                                    !(controller.getReportStatus as Loading)
                                         .loadingMore)
                                   ...List<Widget>.generate(
                                     10,
@@ -65,9 +61,9 @@ class ReportsScreen extends StatelessWidget {
                                   )
                                 else ...[
                                   ...List<Widget>.generate(
-                                    10,
+                                    controller.reports.length,
                                     (int i) => ReportDataCard(
-                                      reportData: ReportCardEntity.example(),
+                                      reportData: controller.reports[i],
                                     ),
                                   )
                                 ],
@@ -75,22 +71,8 @@ class ReportsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (controller.getCustomerStatus is Loading &&
-                            !(controller.getCustomerStatus as Loading)
-                                .loadingMore)
-                          ...List<Widget>.generate(
-                            10,
-                            (int i) => Skeletonizer(
-                              containersColor: context.theme.cardColor,
-                              child: CustomerCardWidget(
-                                entity: CustomerCardEntity.example(),
-                              ),
-                            ),
-                          )
-                        else
-                          ...[],
-                        if (controller.getCustomerStatus is Loading &&
-                            (controller.getCustomerStatus as Loading)
+                        if (controller.getReportStatus is Loading &&
+                            (controller.getReportStatus as Loading)
                                 .loadingMore) ...[
                           const SizedBox(height: AppConst.defaultPadding),
                           const Center(child: CircularProgressIndicator()),
@@ -107,46 +89,30 @@ class ReportsScreen extends StatelessWidget {
     );
   }
 
-  AppBar reportAppBar(BuildContext context) {
-    return AppBar(
-      title: Text(S.of(context).reports),
-      centerTitle: true,
-      leadingWidth: 120,
-      leading: Align(
-        child: Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppConst.defaultPadding),
-          child: IconButton(
-            onPressed: Get.back,
-            icon: Row(
-              children: [
-                const Icon(Icons.arrow_back_ios),
-                Text(S.of(context).back),
-              ],
+  CustomAppBar customAppBar(BuildContext context) {
+    return CustomAppBar(
+      titleColor: context.theme.primaryColor,
+      bottom: Row(
+        children: [
+          Expanded(
+            child: MyDefaultField(
+              hintText: S.of(context).selectDate,
+              suffix: const Icon(
+                Icons.calendar_month,
+                color: Colors.grey,
+              ),
             ),
           ),
-        ),
-      ),
-      automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-      ),
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(40),
-        child: Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppConst.defaultPadding),
-          child: MyDefaultField(
-            hintText: S.of(context).selectDate,
-            suffix: const Icon(
-              Icons.calendar_month,
-              color: Colors.grey,
-            ),
+          const SizedBox(width: AppConst.smallPadding),
+          CustomFilledButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            padding: EdgeInsets.zero,
+            minimumSize: const Size(60, 45),
+            filledColor: Colors.green,
           ),
-        ),
+        ],
       ),
-      elevation: 0,
     );
   }
 }

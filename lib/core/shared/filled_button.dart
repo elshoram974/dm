@@ -8,7 +8,8 @@ import '../utils/constants/app_constants.dart';
 class CustomFilledButton extends StatelessWidget {
   const CustomFilledButton({
     super.key,
-    required this.text,
+    this.text,
+    this.icon,
     this.isLoading = false,
     this.onPressed,
     this.onLongPress,
@@ -18,7 +19,8 @@ class CustomFilledButton extends StatelessWidget {
     this.minimumSize,
     this.makeFittedBox = false,
   });
-  final String text;
+  final Widget? icon;
+  final String? text;
   final bool isLoading;
   final TextStyle? style;
   final Color? filledColor;
@@ -52,24 +54,26 @@ class CustomFilledButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppConst.borderSmallRadius),
               ),
             ),
-            child: makeFittedBox
-                ? FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      text,
-                      textAlign: TextAlign.center,
-                      style: style?.copyWith(color: Colors.white) ??
-                          const TextStyle(color: Colors.white),
-                    ),
-                  )
-                : Text(
-                    text,
-                    textAlign: TextAlign.center,
-                    style: style?.copyWith(color: Colors.white) ??
-                        const TextStyle(color: Colors.white),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+            child: text == null
+                ? icon
+                : makeFittedBox
+                    ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          text!,
+                          textAlign: TextAlign.center,
+                          style: style?.copyWith(color: Colors.white) ??
+                              const TextStyle(color: Colors.white),
+                        ),
+                      )
+                    : Text(
+                        text!,
+                        textAlign: TextAlign.center,
+                        style: style?.copyWith(color: Colors.white) ??
+                            const TextStyle(color: Colors.white),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
           ),
         );
       },
@@ -93,7 +97,7 @@ class CustomFilledButton extends StatelessWidget {
               min(minimumSize?.width ?? 100, minimumSize?.height ?? 100),
               30,
             ),
-            child: CircularProgressIndicator(),
+            child: const CircularProgressIndicator(),
           ),
         );
       },
