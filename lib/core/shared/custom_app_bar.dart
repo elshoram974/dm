@@ -6,14 +6,15 @@ import '../utils/config/locale/generated/l10n.dart';
 import '../utils/constants/app_constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, this.bottom, this.titleColor});
+  const CustomAppBar({super.key, this.bottom, this.titleColor, required this.title});
   final Color? titleColor;
   final Widget? bottom;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(S.of(context).reports),
+      title: Text(title),
       titleTextStyle: context.textTheme.titleMedium?.copyWith(
         color: titleColor,
         fontWeight: FontWeight.w600,

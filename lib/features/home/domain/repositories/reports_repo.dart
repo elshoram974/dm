@@ -6,5 +6,8 @@ import '../entity/report_card_entity.dart';
 abstract class ReportsRepositories {
   const ReportsRepositories();
 
-  Future<Status<PaginatedData<List<ReportCardEntity>>>> getReports(int page);
+  Future<Status<PaginatedData<List<ReportCardEntity>>>> getReports(
+    int page,
+    String customerId,
+  );
 }

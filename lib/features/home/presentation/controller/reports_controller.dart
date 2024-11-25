@@ -21,14 +21,16 @@ abstract class ReportsController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   Future<void> getReports(bool reload);
-
 }
 
 class ReportsControllerImp extends ReportsController {
   ReportsControllerImp({required super.repo}) {
+    _customerId = Get.arguments;
     getReports(false);
     scrollController.addListener(_paginationFn);
   }
+
+  late String _customerId;
 
   @override
   void onClose() {
@@ -47,7 +49,7 @@ class ReportsControllerImp extends ReportsController {
     }
 
     await handleResponseInController<PaginatedData<List<ReportCardEntity>>>(
-      status: await repo.getReports(page),
+      status: await repo.getReports(page, _customerId),
       onSuccess: (data) {
         _reports = data.data;
         page = data.pagination.currentPage;
@@ -63,7 +65,7 @@ class ReportsControllerImp extends ReportsController {
     update();
 
     await handleResponseInController<PaginatedData<List<ReportCardEntity>>>(
-      status: await repo.getReports(++page),
+      status: await repo.getReports(++page, _customerId),
       onSuccess: (data) {
         _reports.addAll(data.data);
         page = data.pagination.currentPage;

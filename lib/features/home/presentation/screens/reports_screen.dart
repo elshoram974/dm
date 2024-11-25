@@ -91,6 +91,7 @@ class ReportsScreen extends StatelessWidget {
 
   CustomAppBar customAppBar(BuildContext context) {
     return CustomAppBar(
+      title: S.of(context).reports,
       titleColor: context.theme.primaryColor,
       bottom: Row(
         children: [

@@ -6,7 +6,10 @@ import '../../domain/entity/report_card_entity.dart';
 
 abstract class ReportsRemoteDataSource {
   const ReportsRemoteDataSource();
-  Future<PaginatedData<List<ReportCardEntity>>> getReports(int page);
+  Future<PaginatedData<List<ReportCardEntity>>> getReports(
+    int page,
+    String customerId,
+  );
 }
 
 class ReportsRemoteDataSourceImp extends ReportsRemoteDataSource {
@@ -16,9 +19,11 @@ class ReportsRemoteDataSourceImp extends ReportsRemoteDataSource {
   @override
   Future<PaginatedData<List<ReportCardEntity>>> getReports(
     int page,
+    String customerId,
   ) async {
+    print(customerId);
     final Map<String, dynamic> res = await apiServices.get(
-      "${AppLinks}?page=$page",
+      "${AppLinks}?page=$page&customer_id=$customerId",
     );
     final List<ReportCardEntity> reports = List.empty(growable: true);
     for (final Map<String, dynamic> d in res['data']['data']) {
