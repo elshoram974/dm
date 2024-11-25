@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/default_field.dart';
+import 'package:shora/core/shared/empty_widget.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
@@ -48,11 +49,7 @@ class HomeScreen extends StatelessWidget {
                   slivers: [
                     if (controller.getCustomerStatus is! Loading &&
                         controller.customers.isEmpty)
-                      SliverFillRemaining(
-                        child: Center(
-                          child: Text(S.of(context).empty),
-                        ),
-                      )
+                      const SliverFillRemaining(child: EmptyWidget())
                     else
                       SliverList(
                         delegate: SliverChildListDelegate(
