@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:shora/core/utils/constants/app_links.dart';
 import 'package:shora/core/utils/services/api_services.dart';
 import 'package:shora/features/home/data/models/customer_model.dart';
@@ -18,7 +20,8 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
     final Map<String, dynamic> res =
         await apiServices.get(AppLinks.getCustomers);
     final List<CustomerCardEntity> customers = List.empty(growable: true);
-    for (final Map<String, dynamic> d in res['data']) {
+    log(res['data'].toString());
+    for (final Map<String, dynamic> d in res['data']['data']) {
       customers.add(CustomerModel.fromMap(d));
     }
 

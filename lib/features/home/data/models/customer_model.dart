@@ -34,7 +34,8 @@ class CustomerModel extends CustomerCardEntity {
     this.storage,
   }) : super(
           customerId: "$id",
-          name: "${fName == null ? '' : fName.trim()} ${lName == null ? ''  : lName.trim()}",
+          name:
+              "${fName == null ? '' : fName.trim()} ${lName == null ? '' : lName.trim()}",
           place: "place of customer",
           address:
               "close to English school, 1st settlement, moustafa kamel axis",
