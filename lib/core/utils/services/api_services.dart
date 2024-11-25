@@ -20,7 +20,7 @@ class APIServices {
       header['Authorization'] = 'Bearer $token';
     }
 
-    Response<Map<String, dynamic>> response = await _dio.post(
+    final Response<Map<String, dynamic>> response = await _dio.post(
       link,
       data: body,
       options: Options(headers: header),
@@ -31,6 +31,25 @@ class APIServices {
     }
 
     return response.data!['data'];
+  }
+
+  Future<Map<String, dynamic>> get(final String link) async {
+    final Map<String, dynamic> header = {};
+    final String? token = await _getAuthToken;
+    if (token != null) {
+      header['Authorization'] = 'Bearer $token';
+    }
+
+    final Response<Map<String, dynamic>> response = await _dio.get(
+      link,
+      options: Options(headers: header),
+    );
+
+    if (response.data!['is_success'] == false) {
+      throw response.data!['message'];
+    }
+
+    return response.data!; // ['data']; return all response data
   }
 
   Future<String?> get _getAuthToken => _storage.read(key: AppString.kTokenKey);

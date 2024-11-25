@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shora/app_info.dart';
 
 import '../../status/errors/failure.dart';
 import '../../status/errors/failure_body.dart';
@@ -13,6 +14,7 @@ Future<Status<T>> executeAndHandleErrors<T>(
   try {
     return Success<T>(await function());
   } catch (e) {
+    if (AppInfo.isDebugMode) print("error: $e");
     T? data;
     if (functionWhenError != null) data = await functionWhenError();
 

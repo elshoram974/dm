@@ -93,7 +93,7 @@ class ServerFailure<T> extends Failure<T> {
       return ServerFailure(
         res.copyWith(message: S.current.thereIsProblemWithServerTryAgainLater),
       );
-    } 
+    }
     // else if (statusCode == 401) {
     //   return ServerFailure(
     //     res.copyWith(message: S.current.unauthorizedError),

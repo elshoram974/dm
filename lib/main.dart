@@ -48,7 +48,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppInfo.supportedLocales.map((e) => Locale(e.languageCode)) ,//S.delegate.supportedLocales,
+      supportedLocales: AppInfo.supportedLocales
+          .map((e) => Locale(e.languageCode)), //S.delegate.supportedLocales,
       useInheritedMediaQuery: AppInfo.isDebugMode,
       locale: Get.find<ConfigController>().locale,
       builder: DevicePreview.appBuilder,

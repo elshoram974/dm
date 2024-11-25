@@ -5,7 +5,6 @@ abstract class HomeLocalDataSource {
 }
 
 class HomeLocalDataSourceImp extends HomeLocalDataSource {
-  const HomeLocalDataSourceImp(this._userBox);
-  final Box<Map> _userBox;
-
+  const HomeLocalDataSourceImp(this.userBox);
+  final Box<Map> userBox;
 }

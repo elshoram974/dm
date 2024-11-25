@@ -19,8 +19,8 @@ class AuthField extends StatelessWidget {
     this.readOnly = false,
     this.onFieldSubmitted,
     this.keyboardType,
-    this.textInputAction = TextInputAction.next, 
-    this.isPhoneNumber = false, 
+    this.textInputAction = TextInputAction.next,
+    this.isPhoneNumber = false,
     this.onPhoneInputChanged,
   });
   final TextEditingController? controller;

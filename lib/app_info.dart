@@ -16,7 +16,6 @@ abstract final class AppInfo {
   /// country code like in locale to make initialize in phone fields
   static const String initCountryIsoCode = 'EG';
 
-
   // static const bool isDebugMode = false;
   static const bool isDebugMode = kDebugMode;
 

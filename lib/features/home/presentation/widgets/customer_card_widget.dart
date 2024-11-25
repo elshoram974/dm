@@ -32,7 +32,7 @@ class CustomerCardWidget extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConst.borderSmallRadius),
-          boxShadow: [const BoxShadow(blurRadius: 0.4)],
+          boxShadow: const [BoxShadow(blurRadius: 0.4)],
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Stack(
@@ -93,7 +93,7 @@ class CustomerCardWidget extends StatelessWidget {
                       ? Icons.star_rounded
                       : Icons.star_border_rounded,
                   fill: 1,
-                  shadows: [const BoxShadow(spreadRadius: 90)],
+                  shadows: const [BoxShadow(spreadRadius: 90)],
                 ),
               ),
             ),

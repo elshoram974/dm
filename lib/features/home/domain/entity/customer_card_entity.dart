@@ -19,8 +19,7 @@ class CustomerCardEntity extends Equatable {
       customerId: "985356",
       name: "name of customer",
       place: "place of customer",
-      address:
-          "close to English school, 1st settlement, moustafa kamel axis",
+      address: "close to English school, 1st settlement, moustafa kamel axis",
       color: Colors.black,
       lastOrderDate: DateTime.now(),
     );

@@ -25,7 +25,8 @@ class LoginScreen extends StatelessWidget {
             child: MyResConstrainedBoxAlign(
               child: ListView(
                 children: [
-                  Image.asset(AppAssets.logo,height: MediaQuery.sizeOf(context).height * 0.25),
+                  Image.asset(AppAssets.logo,
+                      height: MediaQuery.sizeOf(context).height * 0.25),
                   const SizedBox(height: AppConst.defaultPadding),
                   Text(
                     S.of(context).loginNow,

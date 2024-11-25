@@ -18,7 +18,7 @@ abstract class LoginController extends GetxController {
   bool get isLoading;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  PhoneNumber? phone ;
+  PhoneNumber? phone;
   String password = '';
 
   Future<void> login();
@@ -61,7 +61,7 @@ class LoginControllerImp extends LoginController {
   DateTime _back = DateTime.now();
   @override
   void onPopInvoked() {
-    if ((phone?.parseNumber().trim()?? '').isNotEmpty || password.isNotEmpty) {
+    if ((phone?.parseNumber().trim() ?? '').isNotEmpty || password.isNotEmpty) {
       if (DateTime.now().difference(_back) < const Duration(seconds: 2)) {
         exit(0);
       }

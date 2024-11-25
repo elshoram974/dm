@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/default_field.dart';
+import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -33,67 +32,51 @@ class HomeScreen extends StatelessWidget {
           ),
           elevation: 0,
         ),
-        body: GetBuilder<HomeController>(builder: (controller) {
-          return RefreshIndicator(
-            onRefresh: () async {},
-            child: SafeArea(
-              bottom: false,
-              child: CustomScrollView(
-                physics: controller.isLoading
-                    ? const NeverScrollableScrollPhysics()
-                    : null,
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        const SizedBox(height: AppConst.defaultSmallPadding),
-                        if (controller.isLoading)
-                          ...List<Widget>.generate(
-                            10,
-                            (int i) => Skeletonizer(
-                              containersColor: context.theme.cardColor,
-                              child: CustomerCardWidget(
-                                entity: CustomerCardEntity.example(),
-                              ),
-                            ),
-                          )
-                        else
-                          ...List<Widget>.generate(
-                            50,
-                            (int index) {
-                              return CustomerCardWidget(
-                                onPressFav: () {},
-                                entity: CustomerCardEntity(
-                                  customerId:
-                                      "${Random(index * 1000).nextInt(999999)}",
-                                  name: "name of customer $index",
-                                  place: "place of customer $index",
-                                  address:
-                                      "close to English school, 1st settlement, moustafa kamel axis, second new cairo, Cairo Governorate",
-                                  isFavorite: index.isOdd,
-                                  isVerified: index.isEven,
-                                  image:
-                                      "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg",
-                                  color: index.isEven
-                                      ? Theme.of(context).cardColor
-                                      : Theme.of(context).primaryColor,
-                                  lastOrderDate: DateTime.now().subtract(
-                                    Duration(
-                                        hours: index * 60, days: index * 31),
-                                  ),
+        body: GetBuilder<HomeController>(
+          builder: (controller) {
+            return RefreshIndicator(
+              onRefresh: () => controller.getCustomers(true),
+              child: SafeArea(
+                bottom: false,
+                child: CustomScrollView(
+                  physics: controller.getCustomerStatus is Loading
+                      ? const NeverScrollableScrollPhysics()
+                      : null,
+                  slivers: [
+                    SliverList(
+                      delegate: SliverChildListDelegate(
+                        [
+                          const SizedBox(height: AppConst.defaultSmallPadding),
+                          if (controller.getCustomerStatus is Loading)
+                            ...List<Widget>.generate(
+                              10,
+                              (int i) => Skeletonizer(
+                                containersColor: context.theme.cardColor,
+                                child: CustomerCardWidget(
+                                  entity: CustomerCardEntity.example(),
                                 ),
-                              );
-                            },
-                          ),
-                        const SizedBox(height: AppConst.defaultPadding),
-                      ],
+                              ),
+                            )
+                          else
+                            ...List<Widget>.generate(
+                              controller.customers.length,
+                              (int index) {
+                                return CustomerCardWidget(
+                                  onPressFav: () {},
+                                  entity: controller.customers[index],
+                                );
+                              },
+                            ),
+                          const SizedBox(height: AppConst.defaultPadding),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          },
+        ),
       ),
     );
   }
