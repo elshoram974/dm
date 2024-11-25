@@ -4,8 +4,25 @@ import 'package:equatable/equatable.dart';
 
 import 'link.dart';
 
-class PaginationModel extends Equatable {
+class PaginatedData<T> extends Equatable {
+  const PaginatedData({
+    required this.pagination,
+    required this.data,
+  });
 
+  final PaginationModel pagination;
+  final T data;
+
+  @override
+  bool get stringify => true;
+
+  @override
+  List<Object?> get props {
+    return [pagination, data];
+  }
+}
+
+class PaginationModel extends Equatable {
   const PaginationModel({
     required this.currentPage,
     this.firstPageUrl,

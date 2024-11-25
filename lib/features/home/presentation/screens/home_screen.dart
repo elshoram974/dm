@@ -40,6 +40,7 @@ class HomeScreen extends StatelessWidget {
               child: SafeArea(
                 bottom: false,
                 child: CustomScrollView(
+                  controller: controller.scrollController,
                   physics: controller.getCustomerStatus is Loading
                       ? const NeverScrollableScrollPhysics()
                       : null,
@@ -48,7 +49,9 @@ class HomeScreen extends StatelessWidget {
                       delegate: SliverChildListDelegate(
                         [
                           const SizedBox(height: AppConst.defaultSmallPadding),
-                          if (controller.getCustomerStatus is Loading)
+                          if (controller.getCustomerStatus is Loading &&
+                              !(controller.getCustomerStatus as Loading)
+                                  .loadingMore)
                             ...List<Widget>.generate(
                               10,
                               (int i) => Skeletonizer(
@@ -67,6 +70,12 @@ class HomeScreen extends StatelessWidget {
                                 );
                               },
                             ),
+                          if (controller.getCustomerStatus is Loading &&
+                              (controller.getCustomerStatus as Loading)
+                                  .loadingMore) ...[
+                            const SizedBox(height: AppConst.defaultPadding),
+                            const Center(child: CircularProgressIndicator()),
+                          ],
                           const SizedBox(height: AppConst.defaultPadding),
                         ],
                       ),

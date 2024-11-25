@@ -1,5 +1,6 @@
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/functions/execute_and_handle_remote_errors.dart';
+import 'package:shora/core/utils/models/pagination_model/pagination_model.dart';
 
 import 'package:shora/features/home/domain/entity/customer_card_entity.dart';
 
@@ -16,9 +17,11 @@ class HomeRepositoriesImp extends HomeRepositories {
   final HomeRemoteDataSource remoteDataSource;
 
   @override
-  Future<Status<List<CustomerCardEntity>>> getCustomers() {
-    return executeAndHandleErrors<List<CustomerCardEntity>>(
-      remoteDataSource.getCustomers,
+  Future<Status<PaginatedData<List<CustomerCardEntity>>>> getCustomers(
+    int page,
+  ) {
+    return executeAndHandleErrors<PaginatedData<List<CustomerCardEntity>>>(
+      () => remoteDataSource.getCustomers(page),
     );
   }
 }

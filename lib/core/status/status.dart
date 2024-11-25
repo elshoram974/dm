@@ -3,5 +3,6 @@ abstract class Status<T> {
 }
 
 class Loading extends Status {
-  const Loading();
+  const Loading([this.loadingMore = false]);
+  final bool loadingMore;
 }

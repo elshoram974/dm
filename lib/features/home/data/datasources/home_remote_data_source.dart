@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:shora/core/utils/constants/app_links.dart';
+import 'package:shora/core/utils/models/pagination_model/pagination_model.dart';
 import 'package:shora/core/utils/services/api_services.dart';
 import 'package:shora/features/home/data/models/customer_model.dart';
 
@@ -8,7 +7,7 @@ import '../../domain/entity/customer_card_entity.dart';
 
 abstract class HomeRemoteDataSource {
   const HomeRemoteDataSource();
-  Future<List<CustomerCardEntity>> getCustomers();
+  Future<PaginatedData<List<CustomerCardEntity>>> getCustomers(int page);
 }
 
 class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
@@ -16,15 +15,20 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   final APIServices apiServices;
 
   @override
-  Future<List<CustomerCardEntity>> getCustomers() async {
-    final Map<String, dynamic> res =
-        await apiServices.get(AppLinks.getCustomers);
+  Future<PaginatedData<List<CustomerCardEntity>>> getCustomers(
+    int page,
+  ) async {
+    final Map<String, dynamic> res = await apiServices.get(
+      "${AppLinks.getCustomers}?page=$page",
+    );
     final List<CustomerCardEntity> customers = List.empty(growable: true);
-    log(res['data'].toString());
     for (final Map<String, dynamic> d in res['data']['data']) {
       customers.add(CustomerModel.fromMap(d));
     }
 
-    return customers;
+    return PaginatedData<List<CustomerCardEntity>>(
+      pagination: PaginationModel.fromMap(res['data']),
+      data: customers,
+    );
   }
 }
