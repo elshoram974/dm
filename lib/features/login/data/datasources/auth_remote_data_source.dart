@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:shora/app_info.dart';
 import 'package:shora/core/utils/constants/app_links.dart';
 import 'package:shora/core/utils/services/api_services.dart';
 
@@ -21,16 +24,18 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
     required String password,
   }) async {
     final Map<String, dynamic> res = await apiServices.post(
-      '$AppLinks.login',
+      AppLinks.login,
       {
-        "phone": phone,
-        "password": password,
+        "phone": AppInfo.isDebugMode? '+2001210119384' : phone,
+        "password":  AppInfo.isDebugMode? 'Rep@2468' : password,
       },
     );
     final String token = res['token'];
+    log(res.toString());
+
 
     return (
-      user: UserModel.fromMap(res..remove('token')),
+      user: UserModel(name: "name", email: "email"), //TODO:* Remove this
       token: token,
     );
   }

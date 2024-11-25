@@ -14,14 +14,15 @@ Future<Status<T>> executeAndHandleErrors<T>(
   try {
     return Success<T>(await function());
   } catch (e) {
-    if (AppInfo.isDebugMode) print("error: $e");
     T? data;
     if (functionWhenError != null) data = await functionWhenError();
 
     if (e is DioException) {
+    if (AppInfo.isDebugMode) print("DioException: ${e.response}");
       return ServerFailure<T>.fromDioException(e).copyWith(data: data);
     }
 
+    if (AppInfo.isDebugMode) print("error: $e");
     return Failure<T>(FailureBody(message: e.toString()), data);
   }
 }

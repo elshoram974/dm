@@ -3,7 +3,10 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:shora/core/utils/config/routes/routes.dart';
 
+import '../../../features/login/data/datasources/auth_local_data_source.dart';
 import '../../utils/config/locale/generated/l10n.dart';
 import 'failure.dart';
 import 'failure_body.dart';
@@ -80,12 +83,14 @@ class ServerFailure<T> extends Failure<T> {
     }
   }
   factory ServerFailure.fromBadResponse(DioException e) {
-    int? statusCode = e.response!.statusCode;
+    final int? statusCode = e.response!.statusCode;
 
     final FailureBody res = FailureBody(
       type: e.type.name,
       code: statusCode ?? -1,
-      message: e.response!.data['message'],
+      message: (e.response!.data['errors'] as List)
+          .map<String>((e) => "${e['message']} with code ${e['code']}")
+          .join(", and"),
       dioExceptionType: e.type,
     );
 
@@ -93,12 +98,14 @@ class ServerFailure<T> extends Failure<T> {
       return ServerFailure(
         res.copyWith(message: S.current.thereIsProblemWithServerTryAgainLater),
       );
+    } else if (statusCode == 401) {
+      Get.find<AuthLocalDataSource>().logOut().then(
+            (_) => Get.offAllNamed(AppRoute.login),
+          );
+      return ServerFailure(
+        res.copyWith(message: S.current.unauthorizedError),
+      );
     }
-    // else if (statusCode == 401) {
-    //   return ServerFailure(
-    //     res.copyWith(message: S.current.unauthorizedError),
-    //   );
-    // }
     return ServerFailure(res);
   }
 }
