@@ -22,7 +22,6 @@ class ReportsRemoteDataSourceImp extends ReportsRemoteDataSource {
     int page,
     String customerId,
   ) async {
-    print(customerId);
     final Map<String, dynamic> res = await apiServices.get(
       "${AppLinks.getReports}/$customerId?page=$page",
     );

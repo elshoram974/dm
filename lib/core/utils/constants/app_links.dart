@@ -7,4 +7,6 @@ abstract final class AppLinks {
   static const String getQuestions = '/api/v1/distributor/questions/list';
   static const String getOrders = '/api/v1/distributor/customers/orders';
   static const String getReports = '/api/v1/distributor/customers/reports';
+  static const String addReports = '/api/v1/distributor/report/add';
+  static const String getReportsDetails = '/api/v1/distributor/report/details';
 }
