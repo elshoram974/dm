@@ -25,7 +25,7 @@ class Datum extends ReportCardEntity {
           reportId: id,
           reportNo: repId ?? 0,
           createdAt: createdAtModel ?? DateTime.now(),
-          reportOwnerName: customerId.toString(),
+          reportOwnerName: "${distributor?.name ?? ''}",
         );
 
   factory Datum.fromMap(Map<String, dynamic> data) => Datum(

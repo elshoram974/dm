@@ -168,7 +168,6 @@ class OrdersModel extends OrderCardEntity {
           orderNo: id,
           totalAmount: orderAmount ?? 0.0,
           createdAt: createdAtModel ?? DateTime.now(),
-          orderOwnerName: userId.toString(),
         );
 
   factory OrdersModel.fromMap(Map<String, dynamic> data) => OrdersModel(

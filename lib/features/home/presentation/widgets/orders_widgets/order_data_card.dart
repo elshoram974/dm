@@ -24,17 +24,7 @@ class OrderDataCard extends StatelessWidget {
         children: [
           Expanded(
             flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (orderData.orderOwnerName != null)
-                  _Text(
-                    orderData.orderOwnerName!,
-                    color: context.theme.primaryColor,
-                  ),
-                _Text(S.of(context).orderNoNumber(orderData.orderNo)),
-              ],
-            ),
+            child: _Text(S.of(context).orderNoNumber(orderData.orderNo)),
           ),
           Expanded(
             flex: 4,
@@ -85,11 +75,10 @@ class OrderDataCardHeader extends StatelessWidget {
 }
 
 class _Text extends StatelessWidget {
-  const _Text(this.text, {this.color, this.decoration});
+  const _Text(this.text, {this.color});
 
   final String text;
   final Color? color;
-  final TextDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +90,6 @@ class _Text extends StatelessWidget {
         style: context.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.bold,
           color: color,
-          decoration: decoration,
         ),
       ),
     );

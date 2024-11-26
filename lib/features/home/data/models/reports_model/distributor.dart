@@ -6,6 +6,8 @@ class Distributor extends Equatable {
   final String? fName;
   final String? lName;
 
+  String get name => '${fName ?? ''} ${lName ?? ''}'.trim();
+
   const Distributor({this.fName, this.lName});
 
   factory Distributor.fromMap(Map<String, dynamic> data) => Distributor(

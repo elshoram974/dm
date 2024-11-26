@@ -5,7 +5,6 @@ class OrderCardEntity extends Equatable {
     required this.orderId,
     required this.orderNo,
     required this.totalAmount,
-    this.orderOwnerName,
     required this.createdAt,
   });
 
@@ -13,7 +12,6 @@ class OrderCardEntity extends Equatable {
     return OrderCardEntity(
       orderId: 5,
       orderNo: 1234567890,
-      orderOwnerName: 'Devetechno',
       createdAt: DateTime.now(),
       totalAmount: 111.666,
     );
@@ -22,13 +20,11 @@ class OrderCardEntity extends Equatable {
   final int orderId;
   final int orderNo;
   final double totalAmount;
-  final String? orderOwnerName;
   final DateTime createdAt;
   @override
   List<Object?> get props => [
         orderId,
         orderNo,
-        orderOwnerName,
         createdAt,
         totalAmount,
       ];
