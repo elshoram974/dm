@@ -9,7 +9,6 @@ import '../services/api_services.dart';
 class ReportsBindings extends Bindings {
   @override
   void dependencies() {
-    print(Get.arguments);
     Get.put<ReportsRemoteDataSource>(
       ReportsRemoteDataSourceImp(Get.find<APIServices>()),
     );

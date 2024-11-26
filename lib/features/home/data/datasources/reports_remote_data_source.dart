@@ -23,15 +23,15 @@ class ReportsRemoteDataSourceImp extends ReportsRemoteDataSource {
   ) async {
     print(customerId);
     final Map<String, dynamic> res = await apiServices.get(
-      "${AppLinks}?page=$page&customer_id=$customerId",
+      "${AppLinks.getReports}/$customerId?page=$page",
     );
     final List<ReportCardEntity> reports = List.empty(growable: true);
-    for (final Map<String, dynamic> d in res['data']['data']) {
+    for (final Map<String, dynamic> d in res['data']) {
       // reports.add(CustomerModel.fromMap(d));
     }
 
     return PaginatedData<List<ReportCardEntity>>(
-      pagination: PaginationModel.fromMap(res['data']),
+      pagination: PaginationModel.fromMap(res),
       data: reports,
     );
   }
