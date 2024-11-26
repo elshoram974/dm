@@ -5,7 +5,7 @@ import 'module.dart';
 import 'storage.dart';
 
 class OrdersModel extends OrderCardEntity {
-  final int? id;
+  final int id;
   final int? userId;
   final double? orderAmount;
   final int? couponDiscountAmount;
@@ -85,7 +85,7 @@ class OrdersModel extends OrderCardEntity {
   final Module? module;
 
   OrdersModel({
-    this.id,
+    required this.id,
     this.userId,
     this.orderAmount,
     this.couponDiscountAmount,
@@ -164,14 +164,15 @@ class OrdersModel extends OrderCardEntity {
     this.storage,
     this.module,
   }) : super(
-          orderNo: id ?? 0,
+          orderId: id,
+          orderNo: id,
           totalAmount: orderAmount ?? 0.0,
           createdAt: createdAtModel ?? DateTime.now(),
           orderOwnerName: userId.toString(),
         );
 
   factory OrdersModel.fromMap(Map<String, dynamic> data) => OrdersModel(
-        id: data['id'] as int?,
+        id: data['id'] as int,
         userId: data['user_id'] as int?,
         orderAmount: (data['order_amount'] as num?)?.toDouble(),
         couponDiscountAmount: data['coupon_discount_amount'] as int?,

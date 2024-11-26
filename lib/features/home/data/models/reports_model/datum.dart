@@ -5,7 +5,7 @@ import 'package:shora/features/home/domain/entity/report_card_entity.dart';
 import 'distributor.dart';
 
 class Datum extends ReportCardEntity {
-  final int? id;
+  final int id;
   final int? repId;
   final int? customerId;
   final dynamic note;
@@ -14,7 +14,7 @@ class Datum extends ReportCardEntity {
   final Distributor? distributor;
 
   Datum({
-    this.id,
+    required this.id,
     this.repId,
     this.customerId,
     this.note,
@@ -22,13 +22,14 @@ class Datum extends ReportCardEntity {
     this.updatedAt,
     this.distributor,
   }) : super(
+          reportId: id,
           reportNo: repId ?? 0,
           createdAt: createdAtModel ?? DateTime.now(),
           reportOwnerName: customerId.toString(),
         );
 
   factory Datum.fromMap(Map<String, dynamic> data) => Datum(
-        id: data['id'] as int?,
+        id: data['id'] as int,
         repId: data['rep_id'] as int?,
         customerId: data['customer_id'] as int?,
         note: data['note'] as dynamic,
