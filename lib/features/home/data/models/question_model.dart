@@ -16,6 +16,23 @@ class QuestionModel extends Equatable {
     this.ansD,
     required this.ansDBool,
   });
+  factory QuestionModel.example() {
+    return QuestionModel.fromMap(
+      const {
+        "id": 1,
+        "text": "How satisfied are you with the product/service?",
+        "type": "single",
+        "ans_a": "A-class",
+        "ans_a_bool": false,
+        "ans_b": null,
+        "ans_b_bool": false,
+        "ans_c": "C-class",
+        "ans_c_bool": false,
+        "ans_d": "D-class",
+        "ans_d_bool": false
+      },
+    );
+  }
 
   /// `dart:convert`
   ///

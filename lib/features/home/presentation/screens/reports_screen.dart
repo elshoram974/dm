@@ -7,6 +7,7 @@ import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
+import 'package:shora/core/utils/config/routes/routes.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -107,7 +108,7 @@ class ReportsScreen extends StatelessWidget {
             ),
             const SizedBox(width: AppConst.smallPadding),
             CustomFilledButton(
-              onPressed: () {},
+              onPressed: () => Get.toNamed(AppRoute.addReport),
               icon: const Icon(Icons.add),
               padding: EdgeInsets.zero,
               minimumSize: const Size(60, 45),
