@@ -21,6 +21,14 @@
     "selectMonth": "Select Month",
     "date": "Date",
     "reportNo": "Report No.",
+    "reportNoNumber": "Report No: {reportNumber}",
+    "@reportNoNumber": {
+        "placeholders": {
+            "reportNumber": {
+                "type": "int"
+            }
+        }
+    },
     "selectDate": "Select date",
     "findWhatYouAreLookingFor": "Find what you're looking for",
     "reports": "Reports",

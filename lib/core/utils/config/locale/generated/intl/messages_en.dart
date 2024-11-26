@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(pageName) => "Page \'${pageName}\' not found in routes";
 
+  static String m6(reportNumber) => "Report No: ${reportNumber}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accountAlreadyExistsForThatEmail":
@@ -113,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recover": MessageLookupByLibrary.simpleMessage("Recover"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "reportNo": MessageLookupByLibrary.simpleMessage("Report No."),
+        "reportNoNumber": m6,
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requestLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Please grant permission to access your device\'s location"),

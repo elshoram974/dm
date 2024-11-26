@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
+import 'package:shora/core/utils/extensions/date_ex.dart';
 
 import '../../../domain/entity/report_card_entity.dart';
 
@@ -32,14 +32,14 @@ class ReportDataCard extends StatelessWidget {
                     reportData.reportOwnerName!,
                     color: context.theme.primaryColor,
                   ),
-                _Text(reportData.reportNo),
+                _Text(S.of(context).reportNoNumber(reportData.reportNo)),
               ],
             ),
           ),
           Expanded(
             flex: 2,
             child: _Text(
-              DateFormat("dd-MM-yyyy").format(reportData.createdAt),
+              reportData.createdAt.ddMMYYYY,
               decoration: TextDecoration.underline,
               color: context.theme.primaryColor,
             ),

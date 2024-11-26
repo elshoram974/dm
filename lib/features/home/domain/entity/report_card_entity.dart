@@ -9,13 +9,13 @@ class ReportCardEntity extends Equatable {
 
   factory ReportCardEntity.example() {
     return ReportCardEntity(
-      reportNo: '1234567890',
+      reportNo: 1234567890,
       reportOwnerName: 'John Doe',
       createdAt: DateTime.now(),
     );
   }
 
-  final String reportNo;
+  final int reportNo;
   final String? reportOwnerName;
   final DateTime createdAt;
   @override

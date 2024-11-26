@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `Report No: {reportNumber}`
+  String reportNoNumber(int reportNumber) {
+    return Intl.message(
+      'Report No: $reportNumber',
+      name: 'reportNoNumber',
+      desc: '',
+      args: [reportNumber],
+    );
+  }
+
   /// `Select date`
   String get selectDate {
     return Intl.message(
