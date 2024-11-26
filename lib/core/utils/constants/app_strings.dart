@@ -5,8 +5,6 @@ abstract final class AppString {
   static const String kTokenKey = "kTokenKey";
   static const String kUserBox = "kUserBox";
 
-
   static const String phone = 'phone';
   static const String password = 'password';
-
 }

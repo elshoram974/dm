@@ -3,6 +3,7 @@ import 'package:shora/core/utils/models/pagination_model/pagination_model.dart';
 import 'package:shora/core/utils/services/api_services.dart';
 
 import '../../domain/entity/report_card_entity.dart';
+import '../models/reports_model/reports_model.dart';
 
 abstract class ReportsRemoteDataSource {
   const ReportsRemoteDataSource();
@@ -25,14 +26,10 @@ class ReportsRemoteDataSourceImp extends ReportsRemoteDataSource {
     final Map<String, dynamic> res = await apiServices.get(
       "${AppLinks.getReports}/$customerId?page=$page",
     );
-    final List<ReportCardEntity> reports = List.empty(growable: true);
-    for (final Map<String, dynamic> d in res['data']) {
-      // reports.add(CustomerModel.fromMap(d));
-    }
-
+    final ReportsModel model = ReportsModel.fromMap(res);
     return PaginatedData<List<ReportCardEntity>>(
-      pagination: PaginationModel.fromMap(res),
-      data: reports,
+      pagination: PaginationModel.fromMap(model.meta?.toMap() ?? {}),
+      data: model.data ?? [],
     );
   }
 }
