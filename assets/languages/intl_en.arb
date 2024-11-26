@@ -1,4 +1,14 @@
 {
+    "save": "Save",
+    "addReport": "Add Report",
+    "questionNo": "Question {number}:",
+    "@questionNo": {
+        "placeholders": {
+            "number": {
+                "type": "int"
+            }
+        }
+    },
     "empty": "Empty",
     "totalOrder": "Total Order",
     "amountEGP": "{amount} EGP",

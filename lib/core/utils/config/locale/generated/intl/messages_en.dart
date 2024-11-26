@@ -32,13 +32,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m5(pageName) => "Page \'${pageName}\' not found in routes";
 
-  static String m6(reportNumber) => "Report No: ${reportNumber}";
+  static String m6(number) => "Question ${number}:";
+
+  static String m7(reportNumber) => "Report No: ${reportNumber}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accountAlreadyExistsForThatEmail":
             MessageLookupByLibrary.simpleMessage(
                 "The account already exists for that email."),
+        "addReport": MessageLookupByLibrary.simpleMessage("Add Report"),
         "amountEGP": m0,
         "areYouSureYouWantToReturnBack": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to return back"),
@@ -112,13 +115,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "The password provided is too weak."),
         "pressAgainToExit":
             MessageLookupByLibrary.simpleMessage("Press again to exit"),
+        "questionNo": m6,
         "recover": MessageLookupByLibrary.simpleMessage("Recover"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "reportNo": MessageLookupByLibrary.simpleMessage("Report No."),
-        "reportNoNumber": m6,
+        "reportNoNumber": m7,
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "requestLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Please grant permission to access your device\'s location"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "selectDate": MessageLookupByLibrary.simpleMessage("Select date"),
         "selectMonth": MessageLookupByLibrary.simpleMessage("Select Month"),
         "serverTookTooLong": MessageLookupByLibrary.simpleMessage(

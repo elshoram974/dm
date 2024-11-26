@@ -50,6 +50,36 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Report`
+  String get addReport {
+    return Intl.message(
+      'Add Report',
+      name: 'addReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Question {number}:`
+  String questionNo(int number) {
+    return Intl.message(
+      'Question $number:',
+      name: 'questionNo',
+      desc: '',
+      args: [number],
+    );
+  }
+
   /// `Empty`
   String get empty {
     return Intl.message(
