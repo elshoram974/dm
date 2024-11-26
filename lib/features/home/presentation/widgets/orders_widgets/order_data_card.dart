@@ -37,11 +37,18 @@ class OrderDataCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 2,
-            child: _Text(
-              orderData.createdAt.ddMMYYYY,
-              decoration: TextDecoration.underline,
-              color: context.theme.primaryColor,
+            flex: 4,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _Text(
+                  S
+                      .of(context)
+                      .amountEGP(orderData.totalAmount.toStringAsFixed(2)),
+                  color: context.theme.primaryColor,
+                ),
+                _Text(orderData.createdAt.ddMMYYYY),
+              ],
             ),
           ),
         ],
@@ -70,7 +77,7 @@ class OrderDataCardHeader extends StatelessWidget {
             flex: 7,
             child: _Text(S.of(context).orderNo),
           ),
-          Expanded(flex: 2, child: _Text(S.of(context).date)),
+          Expanded(flex: 4, child: _Text(S.of(context).totalOrder)),
         ],
       ),
     );
