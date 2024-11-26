@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shora/core/default_field.dart';
 import 'package:shora/core/shared/empty_widget.dart';
 import 'package:shora/core/shared/custom_app_bar.dart';
-import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
@@ -90,29 +88,32 @@ class OrdersScreen extends StatelessWidget {
   }
 
   CustomAppBar customAppBar(BuildContext context) {
+    final double width =
+        MediaQuery.sizeOf(context).width - (2 * AppConst.defaultPadding);
     return CustomAppBar(
       title: S.of(context).orders,
       titleColor: context.theme.primaryColor,
-      bottom: Row(
-        children: [
-          Expanded(
-            child: MyDefaultField(
-              hintText: S.of(context).selectDate,
-              suffix: const Icon(
-                Icons.calendar_month,
-                color: Colors.grey,
-              ),
+      bottom: DropdownMenu<int>(
+        hintText: S.of(context).selectMonth,
+        width: width <= AppConst.constraint ? width : AppConst.constraint,
+        menuStyle: MenuStyle(
+          side: const WidgetStatePropertyAll(BorderSide()),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppConst.borderSmallRadius),
             ),
           ),
-          const SizedBox(width: AppConst.smallPadding),
-          CustomFilledButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-            padding: EdgeInsets.zero,
-            minimumSize: const Size(60, 45),
-            filledColor: Colors.green,
-          ),
-        ],
+        ),
+        dropdownMenuEntries: List.generate(
+          AppConst.monthsInYear.length,
+          (index) {
+            return DropdownMenuEntry(
+              value: index,
+              style: ElevatedButton.styleFrom(),
+              label: AppConst.monthsInYear[index],
+            );
+          },
+        ),
       ),
     );
   }

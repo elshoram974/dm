@@ -1,3 +1,5 @@
+import 'package:shora/core/utils/extensions/date_ex.dart';
+
 abstract final class AppConst {
   const AppConst();
 
@@ -14,4 +16,7 @@ abstract final class AppConst {
   static const int maxTablet = 900;
 
   static const Duration duration = Duration(seconds: 2);
+
+  static final List<String> monthsInYear =
+      List.generate(12, (i) => DateTime(0, i + 1).MMMM);
 }
