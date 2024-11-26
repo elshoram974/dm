@@ -6,7 +6,8 @@ import '../utils/config/locale/generated/l10n.dart';
 import '../utils/constants/app_constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, this.bottom, this.titleColor, required this.title});
+  const CustomAppBar(
+      {super.key, this.bottom, this.titleColor, required this.title});
   final Color? titleColor;
   final Widget? bottom;
   final String title;

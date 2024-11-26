@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shora/app_info.dart';
 
 import '../constants/app_strings.dart';
 
@@ -31,6 +32,8 @@ class APIServices {
 
   Future<Map<String, dynamic>> get(final String link) async {
     final String? token = await _getAuthToken;
+
+    if (AppInfo.isDebugMode) print("user token is $token ");
 
     final Response<Map<String, dynamic>> response = await _dio.get(
       link,

@@ -34,7 +34,7 @@ class PaginationModel extends Equatable {
     this.path,
     this.perPage,
     this.prevPageUrl,
-    required this.to,
+    this.to,
     required this.total,
   });
 
@@ -59,7 +59,7 @@ class PaginationModel extends Equatable {
       path: data['path'] as String?,
       perPage: data['per_page'] as int?,
       prevPageUrl: data['prev_page_url'] as dynamic,
-      to: data['to'] as int,
+      to: data['to'] as int?,
       total: data['total'] as int,
     );
   }
@@ -73,7 +73,7 @@ class PaginationModel extends Equatable {
   final String? path;
   final int? perPage;
   final String? prevPageUrl;
-  final int to;
+  final int? to;
   final int total;
 
   Map<String, dynamic> toMap() => {

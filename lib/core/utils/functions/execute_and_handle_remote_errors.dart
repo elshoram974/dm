@@ -18,7 +18,7 @@ Future<Status<T>> executeAndHandleErrors<T>(
     if (functionWhenError != null) data = await functionWhenError();
 
     if (e is DioException) {
-    if (AppInfo.isDebugMode) print("DioException: ${e.response}");
+      if (AppInfo.isDebugMode) print("DioException: ${e.response}");
       return ServerFailure<T>.fromDioException(e).copyWith(data: data);
     }
 

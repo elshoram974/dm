@@ -1,27 +1,24 @@
 import 'package:get/get.dart';
 
+import '../../../features/home/data/datasources/orders_remote_data_source.dart';
+import '../../../features/home/data/repositories/orders_repo_imp.dart';
+import '../../../features/home/domain/repositories/orders_repo.dart';
+import '../../../features/home/presentation/controller/orders_controller.dart';
+import '../services/api_services.dart';
+
 class OrdersBindings extends Bindings {
   @override
   void dependencies() {
-    print(Get.arguments);
-    // Get.put<HomeRemoteDataSource>(
-    //   HomeRemoteDataSourceImp(Get.find<APIServices>()),
-    // );
-    // Get.put<HomeLocalDataSource>(
-    //   HomeLocalDataSourceImp(Get.find()),
-    // );
-    // Get.put<HomeRepositories>(
-    //   HomeRepositoriesImp(
-    //     localDataSource: Get.find<HomeLocalDataSource>(),
-    //     remoteDataSource: Get.find<HomeRemoteDataSource>(),
-    //   ),
-    // );
+    Get.put<OrdersRemoteDataSource>(
+      OrdersRemoteDataSourceImp(Get.find<APIServices>()),
+    );
 
-    // Get.put<HomeController>(
-    //   HomeControllerImp(
-    //     repo: Get.find<HomeRepositories>(),
-    //     user: Get.find<AuthLocalDataSource>().getCurrentUser(),
-    //   ),
-    // );
+    Get.put<OrdersRepositories>(
+      OrdersRepositoriesImp(Get.find<OrdersRemoteDataSource>()),
+    );
+
+    Get.put<OrdersController>(
+      OrdersControllerImp(repo: Get.find<OrdersRepositories>()),
+    );
   }
 }

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shora/core/default_field.dart';
+import 'package:shora/core/shared/empty_widget.dart';
+import 'package:shora/core/shared/custom_app_bar.dart';
+import 'package:shora/core/shared/filled_button.dart';
+import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../domain/entity/customer_card_entity.dart';
-import '../controller/home_controller.dart';
-import '../widgets/customer_card_widget.dart';
+import '../../domain/entity/order_card_entity.dart';
+import '../controller/orders_controller.dart';
+import '../widgets/orders_widgets/order_data_card.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -16,66 +20,99 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<HomeController>(
+      appBar: customAppBar(context),
+      body: GetBuilder<OrdersController>(
         builder: (controller) {
           return SafeArea(
             bottom: false,
             child: CustomScrollView(
-              physics: controller.getCustomerStatus is Loading
+              physics: controller.getOrderStatus is Loading &&
+                      (controller.getOrderStatus as Loading).loadingMore
                   ? const NeverScrollableScrollPhysics()
                   : null,
               slivers: [
-                SliverAppBar(
-                  title: Text(S.of(context).orders),
-                  centerTitle: true,
-                  leadingWidth: 100,
-                  automaticallyImplyLeading: false,
-                  leading: IconButton(
-                    onPressed: Get.back,
-                    icon: Row(
-                      children: [
-                        const Icon(Icons.arrow_back_ios),
-                        Text(S.of(context).back),
+                if (controller.getOrderStatus is! Loading &&
+                    controller.orders.isEmpty)
+                  const SliverFillRemaining(child: EmptyWidget())
+                else
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        const SizedBox(height: AppConst.smallPadding),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConst.defaultPadding,
+                          ),
+                          child: MyResConstrainedBoxAlign(
+                            child: Column(
+                              children: [
+                                const OrderDataCardHeader(),
+                                if (controller.getOrderStatus is Loading &&
+                                    !(controller.getOrderStatus as Loading)
+                                        .loadingMore)
+                                  ...List<Widget>.generate(
+                                    10,
+                                    (int i) => Skeletonizer(
+                                      containersColor: context.theme.cardColor,
+                                      child: OrderDataCard(
+                                        orderData: OrderCardEntity.example(),
+                                      ),
+                                    ),
+                                  )
+                                else ...[
+                                  ...List<Widget>.generate(
+                                    controller.orders.length,
+                                    (int i) => OrderDataCard(
+                                      orderData: controller.orders[i],
+                                    ),
+                                  )
+                                ],
+                              ],
+                            ),
+                          ),
+                        ),
+                        if (controller.getOrderStatus is Loading &&
+                            (controller.getOrderStatus as Loading)
+                                .loadingMore) ...[
+                          const SizedBox(height: AppConst.defaultPadding),
+                          const Center(child: CircularProgressIndicator()),
+                        ],
+                        const SizedBox(height: AppConst.defaultPadding),
                       ],
                     ),
                   ),
-                  backgroundColor: Colors.transparent,
-                  systemOverlayStyle: const SystemUiOverlayStyle(
-                    statusBarIconBrightness: Brightness.dark,
-                  ),
-                  elevation: 0,
-                ),
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      const SizedBox(height: AppConst.smallPadding),
-                      if (controller.getCustomerStatus is Loading)
-                        ...List<Widget>.generate(
-                          10,
-                          (int i) => Skeletonizer(
-                            containersColor: context.theme.cardColor,
-                            child: CustomerCardWidget(
-                              entity: CustomerCardEntity.example(),
-                            ),
-                          ),
-                        )
-                      else
-                        ...List<Widget>.generate(
-                          controller.customers.length,
-                          (int index) {
-                            return CustomerCardWidget(
-                              entity: controller.customers[index],
-                            );
-                          },
-                        ),
-                      const SizedBox(height: AppConst.defaultPadding),
-                    ],
-                  ),
-                ),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  CustomAppBar customAppBar(BuildContext context) {
+    return CustomAppBar(
+      title: S.of(context).orders,
+      titleColor: context.theme.primaryColor,
+      bottom: Row(
+        children: [
+          Expanded(
+            child: MyDefaultField(
+              hintText: S.of(context).selectDate,
+              suffix: const Icon(
+                Icons.calendar_month,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          const SizedBox(width: AppConst.smallPadding),
+          CustomFilledButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            padding: EdgeInsets.zero,
+            minimumSize: const Size(60, 45),
+            filledColor: Colors.green,
+          ),
+        ],
       ),
     );
   }

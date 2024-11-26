@@ -88,9 +88,11 @@ class ServerFailure<T> extends Failure<T> {
     final FailureBody res = FailureBody(
       type: e.type.name,
       code: statusCode ?? -1,
-      message: e.response!.data is Map? (e.response!.data['errors'] as List)
-          .map<String>((e) => "${e['message']} with code ${e['code']}")
-          .join(", and") : "unKnownMessage",
+      message: e.response!.data is Map
+          ? (e.response!.data['errors'] as List)
+              .map<String>((e) => "${e['message']} with code ${e['code']}")
+              .join(", and")
+          : "unKnownMessage",
       dioExceptionType: e.type,
     );
 
@@ -105,7 +107,7 @@ class ServerFailure<T> extends Failure<T> {
       return ServerFailure(
         res.copyWith(message: S.current.unauthorizedError),
       );
-    }else if (statusCode == 404) {
+    } else if (statusCode == 404) {
       return ServerFailure(
         res.copyWith(message: S.current.pageNotFound),
       );

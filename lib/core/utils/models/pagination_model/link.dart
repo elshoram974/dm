@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Link extends Equatable {
-
   const Link({this.url, this.label, this.active});
 
   /// `dart:convert`
