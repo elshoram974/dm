@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/default_field.dart';
 import 'package:shora/core/shared/empty_widget.dart';
+import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
@@ -23,9 +24,11 @@ class HomeScreen extends StatelessWidget {
           Get.find<HomeController>().onPopInvoked(),
       child: Scaffold(
         appBar: AppBar(
-          title: MyDefaultField(
-            hintText: S.of(context).findWhatYouAreLookingFor,
-            suffix: const Icon(Icons.search),
+          title: MyResConstrainedBoxAlign(
+            child: MyDefaultField(
+              hintText: S.of(context).findWhatYouAreLookingFor,
+              suffix: const Icon(Icons.search),
+            ),
           ),
           backgroundColor: Colors.transparent,
           systemOverlayStyle: const SystemUiOverlayStyle(

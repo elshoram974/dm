@@ -88,15 +88,17 @@ class OrdersScreen extends StatelessWidget {
   }
 
   CustomAppBar customAppBar(BuildContext context) {
-    final double width =
-        MediaQuery.sizeOf(context).width - (2 * AppConst.defaultPadding);
+    final Size size = MediaQuery.sizeOf(context);
+    final double width = size.width - (2 * AppConst.defaultPadding);
     return CustomAppBar(
       title: S.of(context).orders,
       titleColor: context.theme.primaryColor,
       bottom: DropdownMenu<int>(
         hintText: S.of(context).selectMonth,
         width: width <= AppConst.constraint ? width : AppConst.constraint,
+        menuHeight: 230,
         menuStyle: MenuStyle(
+          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.zero),
           side: const WidgetStatePropertyAll(BorderSide()),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(

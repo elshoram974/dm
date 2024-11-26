@@ -93,26 +93,28 @@ class ReportsScreen extends StatelessWidget {
     return CustomAppBar(
       title: S.of(context).reports,
       titleColor: context.theme.primaryColor,
-      bottom: Row(
-        children: [
-          Expanded(
-            child: MyDefaultField(
-              hintText: S.of(context).selectDate,
-              suffix: const Icon(
-                Icons.calendar_month,
-                color: Colors.grey,
+      bottom: MyResConstrainedBoxAlign(
+        child: Row(
+          children: [
+            Expanded(
+              child: MyDefaultField(
+                hintText: S.of(context).selectDate,
+                suffix: const Icon(
+                  Icons.calendar_month,
+                  color: Colors.grey,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: AppConst.smallPadding),
-          CustomFilledButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-            padding: EdgeInsets.zero,
-            minimumSize: const Size(60, 45),
-            filledColor: Colors.green,
-          ),
-        ],
+            const SizedBox(width: AppConst.smallPadding),
+            CustomFilledButton(
+              onPressed: () {},
+              icon: const Icon(Icons.add),
+              padding: EdgeInsets.zero,
+              minimumSize: const Size(60, 45),
+              filledColor: Colors.green,
+            ),
+          ],
+        ),
       ),
     );
   }
