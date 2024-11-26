@@ -20,25 +20,30 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(min) => "Can\'t be less than ${min}";
+  static String m0(amount) => "${amount} EGP";
 
-  static String m1(max) => "Can\'t be more than ${max}";
+  static String m1(min) => "Can\'t be less than ${min}";
 
-  static String m2(date) => "Last Order : ${date}";
+  static String m2(max) => "Can\'t be more than ${max}";
 
-  static String m3(pageName) => "Page \'${pageName}\' not found in routes";
+  static String m3(date) => "Last Order : ${date}";
+
+  static String m4(orderNumber) => "Order No: ${orderNumber}";
+
+  static String m5(pageName) => "Page \'${pageName}\' not found in routes";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accountAlreadyExistsForThatEmail":
             MessageLookupByLibrary.simpleMessage(
                 "The account already exists for that email."),
+        "amountEGP": m0,
         "areYouSureYouWantToReturnBack": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to return back"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "cantBeLessThan": m0,
-        "cantBeMoreThan": m1,
+        "cantBeLessThan": m1,
+        "cantBeMoreThan": m2,
         "clientTookTooLong": MessageLookupByLibrary.simpleMessage(
             "The client took too long to respond."),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -78,7 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ifYouReturnNowYouWillLoseAllData":
             MessageLookupByLibrary.simpleMessage(
                 "If you return now, you will lose all data!"),
-        "lastOrder": m2,
+        "lastOrder": m3,
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "The location service on the device is disabled."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
@@ -95,8 +100,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "No user found for that email."),
         "notSamePass":
             MessageLookupByLibrary.simpleMessage("Not same password"),
+        "orderNo": MessageLookupByLibrary.simpleMessage("Order No."),
+        "orderNoNumber": m4,
         "orders": MessageLookupByLibrary.simpleMessage("Orders"),
-        "pageNameNotFoundInRoutes": m3,
+        "pageNameNotFoundInRoutes": m5,
         "pageNotFound": MessageLookupByLibrary.simpleMessage("Page not found"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordProvidedIsTooWeak": MessageLookupByLibrary.simpleMessage(
@@ -110,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Please grant permission to access your device\'s location"),
         "selectDate": MessageLookupByLibrary.simpleMessage("Select date"),
+        "selectMonth": MessageLookupByLibrary.simpleMessage("Select Month"),
         "serverTookTooLong": MessageLookupByLibrary.simpleMessage(
             "The server took too long to respond."),
         "serverTookTooLongToRespond": MessageLookupByLibrary.simpleMessage(
@@ -126,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thereIsProblemWithServerTryAgainLater":
             MessageLookupByLibrary.simpleMessage(
                 "There is a problem with the server. Try again later."),
+        "totalOrder": MessageLookupByLibrary.simpleMessage("Total Order"),
         "unauthorizedError": MessageLookupByLibrary.simpleMessage(
             "Your session has expired or you are not authorized. Please log in again."),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),

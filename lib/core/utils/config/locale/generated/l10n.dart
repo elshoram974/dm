@@ -60,6 +60,56 @@ class S {
     );
   }
 
+  /// `Total Order`
+  String get totalOrder {
+    return Intl.message(
+      'Total Order',
+      name: 'totalOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{amount} EGP`
+  String amountEGP(String amount) {
+    return Intl.message(
+      '$amount EGP',
+      name: 'amountEGP',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `Order No.`
+  String get orderNo {
+    return Intl.message(
+      'Order No.',
+      name: 'orderNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order No: {orderNumber}`
+  String orderNoNumber(int orderNumber) {
+    return Intl.message(
+      'Order No: $orderNumber',
+      name: 'orderNoNumber',
+      desc: '',
+      args: [orderNumber],
+    );
+  }
+
+  /// `Select Month`
+  String get selectMonth {
+    return Intl.message(
+      'Select Month',
+      name: 'selectMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Date`
   String get date {
     return Intl.message(

@@ -1,5 +1,24 @@
 {
     "empty": "Empty",
+    "totalOrder": "Total Order",
+    "amountEGP": "{amount} EGP",
+    "@amountEGP": {
+        "placeholders": {
+            "amount": {
+                "type": "String"
+            }
+        }
+    },
+    "orderNo": "Order No.",
+    "orderNoNumber": "Order No: {orderNumber}",
+    "@orderNoNumber": {
+        "placeholders": {
+            "orderNumber": {
+                "type": "int"
+            }
+        }
+    },
+    "selectMonth": "Select Month",
     "date": "Date",
     "reportNo": "Report No.",
     "selectDate": "Select date",
