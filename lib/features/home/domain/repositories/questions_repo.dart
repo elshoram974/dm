@@ -6,4 +6,8 @@ abstract class QuestionsRepositories {
   const QuestionsRepositories();
 
   Future<Status<List<QuestionModel>>> getQuestions();
+  Future<Status<void>> addReport(
+    int customerId,
+    List<QuestionModel> questionsWithAnswers,
+  );
 }

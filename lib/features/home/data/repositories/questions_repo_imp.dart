@@ -15,4 +15,14 @@ class QuestionsRepositoriesImp extends QuestionsRepositories {
       () => remoteDataSource.getQuestions(),
     );
   }
+
+  @override
+  Future<Status<void>> addReport(
+    int customerId,
+    List<QuestionModel> questionsWithAnswers,
+  ) {
+    return executeAndHandleErrors<void>(
+      () => remoteDataSource.addReport(customerId, questionsWithAnswers),
+    );
+  }
 }
