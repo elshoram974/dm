@@ -23,9 +23,18 @@ class QuestionsScreen extends StatelessWidget {
         title: S.of(context).addReport,
         titleColor: context.theme.primaryColor,
       ),
-      bottomSheet: Container(
-        child: CustomFilledButton(
-          onPressed: Get.find<QuestionsController>().sendNewReport,
+      extendBody: true,
+      bottomNavigationBar: Container(
+        height: 70,
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppConst.defaultPadding,
+        ),
+        child: MyResConstrainedBoxAlign(
+          child: CustomFilledButton(
+            text: S.of(context).save,
+            minimumSize: const Size.fromHeight(50),
+            onPressed: Get.find<QuestionsController>().sendNewReport,
+          ),
         ),
       ),
       body: GetBuilder<QuestionsController>(

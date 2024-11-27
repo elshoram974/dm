@@ -25,7 +25,7 @@ class RadioAnswerWidget<T> extends StatelessWidget {
         padding: const EdgeInsets.all(AppConst.smallPadding),
         decoration: BoxDecoration(
           color: onChanged == null && groupValue == choice
-              ? Colors.greenAccent.shade100
+              ? context.theme.primaryColor.withOpacity(0.25)
               : context.theme.cardColor.withOpacity(0.5),
           borderRadius: BorderRadius.circular(AppConst.borderRadius),
         ),
@@ -49,7 +49,7 @@ class RadioAnswerWidget<T> extends StatelessWidget {
             Radio<T>(
               value: value,
               onChanged: onChanged,
-              fillColor: WidgetStatePropertyAll(Colors.green.shade900),
+              fillColor: WidgetStatePropertyAll(context.theme.primaryColor),
               groupValue: groupValue,
             )
           ],

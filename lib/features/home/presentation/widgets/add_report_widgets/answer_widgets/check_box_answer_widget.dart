@@ -24,7 +24,7 @@ class CheckBoxAnswerWidget extends StatelessWidget {
         padding: const EdgeInsets.all(AppConst.smallPadding),
         decoration: BoxDecoration(
           color: onChanged == null && isSelected
-              ? Colors.greenAccent.shade100
+              ? context.theme.primaryColor.withOpacity(0.25)
               : context.theme.cardColor.withOpacity(0.5),
           borderRadius: BorderRadius.circular(AppConst.borderRadius),
         ),
@@ -50,7 +50,7 @@ class CheckBoxAnswerWidget extends StatelessWidget {
               onChanged:
                   onChanged == null ? null : (_) => onChanged!(!isSelected),
               fillColor: const WidgetStatePropertyAll(Colors.white),
-              checkColor: Colors.green.shade900,
+              checkColor: context.theme.primaryColor,
               side: BorderSide.none,
             )
           ],

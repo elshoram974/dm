@@ -109,7 +109,8 @@ class ReportsScreen extends StatelessWidget {
             const SizedBox(width: AppConst.smallPadding),
             CustomFilledButton(
               onPressed: () {
-                final ReportsController controller = Get.find<ReportsController>();
+                final ReportsController controller =
+                    Get.find<ReportsController>();
                 Get.toNamed(
                   AppRoute.questions,
                   arguments: controller.customerId,
@@ -120,7 +121,6 @@ class ReportsScreen extends StatelessWidget {
               icon: const Icon(Icons.add),
               padding: EdgeInsets.zero,
               minimumSize: const Size(60, 45),
-              filledColor: Colors.green,
             ),
           ],
         ),
