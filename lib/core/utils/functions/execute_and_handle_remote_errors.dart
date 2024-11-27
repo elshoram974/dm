@@ -14,6 +14,8 @@ Future<Status<T>> executeAndHandleErrors<T>(
   try {
     return Success<T>(await function());
   } catch (e) {
+    if (AppInfo.isDebugMode) print("error: $e");
+
     T? data;
     if (functionWhenError != null) data = await functionWhenError();
 
@@ -22,7 +24,6 @@ Future<Status<T>> executeAndHandleErrors<T>(
       return ServerFailure<T>.fromDioException(e).copyWith(data: data);
     }
 
-    if (AppInfo.isDebugMode) print("error: $e");
     return Failure<T>(FailureBody(message: e.toString()), data);
   }
 }

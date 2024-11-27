@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:shora/core/status/status.dart';
+import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/functions/handle_response_in_controller.dart';
+import 'package:shora/core/utils/functions/show_my_dialog.dart';
 
 import '../../data/models/question_model.dart';
 import '../../domain/repositories/questions_repo.dart';
@@ -16,15 +18,17 @@ abstract class QuestionsController extends GetxController {
   Future<void> getQuestions();
 
   void updateQuestion({required int index, required QuestionModel newQuestion});
+
+  Future<void> sendNewReport();
 }
 
 class QuestionsControllerImp extends QuestionsController {
   QuestionsControllerImp({required super.repo}) {
-    // _customerId = Get.arguments;
+    _customerId = Get.arguments;
     getQuestions();
   }
 
-  // late String _customerId;
+  late String _customerId;
 
   @override
   Future<void> getQuestions() async {
@@ -45,5 +49,27 @@ class QuestionsControllerImp extends QuestionsController {
     required QuestionModel newQuestion,
   }) {
     _questions[index] = newQuestion;
+  }
+
+  @override
+  Future<void> sendNewReport() async {
+    if (!_validateQuestions) {
+      ShowMyDialog.error(Get.context!, body: S.current.pleaseAnswerAllQuestions);
+      return;
+    }
+    ShowMyDialog.loading();
+    await handleResponseInController<void>(
+      status: await repo.addReport(int.parse(_customerId), _questions),
+      onSuccess: (_) => Get.back(),
+    );
+    Get.back(result: true);
+  }
+
+  bool get _validateQuestions {
+    for (QuestionModel e in _questions) {
+      if (!e.isAnswered) return false;
+    }
+
+    return true;
   }
 }

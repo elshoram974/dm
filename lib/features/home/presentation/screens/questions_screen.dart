@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/shared/custom_app_bar.dart';
 import 'package:shora/core/shared/empty_widget.dart';
+import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
@@ -21,6 +22,11 @@ class QuestionsScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: S.of(context).addReport,
         titleColor: context.theme.primaryColor,
+      ),
+      bottomSheet: Container(
+        child: CustomFilledButton(
+          onPressed: Get.find<QuestionsController>().sendNewReport,
+        ),
       ),
       body: GetBuilder<QuestionsController>(
         builder: (controller) {

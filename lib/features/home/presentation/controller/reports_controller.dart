@@ -19,6 +19,8 @@ abstract class ReportsController extends GetxController {
   int totalReports = -1;
 
   ScrollController scrollController = ScrollController();
+  late String _customerId;
+  String get customerId => _customerId;
 
   Future<void> getReports(bool reload);
 }
@@ -30,7 +32,6 @@ class ReportsControllerImp extends ReportsController {
     scrollController.addListener(_paginationFn);
   }
 
-  late String _customerId;
 
   @override
   void onClose() {

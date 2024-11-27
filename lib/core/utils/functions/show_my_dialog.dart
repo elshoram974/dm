@@ -7,6 +7,28 @@ import '../config/locale/generated/l10n.dart';
 abstract final class ShowMyDialog {
   const ShowMyDialog();
 
+  static void loading() {
+    Get.dialog(
+      const Align(child: CircularProgressIndicator()),
+      barrierDismissible: false,
+    );
+  }
+
+  static void error(BuildContext context, {required String body}) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CustomDialog(
+          title: S.of(context).error,
+          body: body,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          textCancel: S.of(context).understood,
+          onPressCancel: Get.back,
+        );
+      },
+    );
+  }
+
   static Future<bool?> back(
     BuildContext context, {
     String? body,

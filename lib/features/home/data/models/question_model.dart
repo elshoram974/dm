@@ -33,6 +33,12 @@ class QuestionModel extends Equatable {
       },
     );
   }
+  bool get isAnswered {
+    if (type == QuestionType.short) return ansA != null;
+
+    return ansABool || ansBBool || ansCBool || ansDBool;
+  }
+
   static List<QuestionModel> get allExample => [
         QuestionModel.example().copyWith(type: QuestionType.single),
         QuestionModel.example().copyWith(type: QuestionType.multi),
@@ -74,7 +80,7 @@ class QuestionModel extends Equatable {
   Map<String, dynamic> toMap() => {
         'id': id,
         'text': question,
-        'type': type,
+        'type': type.name,
         'ans_a': ansA,
         'ans_a_bool': ansABool,
         'ans_b': ansB,

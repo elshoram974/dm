@@ -75,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your credentials to continue."),
         "enterYourMobileNumber":
             MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "fillField": MessageLookupByLibrary.simpleMessage("fill this field"),
         "findWhatYouAreLookingFor": MessageLookupByLibrary.simpleMessage(
             "Find what you\'re looking for"),
@@ -113,6 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordProvidedIsTooWeak": MessageLookupByLibrary.simpleMessage(
             "The password provided is too weak."),
+        "pleaseAnswerAllQuestions":
+            MessageLookupByLibrary.simpleMessage("Please answer all questions"),
         "pressAgainToExit":
             MessageLookupByLibrary.simpleMessage("Press again to exit"),
         "questionNo": m6,
@@ -147,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Type your answer here ..."),
         "unauthorizedError": MessageLookupByLibrary.simpleMessage(
             "Your session has expired or you are not authorized. Please log in again."),
+        "understood": MessageLookupByLibrary.simpleMessage("Understood"),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
         "unknownErrorOccurred":
             MessageLookupByLibrary.simpleMessage("An unknown error occurred."),

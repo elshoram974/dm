@@ -17,12 +17,16 @@ class APIServices {
   ) async {
     final String? token = await _getAuthToken;
 
-    final Response<Map<String, dynamic>> response = await _dio.post(
+    final Response response = await _dio.post(
       link,
       data: body,
       queryParameters: token != null ? {"token": token} : null,
       options: Options(headers: {'content-type': "application/json"}),
     );
+
+    if (response.data is! Map<String, dynamic>) {
+      return {"response": response.data};
+    }
 
     if (response.data!['is_success'] == false) {
       throw response.data!['message'];

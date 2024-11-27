@@ -50,6 +50,36 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Understood`
+  String get understood {
+    return Intl.message(
+      'Understood',
+      name: 'understood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please answer all questions`
+  String get pleaseAnswerAllQuestions {
+    return Intl.message(
+      'Please answer all questions',
+      name: 'pleaseAnswerAllQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Save`
   String get save {
     return Intl.message(

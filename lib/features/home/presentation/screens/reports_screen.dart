@@ -108,7 +108,15 @@ class ReportsScreen extends StatelessWidget {
             ),
             const SizedBox(width: AppConst.smallPadding),
             CustomFilledButton(
-              onPressed: () => Get.toNamed(AppRoute.questions),
+              onPressed: () {
+                final ReportsController controller = Get.find<ReportsController>();
+                Get.toNamed(
+                  AppRoute.questions,
+                  arguments: controller.customerId,
+                )?.then((value) {
+                  if (value == true) controller.getReports(true);
+                });
+              },
               icon: const Icon(Icons.add),
               padding: EdgeInsets.zero,
               minimumSize: const Size(60, 45),
