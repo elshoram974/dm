@@ -23,7 +23,6 @@ class Datum extends ReportCardEntity {
     this.distributor,
   }) : super(
           reportId: id,
-          reportNo: repId ?? 0,
           createdAt: createdAtModel ?? DateTime.now(),
           reportOwnerName: "${distributor?.name ?? ''}",
         );

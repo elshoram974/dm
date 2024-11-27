@@ -32,7 +32,7 @@ class ReportDataCard extends StatelessWidget {
                     reportData.reportOwnerName!,
                     color: context.theme.primaryColor,
                   ),
-                _Text(S.of(context).reportNoNumber(reportData.reportNo)),
+                _Text(S.of(context).reportNoNumber(reportData.reportId)),
               ],
             ),
           ),
