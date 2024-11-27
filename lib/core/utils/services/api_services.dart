@@ -13,7 +13,7 @@ class APIServices {
 
   Future<Map<String, dynamic>> post(
     final String link,
-    final Map<String, String?> body,
+    final Object? body,
   ) async {
     final String? token = await _getAuthToken;
 
@@ -21,6 +21,7 @@ class APIServices {
       link,
       data: body,
       queryParameters: token != null ? {"token": token} : null,
+      options: Options(headers: {'content-type': "application/json"}),
     );
 
     if (response.data!['is_success'] == false) {
@@ -38,6 +39,7 @@ class APIServices {
     final Response<Map<String, dynamic>> response = await _dio.get(
       link,
       queryParameters: token != null ? {"token": token} : null,
+      options: Options(headers: {'content-type': "application/json"}),
     );
 
     if (response.data!['is_success'] == false) {
