@@ -20,19 +20,24 @@ class QuestionModel extends Equatable {
     return QuestionModel.fromMap(
       const {
         "id": 1,
-        "text": "How satisfied are you with the product/service?",
+        "text": "How satisfied are you with the service?",
         "type": "single",
         "ans_a": "A-class",
-        "ans_a_bool": false,
-        "ans_b": null,
+        "ans_a_bool": true,
+        "ans_b": "B-class",
         "ans_b_bool": false,
         "ans_c": "C-class",
-        "ans_c_bool": false,
+        "ans_c_bool": true,
         "ans_d": "D-class",
         "ans_d_bool": false
       },
     );
   }
+  static List<QuestionModel> get allExample => [
+        QuestionModel.example().copyWith(type: QuestionType.single),
+        QuestionModel.example().copyWith(type: QuestionType.multi),
+        QuestionModel.example().copyWith(type: QuestionType.short),
+      ];
 
   /// `dart:convert`
   ///
@@ -110,6 +115,22 @@ class QuestionModel extends Equatable {
       ansCBool: ansCBool ?? this.ansCBool,
       ansD: ansD ?? this.ansD,
       ansDBool: ansDBool ?? this.ansDBool,
+    );
+  }
+
+  QuestionModel cancelAnswers() {
+    return QuestionModel(
+      id: id,
+      question: question,
+      type: type,
+      ansA: type == QuestionType.short ? null : ansA,
+      ansABool: false,
+      ansB: ansB,
+      ansBBool: false,
+      ansC: ansC,
+      ansCBool: false,
+      ansD: ansD,
+      ansDBool: false,
     );
   }
 

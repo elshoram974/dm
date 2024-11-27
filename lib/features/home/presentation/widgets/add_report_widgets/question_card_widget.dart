@@ -13,9 +13,11 @@ class QuestionCardWidget extends StatelessWidget {
     super.key,
     required this.question,
     required this.index,
+    this.onAnswer,
   });
   final QuestionModel question;
   final int index;
+  final void Function(QuestionModel)? onAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +50,9 @@ class QuestionCardWidget extends StatelessWidget {
         ),
         const SizedBox(height: AppConst.smallPadding),
         if (question.type != QuestionType.short)
-          SelectedAnswersGrid(question: question)
+          SelectedAnswersGrid(question: question, onChanged: onAnswer)
         else
-          TextAnswerWidget(),
+          TextAnswerWidget(question: question, onChanged: onAnswer),
       ],
     );
   }

@@ -10,9 +10,11 @@ class SelectedAnswersGrid extends StatefulWidget {
   const SelectedAnswersGrid({
     super.key,
     required this.question,
+    this.onChanged,
   });
 
   final QuestionModel question;
+  final void Function(QuestionModel)? onChanged;
 
   @override
   State<SelectedAnswersGrid> createState() => _SelectedAnswersGridState();
@@ -69,31 +71,28 @@ class _SelectedAnswersGridState extends State<SelectedAnswersGrid> {
       children: [
         if (widget.question.type == QuestionType.multi) ...[
           if (widget.question.ansA != null)
-            CheckBoxAnswerWidget(widget.question.ansA!,
-                isSelected: selectedAnswers.contains(widget.question.ansA),
-                onChanged: (val) => {
-                      addRemoveMultiAns(val!, widget.question.ansA!),
-                    }),
+            CheckBoxAnswerWidget(
+              widget.question.ansA!,
+              isSelected: selectedAnswers.contains(widget.question.ansA),
+              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansA!),
+            ),
           if (widget.question.ansB != null)
             CheckBoxAnswerWidget(
               widget.question.ansB!,
               isSelected: selectedAnswers.contains(widget.question.ansB),
-              onChanged: (val) =>
-                  addRemoveMultiAns(val!, widget.question.ansB!),
+              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansB!),
             ),
           if (widget.question.ansC != null)
             CheckBoxAnswerWidget(
               widget.question.ansC!,
               isSelected: selectedAnswers.contains(widget.question.ansC),
-              onChanged: (val) =>
-                  addRemoveMultiAns(val!, widget.question.ansC!),
+              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansC!),
             ),
           if (widget.question.ansD != null)
             CheckBoxAnswerWidget(
               widget.question.ansD!,
               isSelected: selectedAnswers.contains(widget.question.ansD),
-              onChanged: (val) =>
-                  addRemoveMultiAns(val!, widget.question.ansD!),
+              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansD!),
             ),
         ] else ...[
           if (widget.question.ansA != null)
@@ -130,9 +129,24 @@ class _SelectedAnswersGridState extends State<SelectedAnswersGrid> {
   }
 
   void selectSingleChoice(String? val) {
-    setState(() {
-      chosenAns = val!;
-    });
+    setState(() => chosenAns = val!);
+    if (widget.onChanged != null) {
+      widget.onChanged!(
+        QuestionModel(
+          id: widget.question.id,
+          question: widget.question.question,
+          type: widget.question.type,
+          ansA: widget.question.ansA,
+          ansB: widget.question.ansB,
+          ansC: widget.question.ansC,
+          ansD: widget.question.ansD,
+          ansABool: chosenAns == widget.question.ansA,
+          ansBBool: chosenAns == widget.question.ansB,
+          ansCBool: chosenAns == widget.question.ansC,
+          ansDBool: chosenAns == widget.question.ansD,
+        ),
+      );
+    }
   }
 
   void addRemoveMultiAns(bool val, String choice) {
@@ -143,5 +157,22 @@ class _SelectedAnswersGridState extends State<SelectedAnswersGrid> {
         selectedAnswers.remove(choice);
       }
     });
+    if (widget.onChanged != null) {
+      widget.onChanged!(
+        QuestionModel(
+          id: widget.question.id,
+          question: widget.question.question,
+          type: widget.question.type,
+          ansA: widget.question.ansA,
+          ansB: widget.question.ansB,
+          ansC: widget.question.ansC,
+          ansD: widget.question.ansD,
+          ansABool: selectedAnswers.contains(widget.question.ansA),
+          ansBBool: selectedAnswers.contains(widget.question.ansB),
+          ansCBool: selectedAnswers.contains(widget.question.ansC),
+          ansDBool: selectedAnswers.contains(widget.question.ansD),
+        ),
+      );
+    }
   }
 }
