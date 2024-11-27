@@ -62,7 +62,6 @@ class QuestionsScreen extends StatelessWidget {
                                       question: question,
                                       index: i,
                                       onAnswer: (questionWithAnswer) {
-                                        print(questionWithAnswer);
                                         controller.updateQuestion(
                                           index: i,
                                           newQuestion: questionWithAnswer,
