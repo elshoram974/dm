@@ -8,6 +8,8 @@ abstract final class AppConst {
   static const double extraSmallPadding = 4;
   static const double smallPadding = 8;
   static const double defaultPadding = 16;
+  static const double bigPadding = 24;
+  static const double extraBigPadding = 32;
 
   static const double constraint = 600;
   static const double dialogConstraint = 400;
