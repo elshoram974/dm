@@ -53,29 +53,35 @@ class QuestionsScreen extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              else
-                                ...List<Widget>.generate(
-                                  controller.questions.length,
-                                  (int i) {
-                                    final QuestionModel question =
-                                        controller.isReportDetails
-                                            ? controller.questions[i]
-                                            : controller.questions[i]
-                                                .cancelAnswers();
-                                    return QuestionCardWidget(
-                                      question: question,
-                                      index: i,
-                                      onAnswer: controller.isReportDetails
-                                          ? null
-                                          : (questionWithAnswer) {
-                                              controller.updateQuestion(
-                                                index: i,
-                                                newQuestion: questionWithAnswer,
-                                              );
-                                            },
-                                    );
-                                  },
-                                )
+                              else ...{
+                                if (controller.isReportDetails)
+                                  ...List<Widget>.generate(
+                                    controller.questions.length,
+                                    (int i) {
+                                      return QuestionCardWidget(
+                                        question: controller.questions[i],
+                                        index: i,
+                                      );
+                                    },
+                                  )
+                                else
+                                  ...List<Widget>.generate(
+                                    controller.questions.length,
+                                    (int i) {
+                                      return QuestionCardWidget(
+                                        question: controller.questions[i]
+                                            .cancelAnswers(),
+                                        index: i,
+                                        onAnswer: (questionWithAnswer) {
+                                          controller.updateQuestion(
+                                            index: i,
+                                            newQuestion: questionWithAnswer,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                              },
                             ],
                           ),
                         ),

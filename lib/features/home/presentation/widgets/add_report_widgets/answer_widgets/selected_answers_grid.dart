@@ -74,52 +74,60 @@ class _SelectedAnswersGridState extends State<SelectedAnswersGrid> {
             CheckBoxAnswerWidget(
               widget.question.ansA!,
               isSelected: selectedAnswers.contains(widget.question.ansA),
-              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansA!),
+              onChanged: widget.onChanged == null
+                  ? null
+                  : (_) => addRemoveMultiAns(_!, widget.question.ansA!),
             ),
           if (widget.question.ansB != null)
             CheckBoxAnswerWidget(
               widget.question.ansB!,
               isSelected: selectedAnswers.contains(widget.question.ansB),
-              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansB!),
+              onChanged: widget.onChanged == null
+                  ? null
+                  : (_) => addRemoveMultiAns(_!, widget.question.ansB!),
             ),
           if (widget.question.ansC != null)
             CheckBoxAnswerWidget(
               widget.question.ansC!,
               isSelected: selectedAnswers.contains(widget.question.ansC),
-              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansC!),
+              onChanged: widget.onChanged == null
+                  ? null
+                  : (_) => addRemoveMultiAns(_!, widget.question.ansC!),
             ),
           if (widget.question.ansD != null)
             CheckBoxAnswerWidget(
               widget.question.ansD!,
               isSelected: selectedAnswers.contains(widget.question.ansD),
-              onChanged: (_) => addRemoveMultiAns(_!, widget.question.ansD!),
+              onChanged: widget.onChanged == null
+                  ? null
+                  : (_) => addRemoveMultiAns(_!, widget.question.ansD!),
             ),
         ] else ...[
           if (widget.question.ansA != null)
             RadioAnswerWidget<String>(
               widget.question.ansA!,
-              onChanged: selectSingleChoice,
+              onChanged: widget.onChanged == null ? null : selectSingleChoice,
               groupValue: chosenAns,
               value: widget.question.ansA!,
             ),
           if (widget.question.ansB != null)
             RadioAnswerWidget<String>(
               widget.question.ansB!,
-              onChanged: selectSingleChoice,
+              onChanged: widget.onChanged == null ? null : selectSingleChoice,
               groupValue: chosenAns,
               value: widget.question.ansB!,
             ),
           if (widget.question.ansC != null)
             RadioAnswerWidget<String>(
               widget.question.ansC!,
-              onChanged: selectSingleChoice,
+              onChanged: widget.onChanged == null ? null : selectSingleChoice,
               groupValue: chosenAns,
               value: widget.question.ansC!,
             ),
           if (widget.question.ansD != null)
             RadioAnswerWidget<String>(
               widget.question.ansD!,
-              onChanged: selectSingleChoice,
+              onChanged: widget.onChanged == null ? null : selectSingleChoice,
               groupValue: chosenAns,
               value: widget.question.ansD!,
             ),

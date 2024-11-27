@@ -65,6 +65,20 @@ class QuestionModel extends Equatable {
         ansD: data['ans_d'] as String?,
         ansDBool: data['ans_d_bool'] as bool,
       );
+  factory QuestionModel.fromReportDetailsMap(Map<String, dynamic> data) =>
+      QuestionModel(
+        id: data['id'] as int,
+        question: data['question_text'] as String,
+        type: QuestionType.getByName(data['type'] as String),
+        ansA: data['ans_a'] as String?,
+        ansABool: data['ans_a_bool'] as String == "1",
+        ansB: data['ans_b'] as String?,
+        ansBBool: data['ans_b_bool'] as String == "1",
+        ansC: data['ans_c'] as String?,
+        ansCBool: data['ans_c_bool'] as String == "1",
+        ansD: data['ans_d'] as String?,
+        ansDBool: data['ans_d_bool'] as String == "1",
+      );
   final int id;
   final String question;
   final QuestionType type;

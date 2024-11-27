@@ -23,6 +23,8 @@ abstract class QuestionsController extends GetxController {
 
   Future<void> getQuestions();
 
+  Future<void> getReportDetails();
+
   void updateQuestion({required int index, required QuestionModel newQuestion});
 
   Future<void> sendNewReport();
@@ -33,7 +35,7 @@ class QuestionsControllerImp extends QuestionsController {
     _customerId = Get.arguments[AppString.customerId] as String;
     _reportData = Get.arguments[AppString.reportData] as ReportCardEntity?;
     if (isReportDetails) {
-      print(_reportData);
+      getReportDetails();
     } else {
       getQuestions();
     }
@@ -48,6 +50,19 @@ class QuestionsControllerImp extends QuestionsController {
 
     await handleResponseInController<List<QuestionModel>>(
       status: await repo.getQuestions(),
+      onSuccess: (data) => _questions = data,
+    );
+    getQuestionsStatus = null;
+    update();
+  }
+
+  @override
+  Future<void> getReportDetails() async {
+    getQuestionsStatus = const Loading();
+    update();
+
+    await handleResponseInController<List<QuestionModel>>(
+      status: await repo.getReportDetails(_reportData!.reportId),
       onSuccess: (data) => _questions = data,
     );
     getQuestionsStatus = null;

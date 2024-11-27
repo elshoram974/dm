@@ -8,6 +8,7 @@ import '../models/question_model.dart';
 abstract class QuestionsRemoteDataSource {
   const QuestionsRemoteDataSource();
   Future<List<QuestionModel>> getQuestions();
+  Future<List<QuestionModel>> getReportDetails(int id);
   Future<void> addReport(
     int customerId,
     List<QuestionModel> questionsWithAnswers,
@@ -25,6 +26,17 @@ class QuestionsRemoteDataSourceImp extends QuestionsRemoteDataSource {
     final List<QuestionModel> questions = List.empty(growable: true);
     for (Map<String, dynamic> e in res['data']) {
       questions.add(QuestionModel.fromMap(e));
+    }
+    return questions;
+  }
+
+  @override
+  Future<List<QuestionModel>> getReportDetails(int id) async {
+    final Map<String, dynamic> res =
+        await apiServices.get("${AppLinks.getReportsDetails}/$id");
+    final List<QuestionModel> questions = List.empty(growable: true);
+    for (Map<String, dynamic> e in res['data']['details']) {
+      questions.add(QuestionModel.fromReportDetailsMap(e));
     }
     return questions;
   }
