@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
+import 'package:shora/core/utils/constants/app_strings.dart';
 import 'package:shora/core/utils/functions/handle_response_in_controller.dart';
 import 'package:shora/core/utils/functions/show_my_dialog.dart';
 
 import '../../data/models/question_model.dart';
+import '../../domain/entity/report_card_entity.dart';
 import '../../domain/repositories/questions_repo.dart';
 
 abstract class QuestionsController extends GetxController {
@@ -15,6 +17,10 @@ abstract class QuestionsController extends GetxController {
   List<QuestionModel> _questions = [];
   List<QuestionModel> get questions => _questions;
 
+  ReportCardEntity? _reportData;
+  ReportCardEntity? get reportData => _reportData;
+  bool get isReportDetails => _reportData != null;
+
   Future<void> getQuestions();
 
   void updateQuestion({required int index, required QuestionModel newQuestion});
@@ -24,8 +30,13 @@ abstract class QuestionsController extends GetxController {
 
 class QuestionsControllerImp extends QuestionsController {
   QuestionsControllerImp({required super.repo}) {
-    _customerId = Get.arguments;
-    getQuestions();
+    _customerId = Get.arguments[AppString.customerId] as String;
+    _reportData = Get.arguments[AppString.reportData] as ReportCardEntity?;
+    if (isReportDetails) {
+      print(_reportData);
+    } else {
+      getQuestions();
+    }
   }
 
   late String _customerId;
@@ -54,7 +65,8 @@ class QuestionsControllerImp extends QuestionsController {
   @override
   Future<void> sendNewReport() async {
     if (!_validateQuestions) {
-      ShowMyDialog.error(Get.context!, body: S.current.pleaseAnswerAllQuestions);
+      ShowMyDialog.error(Get.context!,
+          body: S.current.pleaseAnswerAllQuestions);
       return;
     }
     ShowMyDialog.loading();

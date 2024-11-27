@@ -7,6 +7,7 @@ import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
+import 'package:shora/features/home/presentation/widgets/reports_widgets/report_data_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../data/models/question_model.dart';
@@ -19,24 +20,9 @@ class QuestionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: S.of(context).addReport,
-        titleColor: context.theme.primaryColor,
-      ),
+      appBar: _questionsAppBar(context),
       extendBody: true,
-      bottomNavigationBar: Container(
-        height: 70,
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppConst.defaultPadding,
-        ),
-        child: MyResConstrainedBoxAlign(
-          child: CustomFilledButton(
-            text: S.of(context).save,
-            minimumSize: const Size.fromHeight(50),
-            onPressed: Get.find<QuestionsController>().sendNewReport,
-          ),
-        ),
-      ),
+      bottomNavigationBar: bottomBar(context),
       body: GetBuilder<QuestionsController>(
         builder: (controller) {
           return CustomScrollView(
@@ -72,16 +58,21 @@ class QuestionsScreen extends StatelessWidget {
                                   controller.questions.length,
                                   (int i) {
                                     final QuestionModel question =
-                                        controller.questions[i].cancelAnswers();
+                                        controller.isReportDetails
+                                            ? controller.questions[i]
+                                            : controller.questions[i]
+                                                .cancelAnswers();
                                     return QuestionCardWidget(
                                       question: question,
                                       index: i,
-                                      onAnswer: (questionWithAnswer) {
-                                        controller.updateQuestion(
-                                          index: i,
-                                          newQuestion: questionWithAnswer,
-                                        );
-                                      },
+                                      onAnswer: controller.isReportDetails
+                                          ? null
+                                          : (questionWithAnswer) {
+                                              controller.updateQuestion(
+                                                index: i,
+                                                newQuestion: questionWithAnswer,
+                                              );
+                                            },
                                     );
                                   },
                                 )
@@ -97,6 +88,46 @@ class QuestionsScreen extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  Container? bottomBar(BuildContext context) {
+    if (Get.find<QuestionsController>().isReportDetails) return null;
+    return Container(
+      height: 70,
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppConst.defaultPadding,
+      ),
+      child: MyResConstrainedBoxAlign(
+        child: CustomFilledButton(
+          text: S.of(context).save,
+          minimumSize: const Size.fromHeight(50),
+          onPressed: Get.find<QuestionsController>().sendNewReport,
+        ),
+      ),
+    );
+  }
+
+  CustomAppBar _questionsAppBar(BuildContext context) {
+    final QuestionsController controller = Get.find<QuestionsController>();
+    if (controller.isReportDetails) {
+      return CustomAppBar(
+        title: S.of(context).reportDetails,
+        titleColor: context.theme.primaryColor,
+        bottom: Column(
+          children: [
+            ReportDataCard(
+              reportData: controller.reportData!,
+              openDetails: false,
+            ),
+            const Divider(height: 0, color: Colors.grey)
+          ],
+        ),
+      );
+    }
+    return CustomAppBar(
+      title: S.of(context).addReport,
+      titleColor: context.theme.primaryColor,
     );
   }
 }

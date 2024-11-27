@@ -121,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "questionNo": m6,
         "recover": MessageLookupByLibrary.simpleMessage("Recover"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "reportDetails": MessageLookupByLibrary.simpleMessage("Report Details"),
         "reportNo": MessageLookupByLibrary.simpleMessage("Report No."),
         "reportNoNumber": m7,
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
