@@ -26,7 +26,7 @@ class RadioAnswerWidget<T> extends StatelessWidget {
         decoration: BoxDecoration(
           color: onChanged == null && groupValue == choice
               ? Colors.greenAccent.shade100
-              : context.theme.cardColor.withOpacity(0.8),
+              : context.theme.cardColor.withOpacity(0.5),
           borderRadius: BorderRadius.circular(AppConst.borderRadius),
         ),
         child: Row(

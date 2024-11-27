@@ -6,6 +6,7 @@ import 'package:shora/core/utils/extensions/num_ex.dart';
 
 import '../../../data/models/question_model.dart';
 import 'answer_widgets/selected_answers_grid.dart';
+import 'answer_widgets/text_answer_widget.dart';
 
 class QuestionCardWidget extends StatelessWidget {
   const QuestionCardWidget({
@@ -49,7 +50,7 @@ class QuestionCardWidget extends StatelessWidget {
         if (question.type != QuestionType.short)
           SelectedAnswersGrid(question: question)
         else
-          SizedBox()
+          TextAnswerWidget(),
       ],
     );
   }

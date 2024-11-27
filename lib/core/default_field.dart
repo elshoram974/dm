@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart' as intl;
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shora/app_info.dart';
 import 'package:shora/core/utils/extensions/string_ex.dart';
@@ -199,11 +198,7 @@ class _MyDefaultFieldState extends State<MyDefaultField> {
       key: widget.fieldKey,
       onChanged: (val) {
         if (widget.textDirection == null) {
-          if (intl.Bidi.detectRtlDirectionality(val)) {
-            textDirection = TextDirection.rtl;
-          } else {
-            textDirection = TextDirection.ltr;
-          }
+          textDirection = val.direction;
           setState(() {});
         }
         if (widget.onChanged != null) widget.onChanged!(val);
