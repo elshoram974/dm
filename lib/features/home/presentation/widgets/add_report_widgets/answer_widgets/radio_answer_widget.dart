@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 
-class CheckBoxAnswerWidget extends StatelessWidget {
-  const CheckBoxAnswerWidget(
+class RadioAnswerWidget<T> extends StatelessWidget {
+  const RadioAnswerWidget(
     this.choice, {
     super.key,
-    this.isSelected = false,
     this.onChanged,
+    required this.value,
+    this.groupValue,
   });
   final String choice;
-  final bool isSelected;
-  final void Function(bool?)? onChanged;
-
+  final T value;
+  final T? groupValue;
+  final void Function(T?)? onChanged;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onChanged == null ? null : () => onChanged!(!isSelected),
+      onTap: onChanged == null ? null : () => onChanged!(value),
       borderRadius: BorderRadius.circular(AppConst.borderRadius),
       child: Container(
         alignment: AlignmentDirectional.centerStart,
         width: double.maxFinite,
         padding: const EdgeInsets.all(AppConst.smallPadding),
         decoration: BoxDecoration(
-          color: onChanged == null && isSelected
+          color: onChanged == null && groupValue == choice
               ? Colors.greenAccent.shade100
               : context.theme.cardColor.withOpacity(0.8),
           borderRadius: BorderRadius.circular(AppConst.borderRadius),
@@ -45,13 +46,11 @@ class CheckBoxAnswerWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Checkbox(
-              value: isSelected,
-              onChanged:
-                  onChanged == null ? null : (_) => onChanged!(!isSelected),
-              fillColor: const WidgetStatePropertyAll(Colors.white),
-              checkColor: Colors.green.shade900,
-              side: BorderSide.none,
+            Radio<T>(
+              value: value,
+              onChanged: onChanged,
+              fillColor: WidgetStatePropertyAll(Colors.green.shade900),
+              groupValue: groupValue,
             )
           ],
         ),
