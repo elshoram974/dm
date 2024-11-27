@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 class LocaleModel {
-  final String languageName;
-  final String languageCode;
-  final String countryCode;
-  final String? imagePath;
-
   const LocaleModel({
     required this.languageName,
     required this.languageCode,
-    required this.countryCode,
+    this.countryCode,
     this.imagePath,
   });
+  final String languageName;
+  final String languageCode;
+  final String? countryCode;
+  final String? imagePath;
 
-  Locale get locale => Locale(languageCode);
+  Locale get locale => Locale(languageCode, countryCode);
 }

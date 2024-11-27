@@ -5,7 +5,7 @@
     "@questionNo": {
         "placeholders": {
             "number": {
-                "type": "int"
+                "type": "String"
             }
         }
     },

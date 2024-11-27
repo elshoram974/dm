@@ -71,7 +71,7 @@ class S {
   }
 
   /// `Question {number}:`
-  String questionNo(int number) {
+  String questionNo(String number) {
     return Intl.message(
       'Question $number:',
       name: 'questionNo',

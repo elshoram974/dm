@@ -22,12 +22,12 @@ abstract final class AppInfo {
   /// * To add locale .. You have to add it in package(flutter intel)
   /// and add text in its file .arb and don't forget to add it in info.plist file
   static const List<LocaleModel> supportedLocales = [
-    LocaleModel(
-      languageCode: "ar",
-      countryCode: "EG",
-      languageName: "العربية",
-      imagePath: AppAssets.arabic,
-    ),
+    // LocaleModel(
+    //   languageCode: "ar",
+    //   countryCode: "EG",
+    //   languageName: "العربية",
+    //   imagePath: AppAssets.arabic,
+    // ),
     LocaleModel(
       languageCode: "en",
       countryCode: "US",
