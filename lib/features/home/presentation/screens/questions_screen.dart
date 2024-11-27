@@ -9,7 +9,7 @@ import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../data/models/question_model.dart';
-import '../controller/reports_controller.dart';
+import '../controller/questions_controller.dart';
 import '../widgets/add_report_widgets/question_card_widget.dart';
 
 class QuestionsScreen extends StatelessWidget {
@@ -22,12 +22,12 @@ class QuestionsScreen extends StatelessWidget {
         title: S.of(context).addReport,
         titleColor: context.theme.primaryColor,
       ),
-      body: GetBuilder<ReportsController>(
+      body: GetBuilder<QuestionsController>(
         builder: (controller) {
           return CustomScrollView(
             slivers: [
-              if (controller.getReportStatus is! Loading &&
-                  controller.reports.isEmpty)
+              if (controller.getQuestionsStatus is! Loading &&
+                  controller.questions.isEmpty)
                 const SliverFillRemaining(child: EmptyWidget())
               else
                 SliverList(
@@ -41,9 +41,9 @@ class QuestionsScreen extends StatelessWidget {
                         child: MyResConstrainedBoxAlign(
                           child: Column(
                             children: [
-                              if (controller.getReportStatus is Loading)
+                              if (controller.getQuestionsStatus is Loading)
                                 ...List<Widget>.generate(
-                                  12,
+                                  9,
                                   (int i) => Skeletonizer(
                                     containersColor: context.theme.cardColor,
                                     child: QuestionCardWidget(
@@ -54,11 +54,10 @@ class QuestionsScreen extends StatelessWidget {
                                 )
                               else
                                 ...List<Widget>.generate(
-                                  12,
+                                  controller.questions.length,
                                   (int i) {
-                                    final QuestionModel question = QuestionModel
-                                        .allExample[i % 3]
-                                        .cancelAnswers();
+                                    final QuestionModel question =
+                                        controller.questions[i].cancelAnswers();
                                     return QuestionCardWidget(
                                       question: question,
                                       index: i,
