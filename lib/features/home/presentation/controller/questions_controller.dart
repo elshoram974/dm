@@ -14,6 +14,8 @@ abstract class QuestionsController extends GetxController {
   List<QuestionModel> get questions => _questions;
 
   Future<void> getQuestions();
+
+  void updateQuestion({required int index, required QuestionModel newQuestion});
 }
 
 class QuestionsControllerImp extends QuestionsController {
@@ -35,5 +37,13 @@ class QuestionsControllerImp extends QuestionsController {
     );
     getQuestionsStatus = null;
     update();
+  }
+
+  @override
+  void updateQuestion({
+    required int index,
+    required QuestionModel newQuestion,
+  }) {
+    _questions[index] = newQuestion;
   }
 }
