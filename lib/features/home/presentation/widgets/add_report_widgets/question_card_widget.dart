@@ -6,7 +6,7 @@ import 'package:shora/core/utils/extensions/num_ex.dart';
 import 'package:shora/core/utils/extensions/responsive_ex.dart';
 
 import '../../../data/models/question_model.dart';
-import 'selected_answer_widget.dart';
+import 'answer_widgets/check_box_answer_widget.dart';
 
 class QuestionCardWidget extends StatelessWidget {
   const QuestionCardWidget({
@@ -65,13 +65,13 @@ class QuestionCardWidget extends StatelessWidget {
                 ),
           children: [
             if (question.ansA != null)
-              SelectedAnswerWidget(question.ansA!, type: question.type),
-            if (question.ansB != null)
-              SelectedAnswerWidget(question.ansB!, type: question.type),
-            if (question.ansC != null)
-              SelectedAnswerWidget(question.ansC!, type: question.type),
-            if (question.ansD != null)
-              SelectedAnswerWidget(question.ansD!, type: question.type),
+              CheckBoxAnswerWidget(
+                question.ansA!,
+                isSelected: true,
+              ),
+            if (question.ansB != null) CheckBoxAnswerWidget(question.ansB!),
+            if (question.ansC != null) CheckBoxAnswerWidget(question.ansC!),
+            if (question.ansD != null) CheckBoxAnswerWidget(question.ansD!),
           ],
         ),
       ],
