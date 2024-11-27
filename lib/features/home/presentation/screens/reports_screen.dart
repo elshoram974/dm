@@ -108,7 +108,7 @@ class ReportsScreen extends StatelessWidget {
             ),
             const SizedBox(width: AppConst.smallPadding),
             CustomFilledButton(
-              onPressed: () => Get.toNamed(AppRoute.addReport),
+              onPressed: () => Get.toNamed(AppRoute.questions),
               icon: const Icon(Icons.add),
               padding: EdgeInsets.zero,
               minimumSize: const Size(60, 45),

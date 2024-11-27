@@ -12,8 +12,8 @@ import '../../data/models/question_model.dart';
 import '../controller/reports_controller.dart';
 import '../widgets/add_report_widgets/question_card_widget.dart';
 
-class AddReportScreen extends StatelessWidget {
-  const AddReportScreen({super.key});
+class QuestionsScreen extends StatelessWidget {
+  const QuestionsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
