@@ -1,5 +1,6 @@
 {
     "save": "Save",
+    "typeYourAnswerHere_": "Type your answer here ...",
     "addReport": "Add Report",
     "questionNo": "Question {number}:",
     "@questionNo": {

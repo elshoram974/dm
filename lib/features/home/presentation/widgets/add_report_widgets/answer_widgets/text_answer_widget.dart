@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:shora/core/utils/extensions/string_ex.dart';
 
@@ -36,7 +37,7 @@ class _TextAnswerWidgetState extends State<TextAnswerWidget> {
       ),
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
-        hintText: "Type your answer here ...",
+        hintText: S.of(context).typeYourAnswerHere_,
         contentPadding: const EdgeInsets.all(AppConst.smallPadding),
         hintStyle: const TextStyle(fontSize: 12, color: Colors.grey),
         border: OutlineInputBorder(

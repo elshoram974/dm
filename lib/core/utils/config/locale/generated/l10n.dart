@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Type your answer here ...`
+  String get typeYourAnswerHere_ {
+    return Intl.message(
+      'Type your answer here ...',
+      name: 'typeYourAnswerHere_',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add Report`
   String get addReport {
     return Intl.message(

@@ -143,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "There is a problem with the server. Try again later."),
         "totalOrder": MessageLookupByLibrary.simpleMessage("Total Order"),
+        "typeYourAnswerHere_":
+            MessageLookupByLibrary.simpleMessage("Type your answer here ..."),
         "unauthorizedError": MessageLookupByLibrary.simpleMessage(
             "Your session has expired or you are not authorized. Please log in again."),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
