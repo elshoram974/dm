@@ -28,7 +28,7 @@ class ReportsRemoteDataSourceImp extends ReportsRemoteDataSource {
     DateTimeRange? range,
   ) async {
     final Map<String, dynamic> res = await apiServices.get(
-      "${AppLinks.getReports}/$customerId?page=$page&${AppString.reportDate}=${range != null ? "${range.start.ddMMYYYYSlash} - ${range.end.ddMMYYYYSlash}" : ''}",
+      "${AppLinks.getReports}/$customerId?page=$page&${AppString.reportDate}=${range != null ? "${range.start.mmDDYYYYSlashEN} - ${range.end.mmDDYYYYSlashEN}" : ''}",
     );
     final ReportsModel model = ReportsModel.fromMap(res);
     return PaginatedData<List<ReportCardEntity>>(

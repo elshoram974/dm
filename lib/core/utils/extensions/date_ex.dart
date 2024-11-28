@@ -5,5 +5,6 @@ extension DateHelperEx on DateTime {
 
   String get ddMMYYYY => formattedDate("dd-MM-yyyy");
   String get ddMMYYYYSlash => formattedDate("dd/MM/yyyy");
+  String get mmDDYYYYSlashEN => DateFormat("MM/dd/yyyy", "EN").format(this);
   String get MMMM => DateFormat.MMMM().format(this);
 }

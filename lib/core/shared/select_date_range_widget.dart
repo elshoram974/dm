@@ -101,12 +101,12 @@ class _SelectDateRangeWidgetState extends State<SelectDateRangeWidget> {
                   icon: const Icon(Icons.close),
                 ),
               Expanded(
-                child: Text(
-                  selectedDate ?? S.of(context).selectDate,
-                  style: selectedDate != null
-                      ? null
-                      : const TextStyle(color: Colors.grey),
-                ),
+                child: selectedDate != null
+                    ? Text(selectedDate!, textAlign: TextAlign.center)
+                    : Text(
+                        S.of(context).selectDate,
+                        style: const TextStyle(color: Colors.grey),
+                      ),
               ),
               Icon(
                 Icons.calendar_month,

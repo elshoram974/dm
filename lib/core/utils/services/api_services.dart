@@ -38,7 +38,10 @@ class APIServices {
   Future<Map<String, dynamic>> get(final String link) async {
     final String? token = await _getAuthToken;
 
-    if (AppInfo.isDebugMode) print("user token is $token ");
+    if (AppInfo.isDebugMode) {
+      print("api $link");
+      print("user token is $token ");
+    }
 
     final Response<Map<String, dynamic>> response = await _dio.get(
       link,
