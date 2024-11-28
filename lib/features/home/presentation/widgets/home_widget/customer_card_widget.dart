@@ -6,7 +6,7 @@ import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/config/routes/routes.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 
-import '../../domain/entity/customer_card_entity.dart';
+import '../../../domain/entity/customer_card_entity.dart';
 import 'details_icon_text.dart';
 
 class CustomerCardWidget extends StatelessWidget {

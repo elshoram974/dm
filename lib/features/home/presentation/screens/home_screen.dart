@@ -11,7 +11,8 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../domain/entity/customer_card_entity.dart';
 import '../controller/home_controller.dart';
-import '../widgets/customer_card_widget.dart';
+import '../widgets/home_widget/customer_card_widget.dart';
+import '../widgets/home_widget/home_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,6 +24,7 @@ class HomeScreen extends StatelessWidget {
       onPopInvokedWithResult: (_, __) =>
           Get.find<HomeController>().onPopInvoked(),
       child: Scaffold(
+        endDrawer: const HomeDrawer(),
         appBar: homeAppBar(context),
         body: GetBuilder<HomeController>(
           builder: (controller) {
