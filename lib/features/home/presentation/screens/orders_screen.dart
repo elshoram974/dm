@@ -89,34 +89,34 @@ class OrdersScreen extends StatelessWidget {
 
   CustomAppBar customAppBar(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final double width = size.width - (2 * AppConst.defaultPadding);
+    // final double width = size.width - (2 * AppConst.defaultPadding);
     return CustomAppBar(
       title: S.of(context).orders,
       titleColor: context.theme.primaryColor,
-      bottom: DropdownMenu<int>(
-        hintText: S.of(context).selectMonth,
-        width: width <= AppConst.constraint ? width : AppConst.constraint,
-        menuHeight: 230,
-        menuStyle: MenuStyle(
-          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.zero),
-          side: const WidgetStatePropertyAll(BorderSide()),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppConst.borderSmallRadius),
-            ),
-          ),
-        ),
-        dropdownMenuEntries: List.generate(
-          AppConst.monthsInYear.length,
-          (index) {
-            return DropdownMenuEntry(
-              value: index,
-              style: ElevatedButton.styleFrom(),
-              label: AppConst.monthsInYear[index],
-            );
-          },
-        ),
-      ),
+      // bottom: DropdownMenu<int>(
+      //   hintText: S.of(context).selectMonth,
+      //   width: width <= AppConst.constraint ? width : AppConst.constraint,
+      //   menuHeight: 230,
+      //   menuStyle: MenuStyle(
+      //     padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.zero),
+      //     side: const WidgetStatePropertyAll(BorderSide()),
+      //     shape: WidgetStatePropertyAll(
+      //       RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.circular(AppConst.borderSmallRadius),
+      //       ),
+      //     ),
+      //   ),
+      //   dropdownMenuEntries: List.generate(
+      //     AppConst.monthsInYear.length,
+      //     (index) {
+      //       return DropdownMenuEntry(
+      //         value: index,
+      //         style: ElevatedButton.styleFrom(),
+      //         label: AppConst.monthsInYear[index],
+      //       );
+      //     },
+      //   ),
+      // ),
     );
   }
 }
