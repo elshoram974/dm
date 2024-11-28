@@ -9,4 +9,6 @@ abstract class HomeRepositories {
     int page, [
     String? query,
   ]);
+
+  Future<Status<void>> logout();
 }

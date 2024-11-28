@@ -21,6 +21,7 @@ class HomeBindings extends Bindings {
       HomeRepositoriesImp(
         localDataSource: Get.find<HomeLocalDataSource>(),
         remoteDataSource: Get.find<HomeRemoteDataSource>(),
+        authLocalDataSource: Get.find<AuthLocalDataSource>(),
       ),
     );
 

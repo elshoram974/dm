@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
+
+import '../../controller/home_controller.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -22,6 +25,7 @@ class HomeDrawer extends StatelessWidget {
           DrawerTileWidget(
             icon: Icons.logout,
             title: S.of(context).logOut,
+            onTap: Get.find<HomeController>().logOut,
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
+import 'package:shora/core/utils/config/routes/routes.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:shora/core/utils/functions/handle_response_in_controller.dart';
 import 'package:shora/core/utils/functions/show_my_snack_bar.dart';
@@ -45,6 +46,8 @@ abstract class HomeController extends GetxController {
   void changeQuerySearch(String? searchQuery);
   Future<void> getCustomers(bool reload);
   Future<void> getCustomersSearch(String query);
+
+  Future<void> logOut();
 
   void onPopInvoked();
 }
@@ -168,6 +171,14 @@ class HomeControllerImp extends HomeController {
       textController.clear();
     }
     update();
+  }
+
+  @override
+  Future<void> logOut() async {
+    handleResponseInController<void>(
+      status: await repo.logout(),
+      onSuccess: (_) => Get.offAllNamed(AppRoute.login),
+    );
   }
 
   DateTime _back = DateTime.now();

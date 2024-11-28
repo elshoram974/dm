@@ -38,7 +38,7 @@ class AuthLocalDataSourceImp extends AuthLocalDataSource {
 
   @override
   Future<void> logOut() async {
-    Future.wait(
+    await Future.wait(
       [
         _storage.deleteAll(),
         _userBox.clear(),
