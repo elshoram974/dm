@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:shora/core/default_field.dart';
 import 'package:shora/core/shared/empty_widget.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
@@ -38,6 +37,16 @@ class HomeScreen extends StatelessWidget {
                       ? const NeverScrollableScrollPhysics()
                       : null,
                   slivers: [
+                    if (controller.getCustomerStatus is Loading &&
+                        controller.inSearch)
+                      const SliverPadding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: AppConst.smallPadding,
+                        ),
+                        sliver: SliverToBoxAdapter(
+                          child: Center(child: CircularProgressIndicator()),
+                        ),
+                      ),
                     if (controller.getCustomerStatus is! Loading &&
                         controller.customers.isEmpty)
                       const SliverFillRemaining(child: EmptyWidget())
@@ -48,7 +57,8 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(height: AppConst.smallPadding),
                             if (controller.getCustomerStatus is Loading &&
                                 !(controller.getCustomerStatus as Loading)
-                                    .loadingMore)
+                                    .loadingMore &&
+                                !controller.inSearch)
                               ...List<Widget>.generate(
                                 10,
                                 (int i) => Skeletonizer(
@@ -88,29 +98,50 @@ class HomeScreen extends StatelessWidget {
   }
 
   AppBar homeAppBar(BuildContext context) {
-    final HomeController controller = Get.find<HomeController>();
-    final Debouncer debouncer = Debouncer(
-      delay: const Duration(milliseconds: AppConst.debounceMilliseconds),
-    );
+    String query = '';
+    final FocusNode focus = FocusNode();
     return AppBar(
       title: MyResConstrainedBoxAlign(
-        child: MyDefaultField(
-          hintText: S.of(context).findWhatYouAreLookingFor,
-          textInputAction: TextInputAction.search,
-          onEditingComplete: () {
-            print("debouncer is running : ${debouncer.isRunning}");
-            debouncer.cancel();
-            print("debouncer is running after cancel : ${debouncer.isRunning}");
-          },
-          suffix: const Icon(Icons.search),
-          onChanged: (val) {
-            if (val.isNotEmpty) {
-              debouncer(() => print(val));
-            } else {
-              debouncer.cancel();
-            }
-          },
-        ),
+        child: GetBuilder<HomeController>(builder: (controller) {
+          return MyDefaultField(
+            controller: controller.textController,
+            hintText: S.of(context).findWhatYouAreLookingFor,
+            textInputAction: TextInputAction.search,
+            onEditingComplete: controller.debouncer.cancel,
+            focusNode: focus,
+            onFieldSubmitted: (_) {
+              controller.getCustomersSearch(query);
+              focus.unfocus();
+            },
+            prefix: controller.inSearch
+                ? BackButton(
+                    style: IconButton.styleFrom(iconSize: 18),
+                    onPressed: () {
+                      query = '';
+                      controller.debouncer.cancel();
+                      focus.unfocus();
+                      controller.changeQuerySearch(null);
+                    },
+                  )
+                : null,
+            suffix: IconButton(
+              onPressed: () {
+                if (controller.inSearch) {
+                  controller.getCustomersSearch(query);
+                } else {
+                  _focusSearch(focus);
+                }
+              },
+              icon: const Icon(Icons.search),
+            ),
+            onTap: () => _focusSearch(focus),
+            onChanged: (val) {
+              if (!controller.inSearch) controller.changeQuerySearch(val);
+              query = val;
+              controller.debouncer(() => controller.getCustomersSearch(query));
+            },
+          );
+        }),
       ),
       backgroundColor: Colors.transparent,
       systemOverlayStyle: const SystemUiOverlayStyle(
@@ -119,5 +150,10 @@ class HomeScreen extends StatelessWidget {
       ),
       elevation: 0,
     );
+  }
+
+  void _focusSearch(FocusNode focus) {
+    focus.requestFocus();
+    Get.find<HomeController>().changeQuerySearch('');
   }
 }

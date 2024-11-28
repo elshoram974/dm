@@ -6,6 +6,7 @@ abstract class HomeRepositories {
   const HomeRepositories();
 
   Future<Status<PaginatedData<List<CustomerCardEntity>>>> getCustomers(
-    int page,
-  );
+    int page, [
+    String? query,
+  ]);
 }

@@ -18,10 +18,11 @@ class HomeRepositoriesImp extends HomeRepositories {
 
   @override
   Future<Status<PaginatedData<List<CustomerCardEntity>>>> getCustomers(
-    int page,
-  ) {
+    int page, [
+    String? query,
+  ]) {
     return executeAndHandleErrors<PaginatedData<List<CustomerCardEntity>>>(
-      () => remoteDataSource.getCustomers(page),
+      () => remoteDataSource.getCustomers(page, query),
     );
   }
 }

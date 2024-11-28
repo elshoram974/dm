@@ -7,7 +7,8 @@ import '../../domain/entity/customer_card_entity.dart';
 
 abstract class HomeRemoteDataSource {
   const HomeRemoteDataSource();
-  Future<PaginatedData<List<CustomerCardEntity>>> getCustomers(int page);
+  Future<PaginatedData<List<CustomerCardEntity>>> getCustomers(
+      int page, String? query);
 }
 
 class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
@@ -17,9 +18,10 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
   @override
   Future<PaginatedData<List<CustomerCardEntity>>> getCustomers(
     int page,
+    String? query,
   ) async {
     final Map<String, dynamic> res = await apiServices.get(
-      "${AppLinks.getCustomers}?page=$page",
+      "${AppLinks.getCustomers}?page=$page&search=${query ?? ''}",
     );
     final List<CustomerCardEntity> customers = List.empty(growable: true);
     for (final Map<String, dynamic> d in res['data']['data']) {

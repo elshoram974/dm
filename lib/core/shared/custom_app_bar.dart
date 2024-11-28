@@ -48,25 +48,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class LeadingBackButton extends StatelessWidget {
-  const LeadingBackButton({super.key});
+  const LeadingBackButton({super.key, this.size});
+  final Size? size;
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Padding(
-        padding:
-            const EdgeInsets.symmetric(horizontal: AppConst.defaultPadding),
-        child: IconButton(
-          onPressed: Get.back,
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.arrow_back_ios, size: 16),
-              Text(
-                S.of(context).back,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
+    return SizedBox.fromSize(
+      size: size,
+      child: Align(
+        child: Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: AppConst.defaultPadding),
+          child: IconButton(
+            onPressed: Get.back,
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.arrow_back_ios, size: 16),
+                Text(
+                  S.of(context).back,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
         ),
       ),
