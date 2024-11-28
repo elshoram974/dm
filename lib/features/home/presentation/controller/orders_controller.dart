@@ -11,6 +11,7 @@ abstract class OrdersController extends GetxController {
   OrdersController({required this.repo});
   final OrdersRepositories repo;
   Status? getOrderStatus;
+  DateTimeRange? range;
 
   List<OrderCardEntity> _orders = [];
   List<OrderCardEntity> get orders => _orders;
@@ -21,6 +22,8 @@ abstract class OrdersController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   Future<void> getOrders(bool reload);
+
+  void onPopInvoked();
 }
 
 class OrdersControllerImp extends OrdersController {
@@ -49,7 +52,7 @@ class OrdersControllerImp extends OrdersController {
     }
 
     await handleResponseInController<PaginatedData<List<OrderCardEntity>>>(
-      status: await repo.getOrders(page, _customerId),
+      status: await repo.getOrders(page, _customerId, range),
       onSuccess: (data) {
         _orders = data.data;
         page = data.pagination.currentPage;
@@ -65,7 +68,7 @@ class OrdersControllerImp extends OrdersController {
     update();
 
     await handleResponseInController<PaginatedData<List<OrderCardEntity>>>(
-      status: await repo.getOrders(++page, _customerId),
+      status: await repo.getOrders(++page, _customerId, range),
       onSuccess: (data) {
         _orders.addAll(data.data);
         page = data.pagination.currentPage;
@@ -83,5 +86,13 @@ class OrdersControllerImp extends OrdersController {
             0.9 * scrollController.position.maxScrollExtent) {
       _getPaginatedOrders();
     }
+  }
+
+  @override
+  void onPopInvoked() {
+    if (range == null) return Get.back();
+    range = null;
+    getOrders(false);
+    update();
   }
 }

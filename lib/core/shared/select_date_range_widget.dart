@@ -23,15 +23,12 @@ class SelectDateRangeWidget extends StatefulWidget {
 
 class _SelectDateRangeWidgetState extends State<SelectDateRangeWidget> {
   String? selectedDate;
-  @override
-  void initState() {
-    selectedDate =
-        widget.initRange == null ? null : rangeToString(widget.initRange!);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    selectedDate = widget.initRange == null
+        ? selectedDate
+        : rangeToString(widget.initRange!);
     return PopScope(
       onPopInvokedWithResult: (_, __) => setState(() => selectedDate = null),
       child: InkWell(

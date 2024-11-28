@@ -13,4 +13,5 @@ abstract final class AppString {
 
   static const String search = 'search';
   static const String reportDate = 'report_date';
+  static const String orderDate = 'order_date';
 }
