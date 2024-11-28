@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/functions/execute_and_handle_remote_errors.dart';
 import 'package:shora/core/utils/models/pagination_model/pagination_model.dart';
@@ -13,10 +14,11 @@ class ReportsRepositoriesImp extends ReportsRepositories {
   @override
   Future<Status<PaginatedData<List<ReportCardEntity>>>> getReports(
     int page,
-    String customerId,
-  ) {
+    String customerId, [
+    DateTimeRange? range,
+  ]) {
     return executeAndHandleErrors<PaginatedData<List<ReportCardEntity>>>(
-      () => remoteDataSource.getReports(page, customerId),
+      () => remoteDataSource.getReports(page, customerId, range),
     );
   }
 }

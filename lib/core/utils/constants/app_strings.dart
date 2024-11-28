@@ -10,4 +10,7 @@ abstract final class AppString {
 
   static const String customerId = 'customer-id';
   static const String reportData = 'report-data';
+
+  static const String search = 'search';
+  static const String reportDate = 'report_date';
 }

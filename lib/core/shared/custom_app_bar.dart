@@ -6,11 +6,17 @@ import '../utils/config/locale/generated/l10n.dart';
 import '../utils/constants/app_constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar(
-      {super.key, this.bottom, this.titleColor, required this.title});
+  const CustomAppBar({
+    super.key,
+    this.bottom,
+    this.titleColor,
+    required this.title,
+    this.onPressBack,
+  });
   final Color? titleColor;
   final Widget? bottom;
   final String title;
+  final void Function()? onPressBack;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       leadingWidth: 110,
-      leading: const LeadingBackButton(),
+      leading: LeadingBackButton(onPressBack: onPressBack),
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       systemOverlayStyle: const SystemUiOverlayStyle(
@@ -48,8 +54,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class LeadingBackButton extends StatelessWidget {
-  const LeadingBackButton({super.key, this.size});
+  const LeadingBackButton({super.key, this.size, this.onPressBack});
   final Size? size;
+  final void Function()? onPressBack;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +67,7 @@ class LeadingBackButton extends StatelessWidget {
           padding:
               const EdgeInsets.symmetric(horizontal: AppConst.defaultPadding),
           child: IconButton(
-            onPressed: Get.back,
+            onPressed: onPressBack ?? Get.back,
             icon: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

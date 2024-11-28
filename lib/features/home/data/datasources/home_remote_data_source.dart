@@ -1,4 +1,5 @@
 import 'package:shora/core/utils/constants/app_links.dart';
+import 'package:shora/core/utils/constants/app_strings.dart';
 import 'package:shora/core/utils/models/pagination_model/pagination_model.dart';
 import 'package:shora/core/utils/services/api_services.dart';
 import 'package:shora/features/home/data/models/customer_model.dart';
@@ -21,7 +22,7 @@ class HomeRemoteDataSourceImp extends HomeRemoteDataSource {
     String? query,
   ) async {
     final Map<String, dynamic> res = await apiServices.get(
-      "${AppLinks.getCustomers}?page=$page&search=${query ?? ''}",
+      "${AppLinks.getCustomers}?page=$page&${AppString.search}=${query ?? ''}",
     );
     final List<CustomerCardEntity> customers = List.empty(growable: true);
     for (final Map<String, dynamic> d in res['data']['data']) {

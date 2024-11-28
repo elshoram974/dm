@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/models/pagination_model/pagination_model.dart';
 
@@ -8,6 +9,7 @@ abstract class ReportsRepositories {
 
   Future<Status<PaginatedData<List<ReportCardEntity>>>> getReports(
     int page,
-    String customerId,
-  );
+    String customerId, [
+    DateTimeRange? range,
+  ]);
 }

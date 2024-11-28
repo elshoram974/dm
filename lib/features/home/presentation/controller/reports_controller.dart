@@ -11,6 +11,7 @@ abstract class ReportsController extends GetxController {
   ReportsController({required this.repo});
   final ReportsRepositories repo;
   Status? getReportStatus;
+  DateTimeRange? range;
 
   List<ReportCardEntity> _reports = [];
   List<ReportCardEntity> get reports => _reports;
@@ -23,6 +24,8 @@ abstract class ReportsController extends GetxController {
   String get customerId => _customerId;
 
   Future<void> getReports(bool reload);
+
+  void onPopInvoked();
 }
 
 class ReportsControllerImp extends ReportsController {
@@ -31,7 +34,6 @@ class ReportsControllerImp extends ReportsController {
     getReports(false);
     scrollController.addListener(_paginationFn);
   }
-
 
   @override
   void onClose() {
@@ -50,7 +52,7 @@ class ReportsControllerImp extends ReportsController {
     }
 
     await handleResponseInController<PaginatedData<List<ReportCardEntity>>>(
-      status: await repo.getReports(page, _customerId),
+      status: await repo.getReports(page, _customerId, range),
       onSuccess: (data) {
         _reports = data.data;
         page = data.pagination.currentPage;
@@ -66,7 +68,7 @@ class ReportsControllerImp extends ReportsController {
     update();
 
     await handleResponseInController<PaginatedData<List<ReportCardEntity>>>(
-      status: await repo.getReports(++page, _customerId),
+      status: await repo.getReports(++page, _customerId, range),
       onSuccess: (data) {
         _reports.addAll(data.data);
         page = data.pagination.currentPage;
@@ -84,5 +86,13 @@ class ReportsControllerImp extends ReportsController {
             0.9 * scrollController.position.maxScrollExtent) {
       _getPaginatedReports();
     }
+  }
+
+  @override
+  void onPopInvoked() {
+    if (range == null) return Get.back();
+    range = null;
+    getReports(false);
+    update();
   }
 }
