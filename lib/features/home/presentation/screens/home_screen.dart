@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,20 +25,7 @@ class HomeScreen extends StatelessWidget {
       onPopInvokedWithResult: (_, __) =>
           Get.find<HomeController>().onPopInvoked(),
       child: Scaffold(
-        appBar: AppBar(
-          title: MyResConstrainedBoxAlign(
-            child: MyDefaultField(
-              hintText: S.of(context).findWhatYouAreLookingFor,
-              suffix: const Icon(Icons.search),
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          elevation: 0,
-        ),
+        appBar: homeAppBar(context),
         body: GetBuilder<HomeController>(
           builder: (controller) {
             return RefreshIndicator(
@@ -97,5 +86,45 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  AppBar homeAppBar(BuildContext context) {
+    final HomeController controller = Get.find<HomeController>();
+    DateTime now = DateTime.now();
+    return AppBar(
+      title: MyResConstrainedBoxAlign(
+        child: MyDefaultField(
+          hintText: S.of(context).findWhatYouAreLookingFor,
+          suffix: const Icon(Icons.search),
+          onChanged: (val) {
+            debouncerRequest(now, val);
+          },
+        ),
+      ),
+      backgroundColor: Colors.transparent,
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      elevation: 0,
+    );
+  }
+
+  void debouncerRequest({
+    required DateTime initTime,
+    required String query,
+    required Future Function() onTimeEnd,
+  }) {
+    Future.delayed(
+      const Duration(milliseconds: AppConst.debounceMilliseconds),
+      () {
+        if (DateTime.now().difference(initTime).inMilliseconds >=
+            AppConst.debounceMilliseconds) {
+          onTimeEnd();
+        }
+      },
+    );
+
+    initTime = DateTime.now();
   }
 }
