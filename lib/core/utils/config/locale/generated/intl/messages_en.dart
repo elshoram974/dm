@@ -128,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestLocationPermission": MessageLookupByLibrary.simpleMessage(
             "Please grant permission to access your device\'s location"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "selectDate": MessageLookupByLibrary.simpleMessage("Select date"),
         "selectMonth": MessageLookupByLibrary.simpleMessage("Select Month"),
         "serverTookTooLong": MessageLookupByLibrary.simpleMessage(

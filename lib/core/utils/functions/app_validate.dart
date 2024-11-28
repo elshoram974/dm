@@ -1,3 +1,5 @@
+import 'package:shora/core/utils/extensions/num_ex.dart';
+
 import '../config/locale/generated/l10n.dart';
 
 enum FieldType { name, email, password, rePassword, other }
@@ -30,9 +32,9 @@ abstract final class AppValidator {
     }
 
     if (value.length < min) {
-      return S.current.cantBeLessThan(min);
+      return S.current.cantBeLessThan(min.locale);
     } else if (value.length > max) {
-      return S.current.cantBeMoreThan(max);
+      return S.current.cantBeMoreThan(max.locale);
     }
 
     return null;

@@ -5,6 +5,7 @@ import 'package:shora/core/utils/config/routes/routes.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:shora/core/utils/constants/app_strings.dart';
 import 'package:shora/core/utils/extensions/date_ex.dart';
+import 'package:shora/core/utils/extensions/num_ex.dart';
 
 import '../../../domain/entity/report_card_entity.dart';
 import '../../controller/reports_controller.dart';
@@ -53,7 +54,7 @@ class ReportDataCard extends StatelessWidget {
                         reportData.reportOwnerName!,
                         color: context.theme.primaryColor,
                       ),
-                    _Text(S.of(context).reportNoNumber(reportData.reportId)),
+                    _Text(S.of(context).reportNoNumber(reportData.reportId.locale)),
                   ],
                 ),
               ),

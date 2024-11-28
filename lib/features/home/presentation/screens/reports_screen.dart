@@ -5,11 +5,13 @@ import 'package:shora/core/shared/empty_widget.dart';
 import 'package:shora/core/shared/custom_app_bar.dart';
 import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
+import 'package:shora/core/shared/select_date_range_widget.dart';
 import 'package:shora/core/status/status.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/config/routes/routes.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:shora/core/utils/constants/app_strings.dart';
+import 'package:shora/core/utils/extensions/responsive_ex.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../domain/entity/report_card_entity.dart';
@@ -99,12 +101,10 @@ class ReportsScreen extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: MyDefaultField(
-                hintText: S.of(context).selectDate,
-                suffix: const Icon(
-                  Icons.calendar_month,
-                  color: Colors.grey,
-                ),
+              child: SelectDateRangeWidget(
+                onSelectRange: (range) {
+                  print("${range.start} - ${range.end}");
+                },
               ),
             ),
             const SizedBox(width: AppConst.smallPadding),

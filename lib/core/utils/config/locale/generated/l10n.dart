@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Report Details`
   String get reportDetails {
     return Intl.message(
@@ -171,7 +181,7 @@ class S {
   }
 
   /// `Order No: {orderNumber}`
-  String orderNoNumber(int orderNumber) {
+  String orderNoNumber(String orderNumber) {
     return Intl.message(
       'Order No: $orderNumber',
       name: 'orderNoNumber',
@@ -211,7 +221,7 @@ class S {
   }
 
   /// `Report No: {reportNumber}`
-  String reportNoNumber(int reportNumber) {
+  String reportNoNumber(String reportNumber) {
     return Intl.message(
       'Report No: $reportNumber',
       name: 'reportNoNumber',
@@ -631,7 +641,7 @@ class S {
   }
 
   /// `Can't be less than {min}`
-  String cantBeLessThan(int min) {
+  String cantBeLessThan(String min) {
     return Intl.message(
       'Can\'t be less than $min',
       name: 'cantBeLessThan',
@@ -641,7 +651,7 @@ class S {
   }
 
   /// `Can't be more than {max}`
-  String cantBeMoreThan(int max) {
+  String cantBeMoreThan(String max) {
     return Intl.message(
       'Can\'t be more than $max',
       name: 'cantBeMoreThan',

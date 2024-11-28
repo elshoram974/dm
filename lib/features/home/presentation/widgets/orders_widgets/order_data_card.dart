@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 import 'package:shora/core/utils/extensions/date_ex.dart';
+import 'package:shora/core/utils/extensions/num_ex.dart';
 
 import '../../../domain/entity/order_card_entity.dart';
 
@@ -24,7 +25,7 @@ class OrderDataCard extends StatelessWidget {
         children: [
           Expanded(
             flex: 7,
-            child: _Text(S.of(context).orderNoNumber(orderData.orderNo)),
+            child: _Text(S.of(context).orderNoNumber(orderData.orderNo.locale)),
           ),
           Expanded(
             flex: 4,
