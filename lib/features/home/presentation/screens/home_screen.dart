@@ -128,3 +128,15 @@ class HomeScreen extends StatelessWidget {
     initTime = DateTime.now();
   }
 }
+
+class DebouncerHelper {
+  DebouncerHelper({this.milliseconds = AppConst.debounceMilliseconds});
+  final int milliseconds;
+  Timer? _timer;
+
+  void run(VoidCallback action) {
+    if (null != _timer) _timer!.cancel();
+
+    _timer = Timer(Duration(milliseconds: milliseconds), action);
+  }
+}
