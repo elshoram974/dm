@@ -1,8 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:shora/core/default_field.dart';
 import 'package:shora/core/shared/empty_widget.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
@@ -90,14 +89,26 @@ class HomeScreen extends StatelessWidget {
 
   AppBar homeAppBar(BuildContext context) {
     final HomeController controller = Get.find<HomeController>();
-    DateTime now = DateTime.now();
+    final Debouncer debouncer = Debouncer(
+      delay: const Duration(milliseconds: AppConst.debounceMilliseconds),
+    );
     return AppBar(
       title: MyResConstrainedBoxAlign(
         child: MyDefaultField(
           hintText: S.of(context).findWhatYouAreLookingFor,
+          textInputAction: TextInputAction.search,
+          onEditingComplete: () {
+            print("debouncer is running : ${debouncer.isRunning}");
+            debouncer.cancel();
+            print("debouncer is running after cancel : ${debouncer.isRunning}");
+          },
           suffix: const Icon(Icons.search),
           onChanged: (val) {
-            debouncerRequest(now, val);
+            if (val.isNotEmpty) {
+              debouncer(() => print(val));
+            } else {
+              debouncer.cancel();
+            }
           },
         ),
       ),
@@ -108,35 +119,5 @@ class HomeScreen extends StatelessWidget {
       ),
       elevation: 0,
     );
-  }
-
-  void debouncerRequest({
-    required DateTime initTime,
-    required String query,
-    required Future Function() onTimeEnd,
-  }) {
-    Future.delayed(
-      const Duration(milliseconds: AppConst.debounceMilliseconds),
-      () {
-        if (DateTime.now().difference(initTime).inMilliseconds >=
-            AppConst.debounceMilliseconds) {
-          onTimeEnd();
-        }
-      },
-    );
-
-    initTime = DateTime.now();
-  }
-}
-
-class DebouncerHelper {
-  DebouncerHelper({this.milliseconds = AppConst.debounceMilliseconds});
-  final int milliseconds;
-  Timer? _timer;
-
-  void run(VoidCallback action) {
-    if (null != _timer) _timer!.cancel();
-
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }
