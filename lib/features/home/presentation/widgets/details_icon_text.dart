@@ -19,7 +19,7 @@ class DetailsIconText extends StatelessWidget {
           fontSize == 14 ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Icon(icon, color: Colors.grey, size: 18),
-        SizedBox(width: AppConst.extraSmallPadding),
+        const SizedBox(width: AppConst.extraSmallPadding),
         Expanded(
           child: Text(
             text,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:shora/core/shared/circular_image_widget.dart';
 import 'package:shora/core/shared/filled_button.dart';
 import 'package:shora/core/shared/responsive/constrained_box.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
@@ -19,7 +17,7 @@ class CustomerCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyResConstrainedBoxAlign(
       child: Container(
-        height: 180,
+        height: 150,
         margin: const EdgeInsets.only(
           bottom: AppConst.smallPadding,
           left: AppConst.defaultPadding,
@@ -36,44 +34,41 @@ class CustomerCardWidget extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Container(
-                padding: const EdgeInsets.all(AppConst.defaultPadding),
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppConst.defaultPadding,
+                  horizontal: AppConst.extraBigPadding,
+                ),
                 color: entity.color.withOpacity(0.4),
-                child: Row(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _CardImageAndVerifiedWidget(entity: entity),
-                    const SizedBox(width: AppConst.defaultPadding),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          DetailsIconText(
-                            icon: Icons.person_rounded,
-                            text: "#${entity.customerId}",
-                          ),
-                          DetailsIconText(
-                            icon: Icons.medical_services_rounded,
-                            text: entity.name,
-                          ),
-                          DetailsIconText(
-                            icon: Icons.home_rounded,
-                            text: entity.place,
-                          ),
-                          DetailsIconText(
-                            icon: Icons.location_on_rounded,
-                            fontSize: 12,
-                            text: entity.address,
-                          ),
-                          if (entity.lastOrderDate != null)
-                            DetailsIconText(
-                              icon: Icons.calendar_month_rounded,
-                              text: S.of(context).lastOrder(
-                                    DateFormat.yMMMd()
-                                        .format(entity.lastOrderDate!),
-                                  ),
-                            ),
-                        ],
-                      ),
+                    DetailsIconText(
+                      icon: Icons.person_rounded,
+                      text: "#${entity.customerId}",
                     ),
+                    DetailsIconText(
+                      icon: Icons.person_3_rounded,
+                      text: entity.name,
+                    ),
+                    if (entity.pharmacyName != null)
+                      DetailsIconText(
+                        icon: Icons.medical_services_rounded,
+                        text: entity.pharmacyName!,
+                      ),
+                    if (entity.city != null)
+                      DetailsIconText(
+                        icon: Icons.home_rounded,
+                        text: entity.city!,
+                      ),
+                    // if (entity.lastOrderDate != null)
+                    //   DetailsIconText(
+                    //     icon: Icons.calendar_month_rounded,
+                    //     text: S.of(context).lastOrder(
+                    //           DateFormat.yMMMd().format(entity.lastOrderDate!),
+                    //         ),
+                    //   ),
+                    const SizedBox(height: AppConst.smallPadding),
+                    _IsVerifiedWidget(isVerified: entity.isVerified)
                   ],
                 ),
               ),
@@ -130,40 +125,66 @@ class ReportsOrderButtonsWidget extends StatelessWidget {
   }
 }
 
-class _CardImageAndVerifiedWidget extends StatelessWidget {
-  const _CardImageAndVerifiedWidget({required this.entity});
+// class _CardImageAndVerifiedWidget extends StatelessWidget {
+//   const _CardImageAndVerifiedWidget({required this.entity});
 
-  final CustomerCardEntity entity;
+//   final CustomerCardEntity entity;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       crossAxisAlignment: CrossAxisAlignment.center,
+//       children: [
+//         CircularImageWidget(
+//           imageUrl: entity.image,
+//           radius: 100,
+//         ),
+//         const SizedBox(height: AppConst.smallPadding),
+//         if (entity.isVerified)
+//           Text(
+//             S.of(context).verified,
+//             style: const TextStyle(
+//               fontSize: 12,
+//               color: Colors.green,
+//               fontWeight: FontWeight.w500,
+//             ),
+//           )
+//         else
+//           Text(
+//             S.of(context).unverified,
+//             style: TextStyle(
+//               fontSize: 12,
+//               color: Theme.of(context).colorScheme.error,
+//             ),
+//           )
+//       ],
+//     );
+//   }
+// }
+
+class _IsVerifiedWidget extends StatelessWidget {
+  const _IsVerifiedWidget({super.key, required this.isVerified});
+  final bool isVerified;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CircularImageWidget(
-          imageUrl: entity.image,
-          radius: 100,
+    if (isVerified)
+      return Text(
+        S.of(context).verified,
+        style: const TextStyle(
+          fontSize: 12,
+          color: Colors.green,
+          fontWeight: FontWeight.w500,
         ),
-        const SizedBox(height: AppConst.smallPadding),
-        if (entity.isVerified)
-          Text(
-            S.of(context).verified,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.green,
-              fontWeight: FontWeight.w500,
-            ),
-          )
-        else
-          Text(
-            S.of(context).unverified,
-            style: TextStyle(
-              fontSize: 12,
-              color: Theme.of(context).colorScheme.error,
-            ),
-          )
-      ],
+      );
+
+    return Text(
+      S.of(context).unverified,
+      style: TextStyle(
+        fontSize: 12,
+        color: Theme.of(context).colorScheme.error,
+      ),
     );
   }
 }

@@ -13,6 +13,9 @@ class CustomerModel extends CustomerCardEntity {
     this.phone,
     this.email,
     this.image,
+    required this.approved,
+    this.government,
+    this.legalName,
     this.isPhoneVerified,
     this.emailVerifiedAt,
     this.createdAt,
@@ -36,14 +39,13 @@ class CustomerModel extends CustomerCardEntity {
           customerId: "$id",
           name:
               "${fName == null ? '' : fName.trim()} ${lName == null ? '' : lName.trim()}",
-          place: "place of customer",
-          address:
-              "close to English school, 1st settlement, moustafa kamel axis",
+          pharmacyName: legalName,
+          city: government,
           color: Color.fromARGB(255, Random().nextInt(255),
               Random().nextInt(255), Random().nextInt(255)),
-          lastOrderDate: createdAt,
+          // lastOrderDate: createdAt,
           image: image,
-          isVerified: status == 1,
+          isVerified: approved,
         );
 
   /// `dart:convert`
@@ -61,6 +63,9 @@ class CustomerModel extends CustomerCardEntity {
       phone: data['phone'] as String?,
       email: data['email'] as String?,
       image: data['image'] as String?,
+      legalName: data['legal_name'] as String?,
+      government: data['government'] as String?,
+      approved: (data['approved'] as String?) == "1",
       isPhoneVerified: data['is_phone_verified'] as int?,
       emailVerifiedAt: data['email_verified_at'] == null
           ? null
@@ -94,6 +99,9 @@ class CustomerModel extends CustomerCardEntity {
   final String? phone;
   final String? email;
   final String? image;
+  final String? government;
+  final String? legalName;
+  final bool approved;
   final int? isPhoneVerified;
   final DateTime? emailVerifiedAt;
   final DateTime? createdAt;
@@ -123,6 +131,9 @@ class CustomerModel extends CustomerCardEntity {
         'phone': phone,
         'email': email,
         'image': image,
+        'approved': approved ? "1" : "0",
+        'government': government,
+        'legal_name': legalName,
         'is_phone_verified': isPhoneVerified,
         'email_verified_at': emailVerifiedAt?.toIso8601String(),
         'created_at': createdAt?.toIso8601String(),
@@ -175,6 +186,9 @@ class CustomerModel extends CustomerCardEntity {
     String? moduleIds,
     dynamic imageFullUrl,
     List<dynamic>? storage,
+    bool? approved,
+    String? government,
+    String? legalName,
   }) {
     return CustomerModel(
       id: id ?? this.id,
@@ -202,6 +216,9 @@ class CustomerModel extends CustomerCardEntity {
       moduleIds: moduleIds ?? this.moduleIds,
       imageFullUrl: imageFullUrl ?? this.imageFullUrl,
       storage: storage ?? this.storage,
+      approved: approved ?? this.approved,
+      government: government ?? this.government,
+      legalName: legalName ?? this.legalName,
     );
   }
 

@@ -4,42 +4,41 @@ import 'package:flutter/material.dart';
 class CustomerCardEntity extends Equatable {
   const CustomerCardEntity({
     required this.customerId,
-    required this.name,
-    required this.place,
-    required this.address,
+    required this.pharmacyName,
+    required this.city,
     required this.color,
     this.image,
-    required this.lastOrderDate,
+    // required this.lastOrderDate,
     this.isVerified = false,
+    required this.name,
   });
 
   factory CustomerCardEntity.example() {
-    return CustomerCardEntity(
+    return const CustomerCardEntity(
       customerId: "985356",
       name: "name of customer",
-      place: "place of customer",
-      address: "close to English school, 1st settlement, moustafa kamel axis",
+      pharmacyName: "name of pharmacy",
+      city: "place of customer",
       color: Colors.black,
-      lastOrderDate: DateTime.now(),
+      // lastOrderDate: DateTime.now(),
     );
   }
   final String customerId;
   final String name;
-  final String place;
-  final String address;
+  final String? pharmacyName;
+  final String? city;
   final String? image;
-  final DateTime? lastOrderDate;
+  // final DateTime? lastOrderDate;
   final Color color;
   final bool isVerified;
 
   @override
   List<Object?> get props => [
         customerId,
-        name,
-        place,
-        address,
+        pharmacyName,
+        city,
         image,
-        lastOrderDate,
+        // lastOrderDate,
         isVerified,
       ];
 }

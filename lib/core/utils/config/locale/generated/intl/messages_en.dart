@@ -118,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please answer all questions"),
         "pressAgainToExit":
             MessageLookupByLibrary.simpleMessage("Press again to exit"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "questionNo": m6,
         "recover": MessageLookupByLibrary.simpleMessage("Recover"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
@@ -141,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The SSL certificate is not trusted."),
         "stayHere": MessageLookupByLibrary.simpleMessage("Stay here"),
         "successfully": MessageLookupByLibrary.simpleMessage("successfully"),
+        "termsConditions":
+            MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "theSuppliedAuthCredentialIsIncorrect":
             MessageLookupByLibrary.simpleMessage(
                 "The supplied auth credential is incorrect, malformed or has expired."),
