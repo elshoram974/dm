@@ -328,11 +328,12 @@ packages:
   intl_phone_number_input:
     dependency: "direct main"
     description:
-      name: intl_phone_number_input
-      sha256: "1c4328713a9503ab26a1fdbb6b00b4cada68c18aac922b35bedbc72eff1297c3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.4"
+      path: "."
+      ref: develop
+      resolved-ref: f57851da7d183582261fe2a85dc0b6cc71767c44
+      url: "https://github.com/Shahidbangash/intl_phone_number_input.git"
+    source: git
+    version: "0.7.5"
   js:
     dependency: transitive
     description:
@@ -384,10 +385,11 @@ packages:
   libphonenumber_plugin:
     dependency: transitive
     description:
-      name: libphonenumber_plugin
-      sha256: c615021d9816fbda2b2587881019ed595ecdf54d999652d7e4cce0e1f026368c
-      url: "https://pub.dev"
-    source: hosted
+      path: libphonenumber_plugin
+      ref: main
+      resolved-ref: "6740b85c909b07caedf023a95b7d78c6ff6e0403"
+      url: "https://github.com/Shahidbangash/plugin_libphonenumber.git"
+    source: git
     version: "0.3.3"
   libphonenumber_web:
     dependency: transitive
@@ -473,10 +475,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: c464428172cb986b758c6d1724c603097febb8fb855aa265aeecc9280c294d4a
+      sha256: "8c4967f8b7cb46dc914e178daa29813d83ae502e0529d7b0478330616a691ef7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.12"
+    version: "2.2.14"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -814,10 +816,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "84ba388638ed7a8cb3445a320c8273136ab2631cd5f2c57888335504ddab1bc2"
+      sha256: "8b338d4486ab3fbc0ba0db9f9b4f5239b6697fcee427939a40e720cbb9ee0a69"
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.0"
+    version: "5.9.0"
   xdg_directories:
     dependency: transitive
     description:

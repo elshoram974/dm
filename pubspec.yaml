@@ -42,7 +42,11 @@ dependencies:
   permission_handler: ^11.3.1
   
   # * To make mobile field
-  intl_phone_number_input: ^0.7.4
+  intl_phone_number_input:
+    git:
+      url: https://github.com/Shahidbangash/intl_phone_number_input.git
+      ref: develop 
+  
 
   # * for loading
   skeletonizer: ^1.4.2
