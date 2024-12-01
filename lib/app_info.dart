@@ -8,8 +8,8 @@ abstract final class AppInfo {
 
   static const String baseURL = "https://omegacuremart.com";
 
-  static const String appName = "shora";
-  static const String appId = "com.shora.shora";
+  static const String appName = "Omega DM";
+  static const String appId = "com.omegacuremart.omegadm";
   static const String appVersion = "1.0.0";
   static const int appBuildVersion = 1;
 
