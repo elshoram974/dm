@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../../../features/home/presentation/screens/privacy_screen.dart';
 import '../../../../features/home/presentation/screens/questions_screen.dart';
 import '../../../../features/home/presentation/screens/home_screen.dart';
 import '../../../../features/home/presentation/screens/orders_screen.dart';
 import '../../../../features/home/presentation/screens/reports_screen.dart';
+import '../../../../features/home/presentation/screens/terms_screen.dart';
 import '../../../../features/login/data/datasources/auth_local_data_source.dart';
 import '../../../../features/login/presentation/screens/login_screen.dart';
 import '../../bindings/questions_bindings.dart';
@@ -23,6 +25,8 @@ abstract final class AppRoute {
   static const String orders = "/orders";
   static const String reports = "/reports";
   static const String questions = "/questions";
+  static const String privacy = "/privacy";
+  static const String terms = "/terms";
 
   static List<GetPage> get pages => [
         GetPage(
@@ -50,6 +54,14 @@ abstract final class AppRoute {
           name: questions,
           page: () => const QuestionsScreen(),
           binding: QuestionsBindings(),
+        ),
+        GetPage(
+          name: privacy,
+          page: () => const PrivacyScreen(),
+        ),
+        GetPage(
+          name: terms,
+          page: () => const TermsScreen(),
         ),
       ];
 }
