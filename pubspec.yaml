@@ -50,6 +50,7 @@ dependencies:
 
   # * for loading
   skeletonizer: ^1.4.2
+  flutter_native_splash: ^2.4.3
 
 dev_dependencies:
   flutter_test:
