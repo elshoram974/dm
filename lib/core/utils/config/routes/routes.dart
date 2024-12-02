@@ -18,8 +18,6 @@ import '../../middleware/login_middleware.dart';
 abstract final class AppRoute {
   const AppRoute();
 
-  static String? currentScreen;
-
   static const String login = "/login";
   static const String home = "/home";
   static const String orders = "/orders";

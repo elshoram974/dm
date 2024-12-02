@@ -84,6 +84,7 @@ class ServerFailure<T> extends Failure<T> {
   }
   factory ServerFailure.fromBadResponse(DioException e) {
     final int? statusCode = e.response!.statusCode;
+    print(Get.currentRoute);
 
     final FailureBody res = FailureBody(
       type: e.type.name,
@@ -100,7 +101,7 @@ class ServerFailure<T> extends Failure<T> {
       return ServerFailure(
         res.copyWith(message: S.current.thereIsProblemWithServerTryAgainLater),
       );
-    } else if (statusCode == 401) {
+    } else if (statusCode == 401 && Get.currentRoute != AppRoute.login) {
       Get.find<AuthLocalDataSource>().logOut().then(
             (_) => Get.offAllNamed(AppRoute.login),
           );
