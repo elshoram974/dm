@@ -57,6 +57,7 @@ class AuthField extends StatelessWidget {
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           validator: validator,
+          textCapitalization: TextCapitalization.none,
           prefix: Icon(
             suffixIconData,
             color: context.theme.primaryColor.withOpacity(0.8),

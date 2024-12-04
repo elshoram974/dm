@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -48,6 +49,7 @@ class APIServices {
       queryParameters: token != null ? {"token": token} : null,
       options: Options(headers: {'content-type': "application/json"}),
     );
+    if (AppInfo.isDebugMode) log("body ${response.data}");
 
     if (response.data!['is_success'] == false) {
       throw response.data!['message'];

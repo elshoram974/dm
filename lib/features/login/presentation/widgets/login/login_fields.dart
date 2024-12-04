@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:shora/core/utils/config/locale/generated/l10n.dart';
 import 'package:shora/core/utils/constants/app_constants.dart';
 
-import '../controller/login_controller.dart';
-import '../widgets/auth_field.dart';
-import '../widgets/password_field.dart';
+import '../../controller/login_controller.dart';
+import '../auth_field.dart';
+import '../password_field.dart';
 
 class LoginFields extends StatelessWidget {
   const LoginFields({super.key});

@@ -7,7 +7,7 @@ import 'package:shora/core/utils/constants/app_constants.dart';
 
 import '../controller/login_controller.dart';
 import '../widgets/login/login_buttons.dart';
-import 'login_fields.dart';
+import '../widgets/login/login_fields.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
