@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -72,12 +77,7 @@ class S {
 
   /// `Search`
   String get search {
-    return Intl.message(
-      'Search',
-      name: 'search',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Search', name: 'search', desc: '', args: []);
   }
 
   /// `Report Details`
@@ -92,22 +92,12 @@ class S {
 
   /// `Error`
   String get error {
-    return Intl.message(
-      'Error',
-      name: 'error',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Error', name: 'error', desc: '', args: []);
   }
 
   /// `Understood`
   String get understood {
-    return Intl.message(
-      'Understood',
-      name: 'understood',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Understood', name: 'understood', desc: '', args: []);
   }
 
   /// `Please answer all questions`
@@ -122,12 +112,7 @@ class S {
 
   /// `Save`
   String get save {
-    return Intl.message(
-      'Save',
-      name: 'save',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save', name: 'save', desc: '', args: []);
   }
 
   /// `Type your answer here ...`
@@ -142,12 +127,7 @@ class S {
 
   /// `Add Report`
   String get addReport {
-    return Intl.message(
-      'Add Report',
-      name: 'addReport',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add Report', name: 'addReport', desc: '', args: []);
   }
 
   /// `Question {number}:`
@@ -162,22 +142,12 @@ class S {
 
   /// `Empty`
   String get empty {
-    return Intl.message(
-      'Empty',
-      name: 'empty',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Empty', name: 'empty', desc: '', args: []);
   }
 
   /// `Total Order`
   String get totalOrder {
-    return Intl.message(
-      'Total Order',
-      name: 'totalOrder',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Total Order', name: 'totalOrder', desc: '', args: []);
   }
 
   /// `{amount} EGP`
@@ -192,12 +162,7 @@ class S {
 
   /// `Order No.`
   String get orderNo {
-    return Intl.message(
-      'Order No.',
-      name: 'orderNo',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Order No.', name: 'orderNo', desc: '', args: []);
   }
 
   /// `Order No: {orderNumber}`
@@ -222,22 +187,12 @@ class S {
 
   /// `Date`
   String get date {
-    return Intl.message(
-      'Date',
-      name: 'date',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Date', name: 'date', desc: '', args: []);
   }
 
   /// `Report No.`
   String get reportNo {
-    return Intl.message(
-      'Report No.',
-      name: 'reportNo',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Report No.', name: 'reportNo', desc: '', args: []);
   }
 
   /// `Report No: {reportNumber}`
@@ -252,12 +207,7 @@ class S {
 
   /// `Select date`
   String get selectDate {
-    return Intl.message(
-      'Select date',
-      name: 'selectDate',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Select date', name: 'selectDate', desc: '', args: []);
   }
 
   /// `Find what you're looking for`
@@ -272,42 +222,22 @@ class S {
 
   /// `Reports`
   String get reports {
-    return Intl.message(
-      'Reports',
-      name: 'reports',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Reports', name: 'reports', desc: '', args: []);
   }
 
   /// `Orders`
   String get orders {
-    return Intl.message(
-      'Orders',
-      name: 'orders',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Orders', name: 'orders', desc: '', args: []);
   }
 
   /// `Unverified`
   String get unverified {
-    return Intl.message(
-      'Unverified',
-      name: 'unverified',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unverified', name: 'unverified', desc: '', args: []);
   }
 
   /// `Verified`
   String get verified {
-    return Intl.message(
-      'Verified',
-      name: 'verified',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Verified', name: 'verified', desc: '', args: []);
   }
 
   /// `Last Order : {date}`
@@ -342,12 +272,7 @@ class S {
 
   /// `Log in Now`
   String get loginNow {
-    return Intl.message(
-      'Log in Now',
-      name: 'loginNow',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Log in Now', name: 'loginNow', desc: '', args: []);
   }
 
   /// `Your session has expired or you are not authorized. Please log in again.`
@@ -482,22 +407,12 @@ class S {
 
   /// `Log out`
   String get logOut {
-    return Intl.message(
-      'Log out',
-      name: 'logOut',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Log out', name: 'logOut', desc: '', args: []);
   }
 
   /// `Done`
   String get done {
-    return Intl.message(
-      'Done',
-      name: 'done',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Done', name: 'done', desc: '', args: []);
   }
 
   /// `No internet connection`
@@ -522,22 +437,12 @@ class S {
 
   /// `No Data`
   String get noData {
-    return Intl.message(
-      'No Data',
-      name: 'noData',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No Data', name: 'noData', desc: '', args: []);
   }
 
   /// `Unknown`
   String get unknown {
-    return Intl.message(
-      'Unknown',
-      name: 'unknown',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unknown', name: 'unknown', desc: '', args: []);
   }
 
   /// `Page not found`
@@ -562,12 +467,7 @@ class S {
 
   /// `Back`
   String get back {
-    return Intl.message(
-      'Back',
-      name: 'back',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Back', name: 'back', desc: '', args: []);
   }
 
   /// `Show password`
@@ -592,12 +492,7 @@ class S {
 
   /// `Log in`
   String get login {
-    return Intl.message(
-      'Log in',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Log in', name: 'login', desc: '', args: []);
   }
 
   /// `Enter your credentials to continue.`
@@ -682,12 +577,7 @@ class S {
 
   /// `Password`
   String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Password', name: 'password', desc: '', args: []);
   }
 
   /// `Enter the password`
@@ -712,22 +602,12 @@ class S {
 
   /// `Recover`
   String get recover {
-    return Intl.message(
-      'Recover',
-      name: 'recover',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Recover', name: 'recover', desc: '', args: []);
   }
 
   /// `Sign up`
   String get signUp {
-    return Intl.message(
-      'Sign up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
   }
 
   /// `Don't have an account ? `
@@ -742,12 +622,7 @@ class S {
 
   /// `Remember me`
   String get rememberMe {
-    return Intl.message(
-      'Remember me',
-      name: 'rememberMe',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
   }
 
   /// `Create your own email`
@@ -762,12 +637,7 @@ class S {
 
   /// `Name`
   String get name {
-    return Intl.message(
-      'Name',
-      name: 'name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Name', name: 'name', desc: '', args: []);
   }
 
   /// `Confirm Password`
@@ -782,42 +652,22 @@ class S {
 
   /// `Confirm`
   String get confirm {
-    return Intl.message(
-      'Confirm',
-      name: 'confirm',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
   }
 
   /// `Cancel`
   String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `Go back`
   String get goBack {
-    return Intl.message(
-      'Go back',
-      name: 'goBack',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Go back', name: 'goBack', desc: '', args: []);
   }
 
   /// `Stay here`
   String get stayHere {
-    return Intl.message(
-      'Stay here',
-      name: 'stayHere',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Stay here', name: 'stayHere', desc: '', args: []);
   }
 
   /// `Are you sure you want to return back`
@@ -902,12 +752,7 @@ class S {
 
   /// `Home`
   String get home {
-    return Intl.message(
-      'Home',
-      name: 'home',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Home', name: 'home', desc: '', args: []);
   }
 }
 
@@ -915,9 +760,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
-    ];
+    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
   }
 
   @override
