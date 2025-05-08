@@ -164,7 +164,7 @@ class ReportsOrderButtonsWidget extends StatelessWidget {
 // }
 
 class _IsVerifiedWidget extends StatelessWidget {
-  const _IsVerifiedWidget({super.key, required this.isVerified});
+  const _IsVerifiedWidget({required this.isVerified});
   final bool isVerified;
 
   @override
