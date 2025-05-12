@@ -24,6 +24,19 @@ class HomeDrawer extends StatelessWidget {
             title: S.of(context).termsConditions,
             onTap: () => Get.toNamed(AppRoute.terms),
           ),
+          DrawerTileWidget(
+            icon: Icons.delete_forever_outlined,
+            title: "Delete Account",
+            onTap: (){
+              Get.defaultDialog(
+                title: "Delete Account",
+                middleText: "Are you sure you want to delete your account?",
+                textConfirm: "Delete",
+                onCancel: (){},
+                onConfirm: () => Get.find<HomeController>().logOut(),
+              );
+            },
+          ),
           const Spacer(flex: 2),
           DrawerTileWidget(
             icon: Icons.logout,
