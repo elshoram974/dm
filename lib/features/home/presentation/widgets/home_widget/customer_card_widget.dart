@@ -38,7 +38,7 @@ class CustomerCardWidget extends StatelessWidget {
                   vertical: AppConst.defaultPadding,
                   horizontal: AppConst.extraBigPadding,
                 ),
-                color: entity.color.withOpacity(0.4),
+                color: entity.color?.withValues(alpha: 0.4) ?? Theme.of(context).cardColor,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

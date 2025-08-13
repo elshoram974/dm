@@ -40,7 +40,7 @@ class QuestionCardWidget extends StatelessWidget {
           margin: const EdgeInsets.only(top: AppConst.smallPadding),
           padding: const EdgeInsets.all(AppConst.smallPadding),
           decoration: BoxDecoration(
-            color: context.theme.colorScheme.secondary.withOpacity(0.1),
+            color: context.theme.colorScheme.secondary.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(AppConst.borderRadius),
           ),
           child: Text(

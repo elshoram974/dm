@@ -60,7 +60,7 @@ class AuthField extends StatelessWidget {
           textCapitalization: TextCapitalization.none,
           prefix: Icon(
             suffixIconData,
-            color: context.theme.primaryColor.withOpacity(0.8),
+            color: context.theme.primaryColor.withValues(alpha: 0.8),
           ),
           suffix: suffix,
           obscureText: obscureText,
