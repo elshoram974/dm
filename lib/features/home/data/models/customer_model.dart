@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/functions/color.dart';
 import '../../domain/entity/customer_card_entity.dart';
 
 class CustomerModel extends CustomerCardEntity {
@@ -35,15 +35,13 @@ class CustomerModel extends CustomerCardEntity {
     this.moduleIds,
     this.imageFullUrl,
     this.storage,
+    required super.color,
   }) : super(
           customerId: "$id",
           name:
               "${fName == null ? '' : fName.trim()} ${lName == null ? '' : lName.trim()}",
           pharmacyName: legalName,
           city: government,
-          color: Color.fromARGB(255, Random().nextInt(255),
-              Random().nextInt(255), Random().nextInt(255)),
-          // lastOrderDate: createdAt,
           image: image,
           isVerified: approved,
         );
@@ -91,6 +89,7 @@ class CustomerModel extends CustomerCardEntity {
       moduleIds: data['module_ids'] as String?,
       imageFullUrl: data['image_full_url'] as dynamic,
       storage: data['storage'] as List<dynamic>?,
+      color: stringToColor("${data['color']}")
     );
   }
   final int? id;
@@ -189,6 +188,7 @@ class CustomerModel extends CustomerCardEntity {
     bool? approved,
     String? government,
     String? legalName,
+    Color? color,
   }) {
     return CustomerModel(
       id: id ?? this.id,
@@ -219,6 +219,7 @@ class CustomerModel extends CustomerCardEntity {
       approved: approved ?? this.approved,
       government: government ?? this.government,
       legalName: legalName ?? this.legalName,
+      color: color ?? this.color,
     );
   }
 
@@ -253,6 +254,9 @@ class CustomerModel extends CustomerCardEntity {
       moduleIds,
       imageFullUrl,
       storage,
+      government,
+      legalName,
+      color,
     ];
   }
 }

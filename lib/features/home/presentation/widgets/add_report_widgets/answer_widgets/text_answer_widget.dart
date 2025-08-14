@@ -65,8 +65,8 @@ class _TextAnswerWidgetState extends State<TextAnswerWidget> {
         ),
         filled: true,
         fillColor: readOnly
-            ? context.theme.primaryColor.withOpacity(0.25)
-            : context.theme.cardColor.withOpacity(0.5),
+            ? context.theme.primaryColor.withValues(alpha: 0.25)
+            : context.theme.cardColor.withValues(alpha: 0.5),
       ),
     );
   }

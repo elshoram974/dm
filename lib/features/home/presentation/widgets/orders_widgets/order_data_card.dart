@@ -61,7 +61,7 @@ class OrderDataCardHeader extends StatelessWidget {
         horizontal: AppConst.defaultPadding,
         vertical: AppConst.smallPadding,
       ),
-      color: context.theme.primaryColor.withOpacity(0.1),
+      color: context.theme.primaryColor.withValues(alpha: 0.1),
       child: Row(
         children: [
           Expanded(

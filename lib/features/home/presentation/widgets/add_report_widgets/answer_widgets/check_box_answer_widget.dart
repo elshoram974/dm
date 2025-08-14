@@ -24,8 +24,8 @@ class CheckBoxAnswerWidget extends StatelessWidget {
         padding: const EdgeInsets.all(AppConst.smallPadding),
         decoration: BoxDecoration(
           color: onChanged == null && isSelected
-              ? context.theme.primaryColor.withOpacity(0.25)
-              : context.theme.cardColor.withOpacity(0.5),
+              ? context.theme.primaryColor.withValues(alpha: 0.25)
+              : context.theme.cardColor.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(AppConst.borderRadius),
         ),
         child: Row(

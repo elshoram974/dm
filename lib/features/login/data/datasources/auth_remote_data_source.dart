@@ -28,7 +28,7 @@ class AuthRemoteDataSourceImp extends AuthRemoteDataSource {
       {
         AppString.phone: phone,
         AppString.password: password,
-        // AppString.phone: AppInfo.isDebugMode ? '+2001210119384' : phone,
+        // AppString.phone: AppInfo.isDebugMode ? '+201210119384' : phone,
         // AppString.password: AppInfo.isDebugMode ? 'Rep@2468' : password,
       },
     );

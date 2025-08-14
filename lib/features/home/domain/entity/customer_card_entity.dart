@@ -29,7 +29,7 @@ class CustomerCardEntity extends Equatable {
   final String? city;
   final String? image;
   // final DateTime? lastOrderDate;
-  final Color color;
+  final Color? color;
   final bool isVerified;
 
   @override
