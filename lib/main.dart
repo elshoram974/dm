@@ -15,6 +15,7 @@ import 'core/utils/config/theme/dark_theme.dart';
 import 'core/utils/config/theme/light_theme.dart';
 import 'core/utils/helper/network_helper.dart';
 
+
 void main() async {
   if (AppInfo.isDebugMode) HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
